@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBARROS TECH - TI, Redes & Celulares</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0B0F17',
+                        cardBg: '#0E1422',
+                        electricBlue: '#0088FF',
+                        cyanAccent: '#00F0FF'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-darkBg text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-electricBlue selection:text-white">
+
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-50 bg-darkBg/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-electricBlue to-cyanAccent flex items-center justify-center font-bold text-xl shadow-lg shadow-electricBlue/30 text-darkBg">
+                    DB
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-wider text-white">DBARROS <span class="text-cyanAccent">TECH</span></span>
+                    <span class="block text-[10px] text-slate-400 tracking-widest uppercase font-mono">TI • Redes • Celulares</span>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#inicio" class="hover:text-cyanAccent transition-colors">Início</a>
+                <a href="#servicos" class="hover:text-cyanAccent transition-colors">Serviços</a>
+                <a href="#loja" class="hover:text-cyanAccent transition-colors">Loja & Acessórios</a>
+                <a href="#vip" class="hover:text-cyanAccent transition-colors font-semibold flex items-center gap-1"><i class="fa-solid fa-crown text-amber-400"></i> Clube VIP</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="openAdminModal()" class="text-xs text-slate-400 hover:text-cyan-400 underline decoration-slate-600 hidden sm:inline-block">
+                    Painel Admin
+                </button>
+                <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20da%20DBARROS%20TECH!" target="_blank" class="bg-electricBlue hover:bg-blue-600 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-lg shadow-electricBlue/40 transition-all flex items-center space-x-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>Falar com Técnico</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-electricBlue/10 border border-electricBlue/30 text-cyanAccent text-xs font-semibold mb-6">
+                    <span class="w-2 h-2 rounded-full bg-cyanAccent animate-pulse"></span>
+                    <span>Atendimento Profissional em Alagoinhas - BA e Região</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight">
+                    Soluções Inteligentes em <span class="text-transparent bg-clip-text bg-gradient-to-r from-electricBlue to-cyanAccent">TI, Redes & Celulares</span>
+                </h1>
+                <p class="text-slate-400 text-base sm:text-lg mb-8 leading-relaxed">
+                    Manutenção avançada de smartphones e computadores, infraestrutura corporativa MikroTik e revenda de aparelhos selecionados com garantia.
+                </p>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+                    <a href="https://wa.me/5575992423627?text=Gostaria%20de%20solicitar%20um%20orçamento%20técnico." target="_blank" class="bg-gradient-to-r from-electricBlue to-cyanAccent text-darkBg font-bold px-6 py-3.5 rounded-xl shadow-xl hover:opacity-90 transition-all text-center">
+                        Solicitar Orçamento
+                    </a>
+                    <a href="#servicos" class="bg-cardBg border border-slate-800 hover:border-cyanAccent text-white font-semibold px-6 py-3.5 rounded-xl transition-all text-center">
+                        Conhecer Serviços
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="absolute -inset-1 rounded-3xl blur-2xl opacity-25 bg-gradient-to-r from-electricBlue to-cyanAccent"></div>
+                <div class="relative bg-cardBg border border-slate-800 rounded-2xl p-6 shadow-2xl">
+                    <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="text-xs font-mono text-slate-500 ml-2">dbarrostech.system</span>
+                        </div>
+                        <span class="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-2 py-0.5 rounded">ONLINE</span>
+                    </div>
+                    
+                    <div class="space-y-4 font-mono text-xs">
+                        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800 flex items-start space-x-3">
+                            <span class="text-cyanAccent text-base">⚡</span>
+                            <div>
+                                <span class="text-slate-200 font-bold block">Assistência Técnica Especializada</span>
+                                <span class="text-slate-400">Smartphones, tablets, formatação e reparos em placas.</span>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800 flex items-start space-x-3">
+                            <span class="text-electricBlue text-base">🌐</span>
+                            <div>
+                                <span class="text-slate-200 font-bold block">Infraestrutura & Redes MikroTik</span>
+                                <span class="text-slate-400">Configuração de roteadores, Wi-Fi corporativo e links.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE SERVIÇOS -->
+    <section id="servicos" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <h2 class="text-3xl font-black mb-3">Nossos Serviços Especializados</h2>
+            <p class="text-slate-400 text-sm">Suporte técnico de precisão e engenharia de redes para pessoas físicas e empresas.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Serviço 1 -->
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-electricBlue transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-electricBlue/10 border border-electricBlue/30 text-cyanAccent flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Manutenção de Celulares</h3>
+                <p class="text-slate-400 text-sm mb-4 leading-relaxed">Troca de tela, substituição de bateria, reparos avançados em placas de iPhones e Androids com peças testadas.</p>
+                <a href="https://wa.me/5575992423627?text=Olá,%20preciso%20de%20manutenção%20para%20meu%20celular." target="_blank" class="text-xs font-bold text-cyanAccent hover:underline flex items-center gap-1">
+                    Orçar Reparo <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </a>
+            </div>
+
+            <!-- Serviço 2 -->
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-electricBlue transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-electricBlue/10 border border-electricBlue/30 text-cyanAccent flex items
