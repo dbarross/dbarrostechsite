@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBARROS TECH - TI, Redes & Celulares</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0B0F17',
+                        cardBg: '#0E1422',
+                        electricBlue: '#0088FF',
+                        cyanAccent: '#00F0FF'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-darkBg text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-electricBlue selection:text-white">
+
+    <!-- ADMIN STRIP (Visível quando logado no Admin) -->
+    <div id="admin-bar" class="hidden bg-gradient-to-r from-blue-700 via-cyan-600 to-blue-800 text-white px-4 py-2 text-xs font-bold items-center justify-between shadow-lg sticky top-0 z-50">
+        <div class="flex items-center space-x-2">
+            <span class="bg-white text-blue-900 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-extrabold">Modo Admin Ativo</span>
+            <span>Você tem controle total sobre os conteúdos e monitoramento.</span>
+        </div>
+        <div class="flex items-center space-x-3">
+            <button onclick="openConfigModal()" class="bg-cyanAccent text-darkBg px-3 py-1 rounded-lg hover:opacity-90 transition font-black">
+                🎨 Alterar Textos & Cores
+            </button>
+            <button onclick="openDatabaseLink()" class="bg-amber-400 text-darkBg px-3 py-1 rounded-lg hover:opacity-90 transition font-black">
+                📊 Abrir Planilha / Banco de Dados
+            </button>
+            <button onclick="logoutAdmin()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg transition font-bold">
+                Sair do Admin
+            </button>
+        </div>
+    </div>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-40 bg-darkBg/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-electricBlue to-cyanAccent flex items-center justify-center font-bold text-xl shadow-lg shadow-electricBlue/30 text-darkBg">
+                    DB
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-wider text-white">DBARROS <span class="text-cyanAccent" id="brand-accent">TECH</span></span>
+                    <span class="block text-[10px] text-slate-400 tracking-widest uppercase font-mono">TI • Redes • Celulares</span>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#inicio" class="hover:text-cyanAccent transition-colors">Início</a>
+                <a href="#servicos" class="hover:text-cyanAccent transition-colors">Serviços</a>
+                <a href="#loja" class="hover:text-cyanAccent transition-colors">Loja & Acessórios</a>
+                <a href="#vip" class="hover:text-cyanAccent transition-colors font-semibold flex items-center gap-1"><i class="fa-solid fa-crown text-amber-400"></i> Clube VIP</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="openAdminModal()" class="text-xs text-slate-400 hover:text-cyan-400 underline decoration-slate-600 hidden sm:inline-block">
+                    Painel Admin
+                </button>
+                <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20da%20DBARROS%20TECH!" target="_blank" class="bg-electricBlue hover:bg-blue-600 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-lg shadow-electricBlue/40 transition-all flex items-center space-x-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>Falar com Técnico</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-electricBlue/10 border border-electricBlue/30 text-cyanAccent text-xs font-semibold mb-6">
+                    <span class="w-2 h-2 rounded-full bg-cyanAccent animate-pulse"></span>
+                    <span>Atendimento Profissional em Alagoinhas - BA e Região</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight">
+                    <span id="hero-title-text">Soluções Inteligentes em</span> <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-electricBlue to-cyanAccent" id="hero-subtitle-text">TI, Redes & Celulares</span>
+                </h1>
+                <p class="text-slate-400 text-base sm:text-lg mb-8 leading-relaxed" id="hero-desc-text">
+                    Manutenção avançada de smartphones e computadores, infraestrutura corporativa MikroTik e revenda de aparelhos selecionados com garantia.
+                </p>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+                    <a href="https://wa.me/5575992423627?text=Gostaria%20de%20solicitar%20um%20orçamento%20técnico." target="_blank" class="bg-gradient-to-r from-electricBlue to-cyanAccent text-darkBg font-bold px-6 py-3.5 rounded-xl shadow-xl hover:opacity-90 transition-all text-center">
+                        Solicitar Orçamento
+                    </a>
+                    <a href="#servicos" class="bg-cardBg border border-slate-800 hover:border-cyanAccent text-white font-semibold px-6 py-3.5 rounded-xl transition-all text-center">
+                        Conhecer Serviços
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="absolute -inset-1 rounded-3xl blur-2xl opacity-25 bg-gradient-to-r from-electricBlue to-cyanAccent"></div>
+                <div class="relative bg-cardBg border border-slate-800 rounded-2xl p-6 shadow-2xl">
+                    <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="text-xs font-mono text-slate-500 ml-2">dbarrostech.system</span>
+                        </div>
+                        <span class="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-2 py-0.5 rounded">BANCO DE DADOS: CONECTADO</span>
+                    </div>
+                    
+                    <div class="space-y-4 font-mono text-xs">
+                        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800 flex items-start space-x-3">
+                            <span class="text-cyanAccent text-base">⚡</span>
+                            <div>
+                                <span class="text-slate-200 font-bold block">Assistência Técnica Especializada</span>
+                                <span class="text-slate-400">Smartphones, tablets, formatação e reparos em placas.</span>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800 flex items-start space-x-3">
+                            <span class="text-electricBlue text-base">🌐</span>
+                            <div>
+                                <span class="text-slate-200 font-bold block">Infraestrutura & Redes MikroTik</span>
+                                <span class="text-slate-400">Configuração de roteadores, Wi-Fi corporativo e links.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE SERVIÇOS -->
+    <section id="servicos" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <h2 class="text-3xl font-black mb-3">Nossos Serviços Especializados</h2>
+            <p class="text-slate-400 text-sm">Suporte técnico de precisão e engenharia de redes para pessoas físicas e empresas.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Serviço 1 -->
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-electricBlue transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-electricBlue/10 border border-electricBlue/30 text-cyanAccent flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Manutenção de Celulares</h3>
+                <p class="text-slate-400 text-sm mb-4 leading-relaxed">Troca de tela, substituição de bateria, reparos avançados em placas de iPhones e Androids com peças testadas.</p>
+                <a href="https://wa.me/5575992423627?text=Olá,%20preciso%20de%20manutenção%20para%20meu%20celular." target="_blank" class="text-xs font-bold text-cyanAccent hover:underline flex items-center gap-1">
+                    Orçar Reparo <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </a>
+            </div>
+
+            <!-- Serviço 2 -->
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-electricBlue transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-electricBlue/10 border border-electricBlue/30 text-cyanAccent flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-network-wired"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Redes & MikroTik</h3>
+                <p class="text-slate-400 text-sm mb-4 leading-relaxed">Configuração profissional de roteadores MikroTik, portal visitantes Wi-Fi, balanceamento de links de internet e VPN.</p>
+                <a href="https://wa.me/5575992423627?text=Olá,%20tenho%20interesse%20em%20projetos%20de%20Redes%20e%20MikroTik." target="_blank" class="text-xs font-bold text-cyanAccent hover:underline flex items-center gap-1">
+                    Falar sobre Redes <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </a>
+            </div>
+
+            <!-- Serviço 3 -->
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-electricBlue transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-electricBlue/10 border border-electricBlue/30 text-cyanAccent flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Manutenção de Computadores</h3>
+                <p class="text-slate-400 text-sm mb-4 leading-relaxed">Formatação, otimização, limpeza interna preventiva, troca de pasta térmica e upgrade de SSD/Memória RAM.</p>
+                <a href="https://wa.me/5575992423627?text=Olá,%20preciso%20de%20assistência%20técnica%20para%20computador/notebook." target="_blank" class="text-xs font-bold text-cyanAccent hover:underline flex items-center gap-1">
+                    Orçar PC / Notebook <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUTOS / VITRINE -->
+    <section id="loja" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-black">Vitrine & Aparelhos</h2>
+                <p class="text-slate-400 text-sm mt-1">Dispositivos testados, com procedência e garantia DBARROS TECH.</p>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="filterProducts('all')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-xs font-bold rounded-xl transition">Todos</button>
+                <button onclick="filterProducts('apple')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-xs font-bold rounded-xl transition">Apple</button>
+                <button onclick="filterProducts('acessórios')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-xs font-bold rounded-xl transition">Acessórios</button>
+            </div>
+        </div>
+
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Produtos renderizados dinamicamente -->
+        </div>
+    </section>
+
+    <!-- CLUBE VIP -->
+    <section id="vip" class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <div class="bg-gradient-to-br from-cardBg to-slate-900 border border-electricBlue/40 rounded-3xl p-8 sm:p-12 text-center shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-electricBlue/20 rounded-full blur-3xl"></div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyanAccent/10 border border-cyanAccent/30 text-cyanAccent text-xs font-semibold mb-4">
+                <i class="fa-solid fa-crown text-amber-400"></i>
+                <span>Vantagens Exclusivas DBARROS TECH</span>
+            </div>
+            <h2 class="text-3xl font-black mb-4">Entre para o Clube VIP</h2>
+            <p class="text-slate-400 text-sm max-w-lg mx-auto mb-8">
+                Cadastre seu nome e celular para receber descontos especiais em serviços e acessórios, além de prioridade na bancada técnica.
+            </p>
+            <form onsubmit="handleVipSubmit(event)" class="max-w-md mx-auto space-y-3">
+                <input type="text" id="vip-name" placeholder="Seu Nome Completo" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-electricBlue text-white" required>
+                <input type="tel" id="vip-phone" placeholder="Seu Número de Celular / WhatsApp" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-electricBlue text-white" required>
+                <button type="submit" class="w-full py-3.5 bg-electricBlue hover:bg-blue-600 text-white font-bold rounded-xl shadow-lg shadow-electricBlue/30 transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Cadastrar e Enviar para WhatsApp</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- MODAL AUTH ADMIN -->
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-cardBg border border-slate-800 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
+            <h3 class="text-xl font-bold mb-2">Acesso Restrito Admin</h3>
+            <p class="text-xs text-slate-400 mb-4">Digite a senha administrativa para liberar a edição do site e banco de dados.</p>
+            <div id="admin-error" class="hidden mb-3 p-2 bg-red-950/80 border border-red-800 text-red-300 text-xs rounded-lg font-bold">Senha incorreta!</div>
+            <form onsubmit="verifyAdmin(event)" class="space-y-4">
+                <input type="password" id="admin-pass" placeholder="Digite a Senha Admin" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-electricBlue" required>
+                <button type="submit" class="w-full py-3 bg-electricBlue hover:bg-blue-600 text-white font-bold rounded-xl transition">Entrar no Admin</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL CONFIGURAÇÃO ADMIN (TEXTOS & LINK DA PLANILHA DO BANCO DE DADOS) -->
+    <div id="config-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-cardBg border border-slate-800 rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
+            <button onclick="closeConfigModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
+            <h3 class="text-xl font-bold mb-2">⚙️ Configurações & Banco de Dados</h3>
+            <p class="text-xs text-slate-400 mb-4">Altere os títulos principais e configure o link da sua planilha/banco de dados na nuvem.</p>
+            
+            <form onsubmit="saveAdminConfigs(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1">Título Principal</label>
+                    <input type="text" id="input-title" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1">Subtítulo em Destaque</label>
+                    <input type="text" id="input-subtitle" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-cyanAccent font-bold">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1">Descrição do Banner</label>
+                    <textarea id="input-desc" rows="3" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-slate-300"></textarea>
+                </div>
+                <div>
+                    <label class="block font-bold text-amber-400 mb-1">Link do Banco de Dados / Planilha (Google Sheets / Firebase)</label>
+                    <input type="url" id="input-db-link" placeholder="https://docs.google.com/spreadsheets/d/..." class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white font-mono">
+                    <span class="text-[10px] text-slate-500 block mt-1">Cole aqui a URL da sua planilha ou painel de controle para acessar em 1 clique.</span>
+                </div>
+                
+                <div class="flex justify-end space-x-2 pt-3 border-t border-slate-800">
+                    <button type="button" onclick="closeConfigModal()" class="px-4 py-2 bg-slate-800 text-slate-300 rounded-xl">Cancelar</button>
+                    <button type="submit" class="px-5 py-2 bg-electricBlue text-white font-bold rounded-xl shadow-lg">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-darkBg border-t border-slate-900 py-8 text-center text-slate-500 text-xs">
+        <p>&copy; 2026 DBARROS TECH. Todos os direitos reservados. Atendimento: (75) 99242-3627</p>
+    </footer>
+
+    <!-- SCRIPT DE GERENCIAMENTO -->
+    <script>
+        const products = [
+            { id: 1, title: 'iPhone 13 Pro 128GB', category: 'apple', price: 'R$ 3.890', specs: 'Saúde de Bateria 94% • Caixa + Cabo C-Lightning • Garantia DBARROS.', image: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&q=80&w=600', badge: 'Semi-Novo' },
+            { id: 2, title: 'iPhone 11 64GB Black', category: 'apple', price: 'R$ 1.990', specs: 'Tela Original • Bateria OK • Revisado em Bancada especializada.', image: 'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&q=80&w=600', badge: 'Revisado' },
+            { id: 3, title: 'Cabo USB-C p/ Lightning 2m', category: 'acessórios', price: 'R$ 79,90', specs: 'Carga Rápida Turbo • Pontas Reforçadas Anti-quebra Baseus.', image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&q=80&w=600', badge: 'Acessório' }
+        ];
+
+        let databaseUrl = localStorage.getItem('dbarros_db_url') || 'https://docs.google.com/spreadsheets/';
+
+        function renderProducts(filter = 'all') {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+            
+            filtered.forEach(p => {
+                grid.innerHTML += `
+                    <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-electricBlue transition-all">
+                        <div>
+                            <span class="text-xs font-bold text-cyanAccent uppercase tracking-widest bg-cyanAccent/10 px-2.5 py-1 rounded-md">${p.badge}</span>
+                            <h3 class="text-xl font-bold mt-4 mb-2">${p.title}</h3>
+                            <p class="text-slate-400 text-sm mb-6">${p.specs}</p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-slate-800/80 pt-4">
+                            <div>
+                                <span class="text-xs text-slate-500 block">VALOR</span>
+                                <span class="text-2xl font-black text-cyanAccent">${p.price}</span>
+                            </div>
+                            <a href="https://wa.me/5575992423627?text=Tenho%20interesse%20no%20${encodeURIComponent(p.title)}" target="_blank" class="bg-electricBlue hover:bg-blue-600 px-4 py-2 rounded-xl text-xs font-semibold transition-all">
+                                Consultar <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterProducts(category) {
+            renderProducts(category);
+        }
+
+        function openAdminModal() { 
+            document.getElementById('admin-modal').classList.remove('hidden'); 
+            document.getElementById('admin-modal').classList.add('flex'); 
+        }
+        function closeAdminModal() { 
+            document.getElementById('admin-modal').classList.remove('flex'); 
+            document.getElementById('admin-modal').classList.add('hidden'); 
+        }
+
+        function verifyAdmin(e) {
+            e.preventDefault();
+            const pass = document.getElementById('admin-pass').value;
+            if (pass === 'Aprovatt@123') {
+                document.getElementById('admin-bar').classList.remove('hidden');
+                document.getElementById('admin-bar').classList.add('flex');
+                closeAdminModal();
+            } else {
+                document.getElementById('admin-error').classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            document.getElementById('admin-bar').classList.remove('flex');
+            document.getElementById('admin-bar').classList.add('hidden');
+        }
+
+        function openConfigModal() {
+            document.getElementById('input-title').value = document.getElementById('hero-title-text').innerText;
+            document.getElementById('input-subtitle').value = document.getElementById('hero-subtitle-text').innerText;
+            document.getElementById('input-desc').value = document.getElementById('hero-desc-text').innerText;
+            document.getElementById('input-db-link').value = databaseUrl;
+
+            document.getElementById('config-modal').classList.remove('hidden');
+            document.getElementById('config-modal').classList.add('flex');
+        }
+
+        function closeConfigModal() {
+            document.getElementById('config-modal').classList.remove('flex');
+            document.getElementById('config-modal').classList.add('hidden');
+        }
+
+        function saveAdminConfigs(e) {
+            e.preventDefault();
+            document.getElementById('hero-title-text').innerText = document.getElementById('input-title').value;
+            document.getElementById('hero-subtitle-text').innerText = document.getElementById('input-subtitle').value;
+            document.getElementById('hero-desc-text').innerText = document.getElementById('input-desc').value;
+            
+            databaseUrl = document.getElementById('input-db-link').value;
+            localStorage.setItem('dbarros_db_url', databaseUrl);
+
+            closeConfigModal();
+        }
+
+        function openDatabaseLink() {
+            window.open(databaseUrl, '_blank');
+        }
+
+        function handleVipSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('vip-name').value;
+            const phone = document.getElementById('vip-phone').value;
+            
+            // Envia os dados para o seu WhatsApp (75) 99242-3627
+            const text = `Olá! Gostaria de me cadastrar no Clube VIP da DBARROS TECH.%0A%0A📌 *Nome Completo:* ${encodeURIComponent(name)}%0A📱 *Celular/WhatsApp:* ${encodeURIComponent(phone)}`;
+            window.open(`https://wa.me/5575992423627?text=${text}`, '_blank');
+        }
+
+        renderProducts();
+    </script>
+</body>
+</html>
