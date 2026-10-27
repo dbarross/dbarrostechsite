@@ -56,22 +56,14 @@
         <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=cyberpunk-2099-10701.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- POP-UP INICIAL DE NOVIDADES -->
-    <div id="initial-promo-popup" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-cardBg border-2 border-cyanAccent rounded-3xl max-w-lg w-full p-6 text-center shadow-2xl relative animate-glow">
-            <button type="button" onclick="closePromoPopup()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold p-2 z-10 cursor-pointer">✕</button>
-            <div class="inline-block p-3 rounded-2xl bg-cyanAccent/10 text-cyanAccent text-2xl mb-3 animate-bounce-slow">
-                <i class="fa-solid fa-fire text-amber-400"></i>
-            </div>
-            <span class="text-xs uppercase font-mono tracking-widest text-cyanAccent bg-cyanAccent/10 px-3 py-1 rounded-full border border-cyanAccent/30">Novidades DBARROS TECH</span>
-            <h2 class="text-2xl font-black text-white mt-3 mb-2 uppercase">🔥 IPHONES E NOVIDADES DISPONÍVEIS!</h2>
-            <p class="text-slate-300 text-xs mb-6">Confira os aparelhos seminovos revisados e garanta seu acesso VIP com descontos exclusivos.</p>
-            <div id="popup-products-list" class="space-y-2.5 text-left mb-6 max-h-48 overflow-y-auto pr-1"></div>
-            <div class="flex gap-3">
-                <button type="button" onclick="closePromoPopup()" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-xl text-xs transition uppercase cursor-pointer">Continuar no Site</button>
-                <a href="#LOJA" onclick="closePromoPopup()" class="w-full py-3 bg-primary hover:opacity-90 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-1 shadow-lg uppercase">Ver Vitrine</a>
-            </div>
+    <!-- BOTÃO FLUTUANTE DE WHATSAPP -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+        <div class="hidden sm:block bg-cardBg border border-emerald-500/40 text-emerald-400 text-xs font-bold px-4 py-2 rounded-2xl shadow-xl animate-pulse">
+            🟢 Fale com um técnico!
         </div>
+        <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20da%20DBARROS%20TECH%20e%20preciso%20de%20atendimento!" target="_blank" class="w-14 h-14 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-full flex items-center justify-center text-3xl shadow-2xl transition transform hover:scale-110 cursor-pointer">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
     </div>
 
     <!-- POP-UP DE BOAS-VINDAS AO CLUBE VIP -->
@@ -108,6 +100,7 @@
                 <a href="#INICIO" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-house text-secondary w-4"></i> INÍCIO</a>
                 <a href="#SERVICOS" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-screwdriver-wrench text-secondary w-4"></i> SERVIÇOS</a>
                 <a href="#LOJA" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3 text-cyanAccent font-black"><i class="fa-solid fa-fire text-amber-400 w-4"></i> APARELHOS & PCS</a>
+                <a href="#DEPOIMENTOS" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-comments text-secondary w-4"></i> DEPOIMENTOS</a>
                 <a href="#VIP" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-crown text-amber-400 w-4"></i> CLUBE VIP & LOGIN</a>
             </nav>
         </div>
@@ -149,7 +142,7 @@
                 <div id="admin-product-table" class="overflow-y-auto space-y-3 pr-2 flex-1"></div>
             </div>
 
-            <!-- ABA CLIENTES CADASTRADOS (BANCO DE DADOS INTERNO) -->
+            <!-- ABA CLIENTES CADASTRADOS -->
             <div id="admin-tab-users" class="flex-1 flex flex-col hidden overflow-hidden space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
@@ -225,6 +218,7 @@
                 <a href="#INICIO" class="hover:text-cyanAccent transition-colors">INÍCIO</a>
                 <a href="#SERVICOS" class="hover:text-cyanAccent transition-colors">SERVIÇOS</a>
                 <a href="#LOJA" class="hover:text-cyanAccent transition-colors text-cyanAccent font-black">🔥 APARELHOS & PCS</a>
+                <a href="#DEPOIMENTOS" class="hover:text-cyanAccent transition-colors">DEPOIMENTOS</a>
                 <a href="#VIP" class="hover:text-cyanAccent transition-colors flex items-center gap-1"><i class="fa-solid fa-crown text-amber-400"></i> CLUBE VIP & LOGIN</a>
             </nav>
 
@@ -323,15 +317,71 @@
         </div>
     </section>
 
-    <!-- VITRINE EM DESTAQUE -->
+    <!-- VITRINE COM FILTROS DE CATEGORIA -->
     <section id="LOJA" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900 bg-gradient-to-b from-darkBg to-slate-950/60 rounded-3xl my-8">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-6">
             <div>
                 <span class="text-xs uppercase font-mono tracking-widest text-secondary bg-secondary/10 px-3 py-1 rounded-full border border-secondary/35">ESTOQUE EM DESTAQUE</span>
                 <h2 class="text-2xl sm:text-4xl font-black text-white mt-3 uppercase">🔥 APARELHOS & ACESSÓRIOS DISPONÍVEIS</h2>
             </div>
+            <!-- Botões de Filtro -->
+            <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="filterProducts('all')" id="filter-btn-all" class="px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition">Todos</button>
+                <button type="button" onclick="filterProducts('apple')" id="filter-btn-apple" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">iPhones / Apple</button>
+                <button type="button" onclick="filterProducts('acessórios')" id="filter-btn-acessórios" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">Acessórios</button>
+            </div>
         </div>
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+    </section>
+
+    <!-- SEÇÃO DE DEPOIMENTOS DE CLIENTES -->
+    <section id="DEPOIMENTOS" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs uppercase font-mono tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/30">Confiança & Qualidade</span>
+            <h2 class="text-2xl sm:text-3xl font-black mb-3 uppercase mt-3">O QUE DIZEM NOSSOS CLIENTES</h2>
+            <p class="text-slate-400 text-xs sm:text-sm">Feedback real de quem confia na bancada e nos serviços da DBARROS TECH.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 relative flex flex-col justify-between">
+                <div>
+                    <div class="text-amber-400 text-sm mb-3">★★★★★</div>
+                    <p class="text-slate-300 text-xs italic mb-4 leading-relaxed">"Montei meu PC Gamer com o Davi e o atendimento foi impecável. Peças originais, organização de cabos perfeita e entrega rápida em Alagoinhas!"</p>
+                </div>
+                <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80">
+                    <div class="w-9 h-9 rounded-full bg-electricBlue/20 text-secondary font-bold flex items-center justify-center text-xs">CM</div>
+                    <div>
+                        <h4 class="font-bold text-white text-xs uppercase">Carlos Mendes</h4>
+                        <span class="text-[10px] text-slate-400 uppercase">Cliente de PC Gamer</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 relative flex flex-col justify-between">
+                <div>
+                    <div class="text-amber-400 text-sm mb-3">★★★★★</div>
+                    <p class="text-slate-300 text-xs italic mb-4 leading-relaxed">"Comprei meu iPhone seminovo com procedência e garantia. Aparelho impecável, bateria em estado excelente. Super recomendo!"</p>
+                </div>
+                <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80">
+                    <div class="w-9 h-9 rounded-full bg-pink-500/20 text-pink-400 font-bold flex items-center justify-center text-xs">JR</div>
+                    <div>
+                        <h4 class="font-bold text-white text-xs uppercase">Jéssica Ribeiro</h4>
+                        <span class="text-[10px] text-slate-400 uppercase">Cliente de iPhone</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 relative flex flex-col justify-between">
+                <div>
+                    <div class="text-amber-400 text-sm mb-3">★★★★★</div>
+                    <p class="text-slate-300 text-xs italic mb-4 leading-relaxed">"O suporte de redes e configuração MikroTik aqui no escritório ficou nota 10. Zero quedas e sinal Wi-Fi excelente em todo o ambiente."</p>
+                </div>
+                <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80">
+                    <div class="w-9 h-9 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-xs">RA</div>
+                    <div>
+                        <h4 class="font-bold text-white text-xs uppercase">Rodrigo Almeida</h4>
+                        <span class="text-[10px] text-slate-400 uppercase">Cliente Corporativo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- CLUBE VIP / ABAS DE CADASTRO E LOGIN -->
@@ -440,11 +490,6 @@
             { date: '2026-10-27 10:00', name: 'Davi Barros', phone: '(75) 99999-9999', email: 'davi@dbarrostech.com', pass: '123456' }
         ];
         let currentUser = JSON.parse(localStorage.getItem('dbarros_user')) || null;
-
-        function closePromoPopup() {
-            const popup = document.getElementById('initial-promo-popup');
-            if (popup) { popup.style.display = 'none'; popup.classList.add('hidden'); }
-        }
 
         function toggleMobileMenu() {
             const drawer = document.getElementById('mobile-drawer');
@@ -562,6 +607,67 @@
         function closeWelcomePopup() {
             document.getElementById('vip-welcome-popup').classList.remove('flex');
             document.getElementById('vip-welcome-popup').classList.add('hidden');
+        }
+
+        // FILTROS DE PRODUTOS DA VITRINE
+        function filterProducts(category) {
+            const btnAll = document.getElementById('filter-btn-all');
+            const btnApple = document.getElementById('filter-btn-apple');
+            const btnAccessory = document.getElementById('filter-btn-acessórios');
+
+            // Resetar estilos dos botões
+            [btnAll, btnApple, btnAccessory].forEach(b => {
+                b.className = 'px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition';
+            });
+
+            if(category === 'all') {
+                btnAll.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition';
+                renderProducts(products);
+            } else if(category === 'apple') {
+                btnApple.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition';
+                renderProducts(products.filter(p => p.category === 'apple'));
+            } else if(category === 'acessórios') {
+                btnAccessory.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition';
+                renderProducts(products.filter(p => p.category === 'acessórios'));
+            }
+        }
+
+        function renderProducts(listToRender) {
+            const grid = document.getElementById('product-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            
+            if(listToRender.length === 0) {
+                grid.innerHTML = `<div class="col-span-3 text-center py-8 text-slate-500 uppercase text-xs font-bold">Nenhum aparelho encontrado nesta categoria.</div>`;
+                return;
+            }
+
+            listToRender.forEach(p => {
+                const statusBadge = p.status === 'Disponível' 
+                    ? '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase">Disponível</span>'
+                    : '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30 uppercase">Vendido</span>';
+
+                grid.innerHTML += `
+                    <div class="bg-cardBg border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between hover:border-cyanAccent transition-all group">
+                        <div>
+                            <div class="relative h-52 sm:h-56 overflow-hidden bg-slate-950">
+                                <img src="${p.image}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <div class="absolute top-3 left-3">${statusBadge}</div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-extrabold text-white text-base mb-2 uppercase">${p.title}</h3>
+                                <p class="text-slate-400 text-xs mb-4 uppercase">${p.specs}</p>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+                            <span class="text-xl font-black text-secondary">${p.price}</span>
+                            <a href="https://wa.me/5575992423627?text=Olá,%20tenho%20interesse%20no%20item%20${encodeURIComponent(p.title)}" target="_blank" class="bg-primary hover:opacity-90 text-white px-3 py-2 rounded-xl text-xs font-bold shadow-lg uppercase">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> Negociar
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
         }
 
         // PAINEL ADMIN E BANCO DE DADOS INTERNO
@@ -686,39 +792,27 @@
         }
         function logoutAdmin() { document.getElementById('admin-bar').classList.remove('flex'); document.getElementById('admin-bar').classList.add('hidden'); }
 
-        function renderProducts() {
-            const grid = document.getElementById('product-grid');
-            if(!grid) return;
-            grid.innerHTML = '';
-            products.forEach(p => {
-                const statusBadge = p.status === 'Disponível' 
-                    ? '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase">Disponível</span>'
-                    : '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30 uppercase">Vendido</span>';
-
-                grid.innerHTML += `
-                    <div class="bg-cardBg border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between hover:border-cyanAccent transition-all group">
-                        <div>
-                            <div class="relative h-52 sm:h-56 overflow-hidden bg-slate-950">
-                                <img src="${p.image}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                                <div class="absolute top-3 left-3">${statusBadge}</div>
-                            </div>
-                            <div class="p-5">
-                                <h3 class="font-extrabold text-white text-base mb-2 uppercase">${p.title}</h3>
-                                <p class="text-slate-400 text-xs mb-4 uppercase">${p.specs}</p>
-                            </div>
-                        </div>
-                        <div class="p-5 pt-0 border-t border-slate-800/80 flex items-center justify-between mt-auto">
-                            <span class="text-xl font-black text-secondary">${p.price}</span>
-                            <a href="https://wa.me/5575992423627?text=Olá,%20interesse%20em%20${encodeURIComponent(p.title)}" target="_blank" class="bg-primary hover:opacity-90 text-white px-3 py-2 rounded-xl text-xs font-bold shadow-lg uppercase">
-                                <i class="fa-brands fa-whatsapp text-sm"></i> Negociar
-                            </a>
-                        </div>
-                    </div>
-                `;
-            });
+        let isMusicPlaying = false;
+        function toggleMusic() {
+            const audio = document.getElementById('bg-music');
+            const icon = document.getElementById('music-icon');
+            const text = document.getElementById('music-text');
+            if (isMusicPlaying) {
+                audio.pause();
+                icon.className = 'fa-solid fa-volume-xmark text-red-400';
+                text.innerText = 'SOM';
+                isMusicPlaying = false;
+            } else {
+                audio.volume = 0.3;
+                audio.play().then(() => {
+                    icon.className = 'fa-solid fa-compact-disc text-cyanAccent animate-spin';
+                    text.innerText = 'TOCANDO';
+                    isMusicPlaying = true;
+                }).catch(() => {});
+            }
         }
 
-        renderProducts();
+        renderProducts(products);
         updateUIUserStatus();
     </script>
 </body>
