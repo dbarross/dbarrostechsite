@@ -119,7 +119,7 @@
     <!-- MODAL NOVO / EDITAR APARELHO -->
     <div id="product-form-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
         <div class="bg-cardBg border-2 border-cyanAccent rounded-3xl max-w-lg w-full p-6 text-left shadow-2xl relative">
-            <button type="button" onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">✕</button>
+            <button type="button" onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold cursor-pointer">✕</button>
             <h3 id="product-modal-title" class="text-xl font-black text-white mb-4 uppercase">➕ ADICIONAR NOVO APARELHO</h3>
             <form id="product-form" onsubmit="saveProduct(event)" class="space-y-3 text-xs">
                 <input type="hidden" id="prod-id">
@@ -162,7 +162,7 @@
                     <label class="block font-bold text-slate-300 mb-1 uppercase">URL da Imagem</label>
                     <input type="url" id="prod-image" placeholder="https://..." class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
                 </div>
-                <button type="submit" class="w-full py-3 bg-cyanAccent text-slate-950 font-black rounded-xl uppercase hover:opacity-90 transition mt-2">Salvar Anúncio</button>
+                <button type="submit" class="w-full py-3 bg-cyanAccent text-slate-950 font-black rounded-xl uppercase hover:opacity-90 transition mt-2 cursor-pointer">Salvar Anúncio</button>
             </form>
         </div>
     </div>
@@ -170,7 +170,7 @@
     <!-- PAINEL DE GESTÃO ADMIN INTEGRADO -->
     <div id="admin-management-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
         <div class="bg-cardBg border-2 border-emerald-500 rounded-3xl max-w-5xl w-full p-6 sm:p-8 text-left shadow-2xl relative max-h-[92vh] flex flex-col">
-            <button type="button" onclick="closeAdminManagementModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">✕</button>
+            <button type="button" onclick="closeAdminManagementModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold cursor-pointer">✕</button>
             
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 border-b border-slate-800 pb-4 gap-3">
                 <div class="flex items-center gap-3">
@@ -181,10 +181,10 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <button type="button" onclick="switchAdminTab('stock')" id="tab-btn-stock" class="px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition">📦 Estoque</button>
-                    <button type="button" onclick="switchAdminTab('finance')" id="tab-btn-finance" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">📊 Balanço Financeiro</button>
-                    <button type="button" onclick="switchAdminTab('images')" id="tab-btn-images" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">🖼️ Banners & Imagens</button>
-                    <button type="button" onclick="switchAdminTab('users')" id="tab-btn-users" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">👥 Clientes</button>
+                    <button type="button" onclick="switchAdminTab('stock')" id="tab-btn-stock" class="px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer">📦 Estoque</button>
+                    <button type="button" onclick="switchAdminTab('finance')" id="tab-btn-finance" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">📊 Balanço</button>
+                    <button type="button" onclick="switchAdminTab('images')" id="tab-btn-images" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">🖼️ Banners</button>
+                    <button type="button" onclick="switchAdminTab('users')" id="tab-btn-users" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">👥 Clientes</button>
                 </div>
             </div>
 
@@ -249,7 +249,7 @@
                         <label class="block font-bold text-slate-300 mb-1 uppercase">Banner da Seção IPTV / Streaming</label>
                         <input type="url" id="img-site-iptv" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
                     </div>
-                    <button type="submit" class="px-5 py-2.5 bg-emerald-500 text-slate-950 font-black rounded-xl uppercase hover:bg-emerald-400 transition">Salvar Alterações das Imagens</button>
+                    <button type="submit" class="px-5 py-2.5 bg-emerald-500 text-slate-950 font-black rounded-xl uppercase hover:bg-emerald-400 transition cursor-pointer">Salvar Alterações das Imagens</button>
                 </form>
             </div>
 
@@ -269,7 +269,7 @@
                             <span class="text-slate-400 text-[10px] uppercase font-mono block">Exportar Banco</span>
                             <span class="text-xs font-bold text-white">Baixar Lista em Excel/CSV</span>
                         </div>
-                        <button type="button" onclick="exportUsersCSV()" class="px-3 py-2 bg-secondary text-darkBg font-black rounded-lg text-xs uppercase shadow hover:opacity-90">📥 Baixar Lista</button>
+                        <button type="button" onclick="exportUsersCSV()" class="px-3 py-2 bg-secondary text-darkBg font-black rounded-lg text-xs uppercase shadow hover:opacity-90 cursor-pointer">📥 Baixar Lista</button>
                     </div>
                 </div>
 
@@ -297,7 +297,7 @@
             </div>
 
             <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
-                <button type="button" onclick="closeAdminManagementModal()" class="px-6 py-2.5 bg-slate-800 text-white font-bold rounded-xl text-xs uppercase">Fechar Painel</button>
+                <button type="button" onclick="closeAdminManagementModal()" class="px-6 py-2.5 bg-slate-800 text-white font-bold rounded-xl text-xs uppercase cursor-pointer">Fechar Painel</button>
             </div>
         </div>
     </div>
@@ -309,8 +309,8 @@
             <span class="hidden md:inline">Banco de dados interno ativado.</span>
         </div>
         <div class="flex items-center space-x-2">
-            <button type="button" onclick="openAdminManagementModal()" class="bg-amber-400 text-slate-950 px-3 py-1 rounded-lg hover:bg-amber-300 transition font-black uppercase text-[11px]">⚙️ Central de Gestão</button>
-            <button type="button" onclick="logoutAdmin()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg transition font-bold uppercase text-[11px]">Sair</button>
+            <button type="button" onclick="openAdminManagementModal()" class="bg-amber-400 text-slate-950 px-3 py-1 rounded-lg hover:bg-amber-300 transition font-black uppercase text-[11px] cursor-pointer">⚙️ Central de Gestão</button>
+            <button type="button" onclick="logoutAdmin()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg transition font-bold uppercase text-[11px] cursor-pointer">Sair</button>
         </div>
     </div>
 
@@ -337,7 +337,7 @@
 
             <div class="flex items-center space-x-2 sm:space-x-3">
                 <div id="desktop-user-status" class="hidden sm:flex items-center"></div>
-                <button type="button" id="music-btn" onclick="toggleMusic()" class="bg-slate-800 border border-slate-700 hover:border-cyanAccent text-slate-300 px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow" title="Ligar/Desligar Música">
+                <button type="button" id="music-btn" onclick="toggleMusic()" class="bg-slate-800 border border-slate-700 hover:border-cyanAccent text-slate-300 px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow cursor-pointer" title="Ligar/Desligar Música">
                     <i id="music-icon" class="fa-solid fa-volume-xmark text-red-400"></i>
                     <span id="music-text" class="hidden md:inline">SOM</span>
                 </button>
@@ -345,7 +345,7 @@
                     <i class="fa-brands fa-whatsapp text-sm"></i>
                     <span class="hidden lg:inline">FALAR COM TÉCNICO</span>
                 </a>
-                <button type="button" onclick="toggleMobileMenu()" class="lg:hidden bg-slate-800 border border-slate-700 text-slate-200 p-2.5 rounded-xl text-lg hover:text-cyanAccent transition focus:outline-none" title="Abrir Menu">
+                <button type="button" onclick="toggleMobileMenu()" class="lg:hidden bg-slate-800 border border-slate-700 text-slate-200 p-2.5 rounded-xl text-lg hover:text-cyanAccent transition focus:outline-none cursor-pointer" title="Abrir Menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -463,9 +463,9 @@
             </div>
             <!-- Botões de Filtro -->
             <div class="flex flex-wrap gap-2">
-                <button type="button" onclick="filterProducts('all')" id="filter-btn-all" class="px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition">Todos</button>
-                <button type="button" onclick="filterProducts('apple')" id="filter-btn-apple" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">iPhones / Apple</button>
-                <button type="button" onclick="filterProducts('acessórios')" id="filter-btn-acessórios" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">Acessórios</button>
+                <button type="button" onclick="filterProducts('all')" id="filter-btn-all" class="px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer">Todos</button>
+                <button type="button" onclick="filterProducts('apple')" id="filter-btn-apple" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">iPhones / Apple</button>
+                <button type="button" onclick="filterProducts('acessórios')" id="filter-btn-acessórios" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">Acessórios</button>
             </div>
         </div>
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
@@ -561,8 +561,8 @@
 
             <div id="vip-container">
                 <div class="flex justify-center gap-2 mb-6">
-                    <button type="button" onclick="switchVipTab('register')" id="vip-tab-reg-btn" class="px-5 py-2.5 bg-primary text-white font-black rounded-xl text-xs uppercase shadow transition">Criar Cadastro VIP</button>
-                    <button type="button" onclick="switchVipTab('login')" id="vip-tab-log-btn" class="px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">Já tenho conta (Entrar)</button>
+                    <button type="button" onclick="switchVipTab('register')" id="vip-tab-reg-btn" class="px-5 py-2.5 bg-primary text-white font-black rounded-xl text-xs uppercase shadow transition cursor-pointer">Criar Cadastro VIP</button>
+                    <button type="button" onclick="switchVipTab('login')" id="vip-tab-log-btn" class="px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">Já tenho conta (Entrar)</button>
                 </div>
 
                 <div id="vip-form-register-box">
@@ -618,13 +618,13 @@
     <!-- MODAL AUTH ADMIN -->
     <div id="admin-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-cardBg border border-slate-800 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
-            <button type="button" onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg font-bold">✕</button>
+            <button type="button" onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg font-bold cursor-pointer">✕</button>
             <h3 class="text-xl font-bold mb-2 uppercase text-amber-400"><i class="fa-solid fa-lock mr-2"></i> ACESSO RESTRITO ADMIN</h3>
             <p class="text-xs text-slate-400 mb-4">Digite a senha administrativa para abrir a central de gestão.</p>
             <div id="admin-error" class="hidden mb-3 p-2 bg-red-950/80 border border-red-800 text-red-300 text-xs rounded-lg font-bold uppercase">SENHA INCORRETA!</div>
             <form onsubmit="verifyAdmin(event)" class="space-y-4">
                 <input type="password" id="admin-pass" placeholder="SENHA ADMIN" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-amber-400 uppercase" required>
-                <button type="submit" class="w-full py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-xl transition uppercase text-xs">ACESSAR PAINEL ADMIN</button>
+                <button type="submit" class="w-full py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-xl transition uppercase text-xs cursor-pointer">ACESSAR PAINEL ADMIN</button>
             </form>
         </div>
     </div>
@@ -702,18 +702,20 @@
             const indicator = document.getElementById('testimonial-indicator');
             const t = testimonials[currentTestimonialIndex];
             
-            container.innerHTML = `
-                <div class="text-amber-400 text-sm mb-3">★★★★★</div>
-                <p class="text-slate-200 text-xs sm:text-sm italic mb-6 leading-relaxed max-w-2xl mx-auto">"${t.text}"</p>
-                <div class="flex items-center justify-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-electricBlue/20 text-secondary font-bold flex items-center justify-center text-xs">${t.initials}</div>
-                    <div class="text-left">
-                        <h4 class="font-bold text-white text-xs uppercase">${t.name}</h4>
-                        <span class="text-[10px] text-slate-400 uppercase">${t.role}</span>
+            if(container) {
+                container.innerHTML = `
+                    <div class="text-amber-400 text-sm mb-3">★★★★★</div>
+                    <p class="text-slate-200 text-xs sm:text-sm italic mb-6 leading-relaxed max-w-2xl mx-auto">"${t.text}"</p>
+                    <div class="flex items-center justify-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-electricBlue/20 text-secondary font-bold flex items-center justify-center text-xs">${t.initials}</div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-white text-xs uppercase">${t.name}</h4>
+                            <span class="text-[10px] text-slate-400 uppercase">${t.role}</span>
+                        </div>
                     </div>
-                </div>
-            `;
-            indicator.innerText = `${currentTestimonialIndex + 1} / ${testimonials.length}`;
+                `;
+            }
+            if(indicator) indicator.innerText = `${currentTestimonialIndex + 1} / ${testimonials.length}`;
         }
 
         function nextTestimonial() { currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length; renderTestimonial(); }
@@ -724,6 +726,7 @@
         // NOTÍCIAS TECH
         async function fetchTechNews() {
             const grid = document.getElementById('tech-news-grid');
+            if(!grid) return;
             try {
                 const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://tecnoblog.net/feed/');
                 const data = await response.json();
@@ -766,13 +769,13 @@
             if(tab === 'register') {
                 regBox.classList.remove('hidden');
                 logBox.classList.add('hidden');
-                regBtn.className = 'px-5 py-2.5 bg-primary text-white font-black rounded-xl text-xs uppercase shadow transition';
-                logBtn.className = 'px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition';
+                regBtn.className = 'px-5 py-2.5 bg-primary text-white font-black rounded-xl text-xs uppercase shadow transition cursor-pointer';
+                logBtn.className = 'px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer';
             } else {
                 logBox.classList.remove('hidden');
                 regBox.classList.add('hidden');
-                logBtn.className = 'px-5 py-2.5 bg-emerald-600 text-white font-black rounded-xl text-xs uppercase shadow transition';
-                regBtn.className = 'px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition';
+                logBtn.className = 'px-5 py-2.5 bg-emerald-600 text-white font-black rounded-xl text-xs uppercase shadow transition cursor-pointer';
+                regBtn.className = 'px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer';
             }
         }
 
@@ -824,32 +827,38 @@
             const vipContainer = document.getElementById('vip-container');
 
             if(currentUser) {
-                desktopContainer.innerHTML = `
-                    <div class="flex items-center space-x-2 bg-emerald-950/80 border border-emerald-500/40 px-3 py-1.5 rounded-xl text-xs font-bold text-emerald-300">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span>${currentUser.name.split(' ')[0]} (VIP)</span>
-                        <button type="button" onclick="logoutUser()" class="ml-1 text-slate-400 hover:text-red-400 text-xs font-bold cursor-pointer">✕</button>
-                    </div>
-                `;
-                mobileContainer.innerHTML = `
-                    <div class="flex items-center space-x-2 text-emerald-400 font-bold">
-                        <i class="fa-solid fa-user-check text-emerald-400"></i>
-                        <span>Olá, ${currentUser.name}! (VIP)</span>
-                    </div>
-                    <button type="button" onclick="logoutUser()" class="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded font-bold cursor-pointer">Sair</button>
-                `;
-                vipContainer.innerHTML = `
-                    <div class="text-center py-4">
-                        <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce-slow">
-                            <i class="fa-solid fa-crown"></i>
+                if(desktopContainer) {
+                    desktopContainer.innerHTML = `
+                        <div class="flex items-center space-x-2 bg-emerald-950/80 border border-emerald-500/40 px-3 py-1.5 rounded-xl text-xs font-bold text-emerald-300">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span>${currentUser.name.split(' ')[0]} (VIP)</span>
+                            <button type="button" onclick="logoutUser()" class="ml-1 text-slate-400 hover:text-red-400 text-xs font-bold cursor-pointer">✕</button>
                         </div>
-                        <h3 class="text-2xl font-black text-white mb-2 uppercase">BEM-VINDO AO CLUBE VIP, ${currentUser.name}</h3>
-                        <p class="text-slate-300 text-xs mb-6">Sua conta está ativa no sistema.</p>
-                        <button type="button" onclick="logoutUser()" class="px-5 py-3 bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white font-bold rounded-xl text-xs uppercase border border-red-500/30 cursor-pointer">
-                            Sair da Conta
-                        </button>
-                    </div>
-                `;
+                    `;
+                }
+                if(mobileContainer) {
+                    mobileContainer.innerHTML = `
+                        <div class="flex items-center space-x-2 text-emerald-400 font-bold">
+                            <i class="fa-solid fa-user-check text-emerald-400"></i>
+                            <span>Olá, ${currentUser.name}! (VIP)</span>
+                        </div>
+                        <button type="button" onclick="logoutUser()" class="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded font-bold cursor-pointer">Sair</button>
+                    `;
+                }
+                if(vipContainer) {
+                    vipContainer.innerHTML = `
+                        <div class="text-center py-4">
+                            <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce-slow">
+                                <i class="fa-solid fa-crown"></i>
+                            </div>
+                            <h3 class="text-2xl font-black text-white mb-2 uppercase">BEM-VINDO AO CLUBE VIP, ${currentUser.name}</h3>
+                            <p class="text-slate-300 text-xs mb-6">Sua conta está ativa no sistema.</p>
+                            <button type="button" onclick="logoutUser()" class="px-5 py-3 bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white font-bold rounded-xl text-xs uppercase border border-red-500/30 cursor-pointer">
+                                Sair da Conta
+                            </button>
+                        </div>
+                    `;
+                }
             }
         }
 
@@ -860,8 +869,11 @@
         }
 
         function closeWelcomePopup() {
-            document.getElementById('vip-welcome-popup').classList.remove('flex');
-            document.getElementById('vip-welcome-popup').classList.add('hidden');
+            const popup = document.getElementById('vip-welcome-popup');
+            if(popup) {
+                popup.classList.remove('flex');
+                popup.classList.add('hidden');
+            }
         }
 
         function filterProducts(category) {
@@ -870,17 +882,17 @@
             const btnAccessory = document.getElementById('filter-btn-acessórios');
 
             [btnAll, btnApple, btnAccessory].forEach(b => {
-                b.className = 'px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition';
+                if(b) b.className = 'px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer';
             });
 
             if(category === 'all') {
-                btnAll.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition';
+                if(btnAll) btnAll.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
                 renderProducts(products);
             } else if(category === 'apple') {
-                btnApple.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition';
+                if(btnApple) btnApple.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
                 renderProducts(products.filter(p => p.category === 'apple'));
             } else if(category === 'acessórios') {
-                btnAccessory.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition';
+                if(btnAccessory) btnAccessory.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
                 renderProducts(products.filter(p => p.category === 'acessórios'));
             }
         }
@@ -929,12 +941,13 @@
         function openProductModal(prodId = null) {
             const modal = document.getElementById('product-form-modal');
             const title = document.getElementById('product-modal-title');
-            document.getElementById('product-form').reset();
+            const form = document.getElementById('product-form');
+            if(form) form.reset();
 
             if(prodId) {
                 const prod = products.find(p => p.id === prodId);
                 if(prod) {
-                    title.innerText = '✏️ EDITAR ANÚNCIO DO APARELHO';
+                    if(title) title.innerText = '✏️ EDITAR ANÚNCIO DO APARELHO';
                     document.getElementById('prod-id').value = prod.id;
                     document.getElementById('prod-title').value = prod.title;
                     document.getElementById('prod-price').value = prod.price;
@@ -945,17 +958,22 @@
                     document.getElementById('prod-image').value = prod.image;
                 }
             } else {
-                title.innerText = '➕ ADICIONAR NOVO APARELHO';
+                if(title) title.innerText = '➕ ADICIONAR NOVO APARELHO';
                 document.getElementById('prod-id').value = '';
             }
 
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            if(modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
         }
 
         function closeProductModal() {
-            document.getElementById('product-form-modal').classList.remove('flex');
-            document.getElementById('product-form-modal').classList.add('hidden');
+            const modal = document.getElementById('product-form-modal');
+            if(modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
         }
 
         function saveProduct(e) {
@@ -969,7 +987,7 @@
             const specs = document.getElementById('prod-specs').value;
             const image = document.getElementById('prod-image').value;
 
-            if(id) {
+            if(id !== "") {
                 const index = products.findIndex(p => p.id === parseInt(id));
                 if(index !== -1) {
                     products[index] = { id: parseInt(id), title, price, cost, category, status, specs, image };
@@ -1049,29 +1067,30 @@
             const imagesBtn = document.getElementById('tab-btn-images');
             const usersBtn = document.getElementById('tab-btn-users');
 
-            [stockTab, financeTab, imagesTab, usersTab].forEach(t => t.classList.add('hidden'));
-            [stockBtn, financeBtn, imagesBtn, usersBtn].forEach(b => b.className = 'px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition');
+            [stockTab, financeTab, imagesTab, usersTab].forEach(t => { if(t) t.classList.add('hidden'); });
+            [stockBtn, financeBtn, imagesBtn, usersBtn].forEach(b => { if(b) b.className = 'px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer'; });
 
             if(tab === 'stock') {
-                stockTab.classList.remove('hidden');
-                stockBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
+                if(stockTab) stockTab.classList.remove('hidden');
+                if(stockBtn) stockBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
             } else if(tab === 'finance') {
-                financeTab.classList.remove('hidden');
-                financeBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
+                if(financeTab) financeTab.classList.remove('hidden');
+                if(financeBtn) financeBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
                 calculateFinance();
             } else if(tab === 'images') {
-                imagesTab.classList.remove('hidden');
-                imagesBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
+                if(imagesTab) imagesTab.classList.remove('hidden');
+                if(imagesBtn) imagesBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
                 loadSiteImages();
             } else if(tab === 'users') {
-                usersTab.classList.remove('hidden');
-                usersBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
+                if(usersTab) usersTab.classList.remove('hidden');
+                if(usersBtn) usersBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
                 renderAdminUsersTable();
             }
         }
 
         function renderAdminUsersTable(data = registeredUsers) {
             const tbody = document.getElementById('admin-users-table-body');
+            if(!tbody) return;
             tbody.innerHTML = '';
             document.getElementById('stat-vip-count').innerText = registeredUsers.length;
             document.getElementById('stat-prod-count').innerText = products.length;
@@ -1090,7 +1109,7 @@
                         <td class="p-3 text-slate-300 font-mono">${u.email}</td>
                         <td class="p-3 text-amber-400 font-mono">${u.pass}</td>
                         <td class="p-3 text-right">
-                            <button type="button" onclick="deleteAdminUser(${index})" class="bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-2.5 py-1 rounded text-[11px] font-bold transition">Excluir</button>
+                            <button type="button" onclick="deleteAdminUser(${index})" class="bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-2.5 py-1 rounded text-[11px] font-bold transition cursor-pointer">Excluir</button>
                         </td>
                     </tr>
                 `;
@@ -1127,6 +1146,7 @@
 
         function openAdminManagementModal() {
             const table = document.getElementById('admin-product-table');
+            if(!table) return;
             table.innerHTML = '';
             products.forEach(p => {
                 const isAvailable = p.status === 'Disponível';
@@ -1156,30 +1176,62 @@
                     </div>
                 `;
             });
-            document.getElementById('admin-management-modal').classList.remove('hidden');
-            document.getElementById('admin-management-modal').classList.add('flex');
+            const modal = document.getElementById('admin-management-modal');
+            if(modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
             switchAdminTab('stock');
         }
 
         function closeAdminManagementModal() {
-            document.getElementById('admin-management-modal').classList.remove('flex');
-            document.getElementById('admin-management-modal').classList.add('hidden');
+            const modal = document.getElementById('admin-management-modal');
+            if(modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
         }
 
-        function openAdminModal() { document.getElementById('admin-modal').classList.remove('hidden'); document.getElementById('admin-modal').classList.add('flex'); }
-        function closeAdminModal() { document.getElementById('admin-modal').classList.remove('flex'); document.getElementById('admin-modal').classList.add('hidden'); }
+        function openAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            if(modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            if(modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
         function verifyAdmin(e) {
             e.preventDefault();
-            if (document.getElementById('admin-pass').value === 'Aprovatt@123') {
-                document.getElementById('admin-bar').classList.remove('hidden');
-                document.getElementById('admin-bar').classList.add('flex');
+            const passInput = document.getElementById('admin-pass');
+            if (passInput && passInput.value === 'Aprovatt@123') {
+                const adminBar = document.getElementById('admin-bar');
+                if(adminBar) {
+                    adminBar.classList.remove('hidden');
+                    adminBar.classList.add('flex');
+                }
                 closeAdminModal();
                 openAdminManagementModal();
             } else {
-                document.getElementById('admin-error').classList.remove('hidden');
+                const err = document.getElementById('admin-error');
+                if(err) err.classList.remove('hidden');
             }
         }
-        function logoutAdmin() { document.getElementById('admin-bar').classList.remove('flex'); document.getElementById('admin-bar').classList.add('hidden'); }
+
+        function logoutAdmin() {
+            const adminBar = document.getElementById('admin-bar');
+            if(adminBar) {
+                adminBar.classList.remove('flex');
+                adminBar.classList.add('hidden');
+            }
+        }
 
         let isMusicPlaying = false;
         function toggleMusic() {
@@ -1188,14 +1240,14 @@
             const text = document.getElementById('music-text');
             if (isMusicPlaying) {
                 audio.pause();
-                icon.className = 'fa-solid fa-volume-xmark text-red-400';
-                text.innerText = 'SOM';
+                if(icon) icon.className = 'fa-solid fa-volume-xmark text-red-400';
+                if(text) text.innerText = 'SOM';
                 isMusicPlaying = false;
             } else {
                 audio.volume = 0.3;
                 audio.play().then(() => {
-                    icon.className = 'fa-solid fa-compact-disc text-cyanAccent animate-spin';
-                    text.innerText = 'TOCANDO';
+                    if(icon) icon.className = 'fa-solid fa-compact-disc text-cyanAccent animate-spin';
+                    if(text) text.innerText = 'TOCANDO';
                     isMusicPlaying = true;
                 }).catch(() => {});
             }
