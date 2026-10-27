@@ -1,1361 +1,1362 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DBARROS TECH | Soluções em Tecnologia & Assistência Técnica</title>
-    <!-- Tailwind CSS CDN -->
+    <title>DBARROS TECH - TI, Redes, Streaming, PCs & Celulares</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230088FF%22/><text x=%2250%25%22 y=%2255%25%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22%230B0F17%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>DB</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        cyber: {
-                            blue: '#00f0ff',
-                            purple: '#7000ff',
-                            pink: '#ff007f',
-                            dark: '#0a0d14',
-                            card: '#121723',
-                            border: '#1f293d'
-                        }
+                        darkBg: '#0B0F17',
+                        cardBg: '#0E1422',
+                        electricBlue: 'var(--primary-color, #0088FF)',
+                        cyanAccent: 'var(--secondary-color, #00F0FF)'
                     },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'bounce-slow': 'bounce 3s infinite'
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(0, 240, 255, 0.2)' },
+                            '100%': { boxShadow: '0 0 25px rgba(0, 240, 255, 0.7)' },
+                        }
                     }
                 }
             }
         }
     </script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0d14;
-            color: #f3f4f6;
-            overflow-x: hidden;
+        :root {
+            --primary-color: #0088FF;
+            --secondary-color: #00F0FF;
         }
-
-        /* Glassmorphism effects */
-        .glass-panel {
-            background: rgba(18, 23, 35, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .glass-card {
-            background: rgba(22, 28, 43, 0.75);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 240, 255, 0.15);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .glass-card:hover {
-            border-color: rgba(0, 240, 255, 0.5);
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
-            transform: translateY(-4px);
-        }
-
-        /* Neon Glows */
-        .glow-text-cyan {
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-        }
-        .glow-btn-cyan {
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-        }
-        .glow-btn-cyan:hover {
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0d14;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1f293d;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00f0ff;
-        }
-
-        /* Floating AI Chatbot dynamic positioning above footer */
-        #ai-floating-container {
-            position: fixed;
-            right: 1.25rem;
-            bottom: 1.25rem;
-            z-index: 40;
-            transition: bottom 0.2s ease-out;
-        }
-
-        /* Animations */
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
-        }
-        .animate-pulse-glow {
-            animation: pulseGlow 2.5s infinite ease-in-out;
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .text-primary { color: var(--primary-color) !important; }
+        .border-primary { border-color: var(--primary-color) !important; }
+        .bg-secondary { background-color: var(--secondary-color) !important; }
+        .text-secondary { color: var(--secondary-color) !important; }
+        .border-secondary { border-color: var(--secondary-color) !important; }
+        .tech-grid {
+            background-image: linear-gradient(to right, rgba(0, 136, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 136, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between text-gray-100 selection:bg-cyan-500 selection:text-black">
+<body class="bg-darkBg text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-electricBlue selection:text-white tech-grid relative pb-10">
 
-    <!-- TOP HEADER / NAVBAR -->
-    <header class="sticky top-0 z-30 glass-panel border-b border-cyan-500/20 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Logo DBARROS TECH -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-black font-extrabold text-xl shadow-lg group-hover:scale-105 transition-transform">
-                    DB
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=cyberpunk-2099-10701.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- BOTÃO FLUTUANTE COM WIDGET DE ASSISTENTE / WHATSAPP -->
+    <div class="fixed bottom-8 right-6 z-40 flex items-center gap-3">
+        <div class="hidden sm:block bg-cardBg border border-cyanAccent/40 text-cyanAccent text-xs font-bold px-4 py-2 rounded-2xl shadow-xl animate-pulse">
+            🤖 Assistente Técnico IA & Suporte
+        </div>
+        <button type="button" onclick="toggleAiAssistantModal()" class="w-14 h-14 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-full flex items-center justify-center text-3xl shadow-2xl transition transform hover:scale-110 cursor-pointer">
+            <i class="fa-brands fa-whatsapp"></i>
+        </button>
+    </div>
+
+    <!-- MODAL / WIDGET CHAT IA DE ATENDIMENTO E DICAS DE SEGMENTO -->
+    <div id="ai-assistant-modal" class="fixed bottom-24 right-6 z-50 w-96 max-w-[90vw] bg-cardBg border-2 border-cyanAccent/60 rounded-3xl shadow-2xl hidden flex-col overflow-hidden animate-glow">
+        <div class="bg-slate-900 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-cyanAccent/20 text-cyanAccent flex items-center justify-center font-bold text-sm"><i class="fa-solid fa-robot"></i></div>
+                <div>
+                    <h4 class="font-extrabold text-white text-xs uppercase">DBARROS IA TECH</h4>
+                    <span class="text-[9px] text-emerald-400 font-mono">🟢 Online - Suporte Técnico</span>
+                </div>
+            </div>
+            <button type="button" onclick="toggleAiAssistantModal()" class="text-slate-400 hover:text-white font-bold text-lg p-1">✕</button>
+        </div>
+        
+        <div id="ai-chat-body" class="p-4 h-64 overflow-y-auto space-y-3 text-xs">
+            <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl text-slate-200">
+                👋 Olá! Sou o assistente virtual da **DBARROS TECH**. Escolha uma opção abaixo ou clique para falar no WhatsApp!
+            </div>
+        </div>
+
+        <div class="p-3 bg-slate-950 border-t border-slate-800 space-y-2 text-[11px]">
+            <span class="text-slate-400 font-mono text-[9px] uppercase block mb-1">Dicas & Dúvidas Rápidas:</span>
+            <div class="flex flex-wrap gap-1.5">
+                <button type="button" onclick="askAi('pc_lento')" class="bg-slate-900 hover:bg-slate-800 text-cyanAccent border border-slate-800 px-2.5 py-1 rounded-lg font-bold">🚀 PC Lento / Upgrade SSD</button>
+                <button type="button" onclick="askAi('iphones')" class="bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-800 px-2.5 py-1 rounded-lg font-bold">📱 Tabela de iPhones</button>
+                <button type="button" onclick="askAi('iptv')" class="bg-slate-900 hover:bg-slate-800 text-pink-400 border border-slate-800 px-2.5 py-1 rounded-lg font-bold">📺 Teste IPTV Flash TV</button>
+                <button type="button" onclick="askAi('mikrotik')" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-800 px-2.5 py-1 rounded-lg font-bold">🌐 Suporte MikroTik</button>
+            </div>
+            <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20da%20DBARROS%20TECH!" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-2.5 rounded-xl text-xs uppercase text-center flex items-center justify-center gap-2 mt-2">
+                <i class="fa-brands fa-whatsapp text-sm"></i> Falar direto no WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- POP-UP DE BOAS-VINDAS AO CLUBE VIP -->
+    <div id="vip-welcome-popup" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-gradient-to-br from-cardBg via-slate-900 to-blue-950 border-2 border-amber-400 rounded-3xl max-w-md w-full p-8 text-center shadow-2xl relative animate-glow">
+            <button type="button" onclick="closeWelcomePopup()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold p-2 cursor-pointer">✕</button>
+            <div class="w-16 h-16 rounded-2xl bg-amber-400/20 border border-amber-400/50 text-amber-400 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce-slow">
+                <i class="fa-solid fa-crown"></i>
+            </div>
+            <span class="text-xs uppercase font-mono tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/30 font-bold">Membro Oficial VIP</span>
+            <h2 class="text-2xl font-black text-white mt-3 mb-2 uppercase">🎉 PARABÉNS E SEJA BEM-VINDO!</h2>
+            <p id="welcome-user-greeting" class="text-slate-300 text-xs mb-6 leading-relaxed">
+                Seu cadastro foi realizado com sucesso! Agora você faz parte do seleto **Clube VIP da DBARROS TECH**.
+            </p>
+            <button type="button" onclick="closeWelcomePopup()" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black rounded-xl text-xs uppercase shadow-lg hover:opacity-90 transition cursor-pointer">
+                Acessar Minha Conta VIP 🚀
+            </button>
+        </div>
+    </div>
+
+    <!-- MENU LATERAL MOBILE -->
+    <div id="mobile-drawer-overlay" onclick="toggleMobileMenu()" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden transition-opacity duration-300"></div>
+    <div id="mobile-drawer" class="fixed top-0 right-0 z-50 w-80 max-w-[85vw] h-full bg-cardBg border-l border-slate-800 p-6 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300">
+        <div>
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-electricBlue to-cyanAccent flex items-center justify-center font-bold text-darkBg text-sm">DB</div>
+                    <span class="font-black text-white text-base tracking-wider">DBARROS <span class="text-secondary">TECH</span></span>
+                </div>
+                <button type="button" onclick="toggleMobileMenu()" class="text-slate-400 hover:text-white text-2xl font-bold p-1">✕</button>
+            </div>
+            <div id="mobile-user-status-card" class="my-4 p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs"></div>
+            <nav class="flex flex-col space-y-3 my-4 text-xs font-extrabold tracking-wider text-slate-200 uppercase">
+                <a href="#INICIO" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-house text-secondary w-4"></i> INÍCIO</a>
+                <a href="#SERVICOS" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-screwdriver-wrench text-secondary w-4"></i> SERVIÇOS</a>
+                <a href="#LOJA" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3 text-cyanAccent font-black"><i class="fa-solid fa-fire text-amber-400 w-4"></i> APARELHOS & PCS</a>
+                <a href="#EMPRESA" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-store text-emerald-400 w-4"></i> NOSSA LOJA FÍSICA</a>
+                <a href="#IPTV" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3 text-pink-400"><i class="fa-solid fa-tv text-pink-400 w-4"></i> STREAMING IPTV</a>
+                <a href="#OTIMIZACAO" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-gauge-high text-cyanAccent w-4"></i> DICAS DE OTIMIZAÇÃO</a>
+                <a href="#NOTICIAS" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-newspaper text-emerald-400 w-4"></i> NOTÍCIAS TECH</a>
+                <a href="#VIP" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-crown text-amber-400 w-4"></i> CLUBE VIP & LOGIN</a>
+            </nav>
+        </div>
+        <div class="pt-4 border-t border-slate-800 space-y-3">
+            <button type="button" onclick="toggleMusic(); toggleMobileMenu();" class="w-full bg-slate-800 border border-slate-700 text-slate-300 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-volume-high text-cyanAccent"></i> CONTROLE DE SOM
+            </button>
+            <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20da%20DBARROS%20TECH!" target="_blank" class="w-full bg-primary hover:opacity-90 text-white py-3 rounded-xl text-xs font-extrabold uppercase transition text-center block shadow-lg">
+                <i class="fa-brands fa-whatsapp mr-1"></i> FALAR NO WHATSAPP
+            </a>
+        </div>
+    </div>
+
+    <!-- MODAL NOVO / EDITAR APARELHO -->
+    <div id="product-form-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-cardBg border-2 border-cyanAccent rounded-3xl max-w-lg w-full p-6 text-left shadow-2xl relative">
+            <button type="button" onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold cursor-pointer">✕</button>
+            <h3 id="product-modal-title" class="text-xl font-black text-white mb-4 uppercase">➕ ADICIONAR NOVO APARELHO</h3>
+            <form id="product-form" onsubmit="saveProduct(event)" class="space-y-3 text-xs">
+                <input type="hidden" id="prod-id">
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1 uppercase">Título / Nome do Item</label>
+                    <input type="text" id="prod-title" placeholder="Ex: iPhone 12 Pro 128GB" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Preço de Venda (R$)</label>
+                        <input type="number" step="0.01" id="prod-price" placeholder="2990.00" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Custo de Aquisição (R$)</label>
+                        <input type="number" step="0.01" id="prod-cost" placeholder="2100.00" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Categoria</label>
+                        <select id="prod-category" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent">
+                            <option value="apple">Apple / iPhones</option>
+                            <option value="acessórios">Acessórios</option>
+                            <option value="pc">PCs / Notebooks</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Status Inicial</label>
+                        <select id="prod-status" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent">
+                            <option value="Disponível">🟢 Disponível</option>
+                            <option value="Vendido">🔴 Vendido</option>
+                        </select>
+                    </div>
                 </div>
                 <div>
-                    <span class="text-2xl font-black tracking-wider bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-                        DBARROS <span class="text-white">TECH</span>
-                    </span>
-                    <span class="block text-[10px] text-cyan-400 tracking-widest font-semibold uppercase -mt-1">
-                        Alagoinhas • BA
-                    </span>
+                    <label class="block font-bold text-slate-300 mb-1 uppercase">Especificações / Detalhes</label>
+                    <input type="text" id="prod-specs" placeholder="Ex: Bateria 89% • Cabo + Carregador • 3 Meses Garantia" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
                 </div>
-            </a>
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1 uppercase">URL da Imagem</label>
+                    <input type="url" id="prod-image" placeholder="https://..." class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                </div>
+                <button type="submit" class="w-full py-3 bg-cyanAccent text-slate-950 font-black rounded-xl uppercase hover:opacity-90 transition mt-2 cursor-pointer">Salvar Anúncio</button>
+            </form>
+        </div>
+    </div>
 
-            <!-- Desktop Navigation Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#produtos" class="hover:text-cyan-400 transition-colors flex items-center gap-2">
-                    <i class="fa-solid fa-mobile-screen text-cyan-400"></i> Produtos & Estoque
-                </a>
-                <a href="#servicos" class="hover:text-cyan-400 transition-colors flex items-center gap-2">
-                    <i class="fa-solid fa-wrench text-cyan-400"></i> Assistência Técnica
-                </a>
-                <a href="#iptv" class="hover:text-cyan-400 transition-colors flex items-center gap-2">
-                    <i class="fa-solid fa-tv text-cyan-400"></i> Flash TV Express
-                </a>
-                <a href="#loja-fisica" class="hover:text-cyan-400 transition-colors flex items-center gap-2">
-                    <i class="fa-solid fa-location-dot text-cyan-400"></i> Loja Física
-                </a>
+    <!-- PAINEL DE GESTÃO ADMIN INTEGRADO -->
+    <div id="admin-management-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-cardBg border-2 border-emerald-500 rounded-3xl max-w-5xl w-full p-6 sm:p-8 text-left shadow-2xl relative max-h-[92vh] flex flex-col">
+            <button type="button" onclick="closeAdminManagementModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold cursor-pointer">✕</button>
+            
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 border-b border-slate-800 pb-4 gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="p-3 rounded-2xl bg-emerald-500/10 text-emerald-400 text-2xl"><i class="fa-solid fa-user-shield"></i></div>
+                    <div>
+                        <span class="text-xs uppercase font-mono tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30">Painel do Administrador</span>
+                        <h2 class="text-xl sm:text-2xl font-black text-white mt-1 uppercase">CENTRAL DE GESTÃO DBARROS</h2>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button type="button" onclick="switchAdminTab('stock')" id="tab-btn-stock" class="px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer">📦 Estoque</button>
+                    <button type="button" onclick="switchAdminTab('finance')" id="tab-btn-finance" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">📊 Balanço</button>
+                    <button type="button" onclick="switchAdminTab('images')" id="tab-btn-images" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">🖼️ Banners</button>
+                    <button type="button" onclick="switchAdminTab('users')" id="tab-btn-users" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">👥 Clientes</button>
+                </div>
+            </div>
+
+            <!-- ABA ESTOQUE -->
+            <div id="admin-tab-stock" class="flex-1 flex flex-col overflow-hidden">
+                <div class="flex justify-between items-center mb-3">
+                    <p class="text-slate-300 text-xs">Gerencie os produtos da vitrine em tempo real.</p>
+                    <button type="button" onclick="openProductModal()" class="bg-emerald-500 text-slate-950 font-black px-4 py-2 rounded-xl text-xs uppercase hover:bg-emerald-400 transition shadow-lg cursor-pointer">+ Novo Aparelho</button>
+                </div>
+                <div id="admin-product-table" class="overflow-y-auto space-y-3 pr-2 flex-1"></div>
+            </div>
+
+            <!-- ABA BALANÇO FINANCEIRO EMPRESARIAL -->
+            <div id="admin-tab-finance" class="flex-1 flex flex-col hidden overflow-y-auto space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Faturamento (Vendas)</span>
+                        <h3 id="fin-total-revenue" class="text-2xl font-black text-emerald-400 mt-1">R$ 0,00</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Custo dos Vendidos</span>
+                        <h3 id="fin-total-cost" class="text-2xl font-black text-amber-400 mt-1">R$ 0,00</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-emerald-500/30 p-4 rounded-2xl bg-emerald-950/20">
+                        <span class="text-emerald-400 text-[10px] uppercase font-mono font-bold">Lucro Líquido Real</span>
+                        <h3 id="fin-net-profit" class="text-2xl font-black text-cyanAccent mt-1">R$ 0,00</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Valor em Estoque</span>
+                        <h3 id="fin-stock-value" class="text-2xl font-black text-purple-400 mt-1">R$ 0,00</h3>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3">
+                    <h4 class="font-bold text-white text-xs uppercase"><i class="fa-solid fa-chart-pie text-cyanAccent mr-2"></i> Resumo Operacional</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                        <div class="bg-darkBg p-3 rounded-xl border border-slate-800">
+                            <span class="text-slate-400 block text-[10px] uppercase">Itens Vendidos</span>
+                            <span id="fin-count-sold" class="text-lg font-black text-white">0</span>
+                        </div>
+                        <div class="bg-darkBg p-3 rounded-xl border border-slate-800">
+                            <span class="text-slate-400 block text-[10px] uppercase">Itens Disponíveis</span>
+                            <span id="fin-count-available" class="text-lg font-black text-white">0</span>
+                        </div>
+                        <div class="bg-darkBg p-3 rounded-xl border border-slate-800 col-span-2 sm:col-span-1">
+                            <span class="text-slate-400 block text-[10px] uppercase">Margem Média de Lucro</span>
+                            <span id="fin-avg-margin" class="text-lg font-black text-emerald-400">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA DE GESTÃO DE BANNERS E IMAGENS DO SITE -->
+            <div id="admin-tab-images" class="flex-1 flex flex-col hidden overflow-y-auto space-y-4">
+                <p class="text-xs text-slate-300">Altere os links das imagens principais exibidas no site.</p>
+                <form onsubmit="saveSiteImages(event)" class="space-y-4 text-xs">
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Imagem de Capa (Bancada Principal)</label>
+                        <input type="url" id="img-site-hero" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Banner da Seção IPTV / Streaming</label>
+                        <input type="url" id="img-site-iptv" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                    </div>
+                    <button type="submit" class="px-5 py-2.5 bg-emerald-500 text-slate-950 font-black rounded-xl uppercase hover:bg-emerald-400 transition cursor-pointer">Salvar Alterações das Imagens</button>
+                </form>
+            </div>
+
+            <!-- ABA CLIENTES CADASTRADOS -->
+            <div id="admin-tab-users" class="flex-1 flex flex-col hidden overflow-hidden space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Total de Clientes VIP</span>
+                        <h3 id="stat-vip-count" class="text-2xl font-black text-secondary mt-1">0</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Aparelhos na Vitrine</span>
+                        <h3 id="stat-prod-count" class="text-2xl font-black text-emerald-400 mt-1">0</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
+                        <div>
+                            <span class="text-slate-400 text-[10px] uppercase font-mono block">Exportar Banco</span>
+                            <span class="text-xs font-bold text-white">Baixar Lista em Excel/CSV</span>
+                        </div>
+                        <button type="button" onclick="exportUsersCSV()" class="px-3 py-2 bg-secondary text-darkBg font-black rounded-lg text-xs uppercase shadow hover:opacity-90 cursor-pointer">📥 Baixar Lista</button>
+                    </div>
+                </div>
+
+                <div class="flex-1 bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden flex flex-col p-4">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="font-bold text-slate-300 uppercase text-xs"><i class="fa-solid fa-users text-cyanAccent mr-2"></i> Base de Clientes Cadastrados</span>
+                        <input type="text" id="search-users-input" onkeyup="filterAdminUsers()" placeholder="🔍 Pesquisar por Nome ou E-mail..." class="bg-darkBg border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-white">
+                    </div>
+                    <div class="flex-1 overflow-y-auto">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead class="bg-slate-900 text-slate-400 uppercase font-mono text-[10px] sticky top-0">
+                                <tr>
+                                    <th class="p-3">Data/Hora</th>
+                                    <th class="p-3">Nome</th>
+                                    <th class="p-3">WhatsApp</th>
+                                    <th class="p-3">E-mail</th>
+                                    <th class="p-3">Senha</th>
+                                    <th class="p-3 text-right">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-users-table-body" class="divide-y divide-slate-800/60"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
+                <button type="button" onclick="closeAdminManagementModal()" class="px-6 py-2.5 bg-slate-800 text-white font-bold rounded-xl text-xs uppercase cursor-pointer">Fechar Painel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN STRIP DE ATALHO -->
+    <div id="admin-bar" class="hidden bg-gradient-to-r from-blue-700 via-cyan-600 to-blue-800 text-white px-4 py-2 text-xs font-bold items-center justify-between shadow-lg sticky top-0 z-50">
+        <div class="flex items-center space-x-2">
+            <span class="bg-white text-blue-900 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-extrabold">PAINEL ADMIN ATIVO</span>
+            <span class="hidden md:inline">Banco de dados interno ativado.</span>
+        </div>
+        <div class="flex items-center space-x-2">
+            <button type="button" onclick="openAdminManagementModal()" class="bg-amber-400 text-slate-950 px-3 py-1 rounded-lg hover:bg-amber-300 transition font-black uppercase text-[11px] cursor-pointer">⚙️ Central de Gestão</button>
+            <button type="button" onclick="logoutAdmin()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg transition font-bold uppercase text-[11px] cursor-pointer">Sair</button>
+        </div>
+    </div>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-30 bg-darkBg/90 backdrop-blur-md border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-electricBlue to-cyanAccent flex items-center justify-center font-bold text-xl shadow-lg shadow-electricBlue/30 text-darkBg animate-pulse-slow">DB</div>
+                <div>
+                    <span class="text-lg sm:text-xl font-black tracking-wider text-white">DBARROS <span class="text-secondary" id="brand-accent">TECH</span></span>
+                    <span class="block text-[9px] sm:text-[10px] text-slate-400 tracking-widest uppercase font-mono">TI • REDES • IPTV • PCS</span>
+                </div>
+            </div>
+
+            <nav class="hidden lg:flex items-center space-x-5 text-[11px] font-extrabold tracking-wider text-slate-300 uppercase">
+                <a href="#INICIO" class="hover:text-cyanAccent transition-colors">INÍCIO</a>
+                <a href="#SERVICOS" class="hover:text-cyanAccent transition-colors">SERVIÇOS</a>
+                <a href="#LOJA" class="hover:text-cyanAccent transition-colors text-cyanAccent font-black">🔥 APARELHOS</a>
+                <a href="#EMPRESA" class="hover:text-cyanAccent transition-colors text-emerald-400">NOSSA LOJA</a>
+                <a href="#IPTV" class="hover:text-cyanAccent transition-colors text-pink-400">STREAMING</a>
+                <a href="#OTIMIZACAO" class="hover:text-cyanAccent transition-colors">OTIMIZAÇÃO</a>
+                <a href="#NOTICIAS" class="hover:text-cyanAccent transition-colors">NOTÍCIAS</a>
+                <a href="#VIP" class="hover:text-cyanAccent transition-colors flex items-center gap-1"><i class="fa-solid fa-crown text-amber-400"></i> VIP</a>
             </nav>
 
-            <!-- Action Buttons Header -->
-            <div class="flex items-center gap-3">
-                <!-- Audio Player Cyber Toggle -->
-                <button id="bg-audio-btn" onclick="toggleAudio()" class="p-2.5 rounded-lg bg-gray-800/80 hover:bg-gray-700 border border-gray-700 text-cyan-400 transition" title="Música / Efeito Cyber">
-                    <i id="audio-icon" class="fa-solid fa-volume-xmark"></i>
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <div id="desktop-user-status" class="hidden sm:flex items-center"></div>
+                <button type="button" id="music-btn" onclick="toggleMusic()" class="bg-slate-800 border border-slate-700 hover:border-cyanAccent text-slate-300 px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow cursor-pointer" title="Ligar/Desligar Música">
+                    <i id="music-icon" class="fa-solid fa-volume-xmark text-red-400"></i>
+                    <span id="music-text" class="hidden md:inline">SOM</span>
                 </button>
-
-                <!-- Admin Access Modal Button -->
-                <button onclick="openAdminPasswordModal()" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white transition-all shadow-md flex items-center gap-2">
-                    <i class="fa-solid fa-user-shield"></i>
-                    <span>Área Admin</span>
+                <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20da%20DBARROS%20TECH!" target="_blank" class="hidden sm:flex bg-primary hover:opacity-90 text-white px-3.5 py-2 rounded-xl text-xs font-extrabold shadow-lg shadow-electricBlue/40 transition-all items-center space-x-1.5 uppercase animate-glow">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span class="hidden lg:inline">FALAR COM TÉCNICO</span>
+                </a>
+                <button type="button" onclick="toggleMobileMenu()" class="lg:hidden bg-slate-800 border border-slate-700 text-slate-200 p-2.5 rounded-xl text-lg hover:text-cyanAccent transition focus:outline-none cursor-pointer" title="Abrir Menu">
+                    <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="flex-grow">
-
-        <!-- DYNAMIC HERO BANNERS CAROUSEL -->
-        <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div id="hero-carousel" class="relative rounded-2xl overflow-hidden glass-panel border border-cyan-500/30 h-64 sm:h-80 md:h-96 shadow-2xl">
-                <!-- Dynamic Banner Slide Container -->
-                <div id="banner-slides" class="w-full h-full relative">
-                    <!-- Slides injected via JS -->
-                </div>
-
-                <!-- Carousel Controls -->
-                <button onclick="prevBanner()" class="absolute left-3 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 hover:bg-cyan-500 hover:text-black text-white transition z-10">
-                    <i class="fa-solid fa-chevron-left text-lg"></i>
-                </button>
-                <button onclick="nextBanner()" class="absolute right-3 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 hover:bg-cyan-500 hover:text-black text-white transition z-10">
-                    <i class="fa-solid fa-chevron-right text-lg"></i>
-                </button>
-
-                <!-- Dots Indicator -->
-                <div id="banner-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10"></div>
-            </div>
-        </section>
-
-        <!-- TECH NEWS TICKER (REAL-TIME RSS SIMULATED FEED) -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-            <div class="glass-panel rounded-xl p-3 flex items-center gap-4 border border-cyan-500/20">
-                <span class="px-3 py-1 rounded-md bg-cyan-500/20 text-cyan-400 font-extrabold text-xs flex items-center gap-2 whitespace-nowrap">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> TECH NEWS
-                </span>
-                <div class="overflow-hidden w-full relative h-6">
-                    <p id="news-ticker-text" class="text-xs sm:text-sm text-gray-300 font-medium truncate animate-pulse">
-                        Carregando as últimas atualizações do setor de tecnologia e suporte...
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- PRODUCTS / STOCK CATALOG SECTION -->
-        <section id="produtos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-                <div>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-3">
-                        <i class="fa-solid fa-boxes-stacked text-cyan-400"></i>
-                        Catálogo de Aparelhos e Produtos
-                    </h2>
-                    <p class="text-sm text-gray-400 mt-1">iPhones seminovos e lacrados, computadores, e equipamentos com garantia total.</p>
-                </div>
-
-                <!-- Category & Search Filters -->
-                <div class="flex flex-wrap items-center gap-3">
-                    <div class="relative">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
-                        <input type="text" id="catalog-search" oninput="renderCatalog()" placeholder="Buscar modelo, GB, preço..." class="pl-9 pr-4 py-2 bg-gray-900/90 border border-gray-700 rounded-xl text-xs text-gray-200 focus:outline-none focus:border-cyan-400 w-48 sm:w-64">
-                    </div>
-
-                    <select id="catalog-filter-status" onchange="renderCatalog()" class="bg-gray-900/90 border border-gray-700 text-xs rounded-xl px-3 py-2 text-gray-200 focus:outline-none focus:border-cyan-400">
-                        <option value="ALL">Todos os Status</option>
-                        <option value="DISPONIVEL" selected>Disponíveis</option>
-                        <option value="VENDIDO">Vendidos</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Product Grid -->
-            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Products dynamically rendered here -->
-            </div>
-        </section>
-
-        <!-- SPECIAL SERVICES & MIKROTIK NETWORKING -->
-        <section id="servicos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <h2 class="text-2xl sm:text-3xl font-black text-white">Especialidades & Assistência DBARROS TECH</h2>
-                <p class="text-gray-400 text-sm mt-2">Atendimento técnico qualificado, manutenção preventiva de alta performance e redes corporativas.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl mb-4">
-                            <i class="fa-solid fa-microchip"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Manutenção de Celulares & Mac</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Troca de telas OLED, baterias originais, reparos em placas-mãe, desoxidação e restauração de firmware Apple & Android.</p>
-                    </div>
-                    <button onclick="sendWhatsAppService('Manutenção e Troca de Tela / Bateria')" class="mt-6 w-full py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-black border border-cyan-500/30 font-bold text-xs transition">
-                        Solicitar Orçamento
-                    </button>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl mb-4">
-                            <i class="fa-solid fa-network-wired"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Consultoria MikroTik & Redes</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Configuração profissional de Roteadores, Firewall RouterOS, Load Balance, VPNs corporativas e infraestrutura de rede para provedores e empresas.</p>
-                    </div>
-                    <button onclick="sendWhatsAppService('Consultoria MikroTik e Redes Corporativas')" class="mt-6 w-full py-2.5 rounded-xl bg-purple-500/10 hover:bg-purple-500 text-purple-400 hover:text-white border border-purple-500/30 font-bold text-xs transition">
-                        Falar com Especialista
-                    </button>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between" id="iptv">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-2xl mb-4">
-                            <i class="fa-solid fa-play"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">IPTV & Flash TV Express</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Acesso premium com máxima estabilidade sem travamentos. Canais 4K, filmes e séries. Testes grátis disponíveis na hora!</p>
-                    </div>
-                    <button onclick="sendWhatsAppService('Teste Grátis Flash TV Express')" class="mt-6 w-full py-2.5 rounded-xl bg-pink-500/10 hover:bg-pink-500 text-pink-400 hover:text-white border border-pink-500/30 font-bold text-xs transition">
-                        Solicitar Teste Grátis
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- PHYSICAL STORE / LOCATION SECTION -->
-        <section id="loja-fisica" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-800/80">
-            <div class="glass-panel rounded-3xl p-6 sm:p-10 border border-cyan-500/30 shadow-2xl">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                    
-                    <!-- Left: Details & Working Hours -->
-                    <div class="space-y-6">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 text-xs font-bold">
-                            <i class="fa-solid fa-store"></i>
-                            LOJA FÍSICA DBARROS TECH
-                        </div>
-
-                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-                            Venha tomar um café conosco em <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Alagoinhas - BA</span>
-                        </h2>
-
-                        <p class="text-gray-300 text-sm leading-relaxed">
-                            Contamos com atendimento presencial, bancada técnica equipada com tecnologia de ponta para testes ao vivo e recepção climatizada.
-                        </p>
-
-                        <div class="space-y-4 pt-2">
-                            <!-- Address -->
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-cyan-400 flex-shrink-0">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-white font-bold text-sm">Endereço Completo</h4>
-                                    <p class="text-xs text-gray-400">Rua Doutor Pedro Lavigne, Centro, Alagoinhas - BA, CEP: 48000-000</p>
-                                </div>
-                            </div>
-
-                            <!-- Opening Hours -->
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-purple-400 flex-shrink-0">
-                                    <i class="fa-solid fa-clock"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-white font-bold text-sm">Horário de Funcionamento</h4>
-                                    <p class="text-xs text-gray-400">Segunda a Sexta: 08h00 às 18h00 | Sábado: 08h00 às 13h00</p>
-                                </div>
-                            </div>
-
-                            <!-- Contact Phone -->
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-emerald-400 flex-shrink-0">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-white font-bold text-sm">Telefone / Suporte Directo</h4>
-                                    <p class="text-xs text-gray-400">(75) 99999-8888 / Atendimento presencial & remoto</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="pt-4 flex flex-wrap gap-4">
-                            <a href="https://maps.google.com/?q=Alagoinhas+Bahia" target="_blank" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-extrabold text-xs shadow-lg flex items-center gap-2 transition">
-                                <i class="fa-solid fa-diamond-turn-right"></i>
-                                Como Chegar (Google Maps)
-                            </a>
-                            <button onclick="sendWhatsAppService('Visita à Loja Física em Alagoinhas')" class="px-6 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white font-bold text-xs flex items-center gap-2 transition">
-                                <i class="fa-brands fa-whatsapp text-emerald-400"></i>
-                                Agendar Horário Presencial
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Right: Map Visual Container -->
-                    <div class="relative rounded-2xl overflow-hidden border border-gray-700 h-80 sm:h-96 shadow-2xl">
-                        <iframe 
-                            class="w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31158.625620959415!2d-38.4358893!3d-12.1352467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7144e5f29f03223%3A0x868b311fa6a12b9a!2sAlagoinhas%20-%20BA!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- TESTIMONIALS AUTO-CAROUSEL SECTION -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-800/80">
-            <div class="text-center max-w-xl mx-auto mb-8">
-                <span class="text-cyan-400 text-xs font-bold uppercase tracking-widest">Opinião dos nossos clientes</span>
-                <h2 class="text-2xl font-extrabold text-white mt-1">O que dizem sobre a DBARROS TECH</h2>
-            </div>
-
-            <div class="relative max-w-3xl mx-auto glass-card rounded-2xl p-6 sm:p-8 border border-cyan-500/20 text-center">
-                <div id="testimonial-container" class="min-h-[110px] flex flex-col justify-center items-center">
-                    <!-- Dynamic testimonial injected here -->
-                </div>
-                <div id="testimonial-dots" class="flex justify-center gap-2 mt-4"></div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER SECTION -->
-    <footer id="main-footer" class="bg-gray-950 border-t border-gray-800/80 py-12 text-xs text-gray-400 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-            
-            <!-- Col 1: Branding -->
-            <div class="space-y-3">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-cyan-500 flex items-center justify-center text-black font-extrabold text-sm">DB</div>
-                    <span class="text-lg font-black text-white">DBARROS TECH</span>
-                </div>
-                <p class="leading-relaxed text-gray-400">Especialistas em reparos avançados de iPhones, consultoria de redes MikroTik e fornecimento de conectividade IPTV.</p>
-                <p class="text-cyan-400 font-semibold">Alagoinhas - Bahia</p>
-            </div>
-
-            <!-- Col 2: Social Media Links (Instagram requested) -->
+    <!-- HERO SECTION -->
+    <section id="INICIO" class="relative py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
-                <h4 class="text-white font-bold text-sm mb-3 uppercase tracking-wider">Redes Sociais Oficiais</h4>
-                <ul class="space-y-2">
-                    <li>
-                        <a href="https://instagram.com/dbarrostech" target="_blank" class="hover:text-cyan-400 flex items-center gap-2 transition">
-                            <i class="fa-brands fa-instagram text-pink-500 text-base"></i>
-                            <span>@dbarrostech</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://instagram.com/flashtvexpress" target="_blank" class="hover:text-cyan-400 flex items-center gap-2 transition">
-                            <i class="fa-brands fa-instagram text-pink-500 text-base"></i>
-                            <span>@flashtvexpress</span>
-                        </a>
-                    </li>
-                </ul>
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-electricBlue/10 border border-electricBlue/30 text-secondary text-[11px] sm:text-xs font-semibold mb-6">
+                    <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                    <span>ATENDIMENTO EM ALAGOINHAS - BA E REGIÃO</span>
+                </div>
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight uppercase">
+                    <span>SOLUÇÕES INTELIGENTES EM</span> <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-electricBlue to-cyanAccent">MANUTENÇÃO DE PCS, NOTEBOOKS & CELULARES</span>
+                </h1>
+                <p class="text-slate-400 text-sm sm:text-lg mb-8 leading-relaxed">
+                    Especialistas em construção e montagem de computadores gamer/corporativos, manutenção avançada de notebooks e PCs, revenda de iPhones e streaming IPTV Flash TV Express.
+                </p>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+                    <a href="#LOJA" class="bg-gradient-to-r from-electricBlue to-cyanAccent text-darkBg font-black px-6 py-3.5 rounded-xl shadow-xl hover:opacity-90 transition-all text-center uppercase text-xs animate-glow">
+                        VER APARELHOS & COMPUTADORES
+                    </a>
+                </div>
             </div>
-
-            <!-- Col 3: Quick Navigation -->
-            <div>
-                <h4 class="text-white font-bold text-sm mb-3 uppercase tracking-wider">Links Rápidos</h4>
-                <ul class="space-y-2">
-                    <li><a href="#produtos" class="hover:text-cyan-400 transition">Aparelhos em Estoque</a></li>
-                    <li><a href="#servicos" class="hover:text-cyan-400 transition">Manutenção Técnica</a></li>
-                    <li><a href="#iptv" class="hover:text-cyan-400 transition">Teste IPTV Grátis</a></li>
-                    <li><a href="#loja-fisica" class="hover:text-cyan-400 transition">Localização da Loja</a></li>
-                </ul>
+            <div class="relative">
+                <div class="absolute -inset-1 rounded-3xl blur-2xl opacity-25 bg-gradient-to-r from-electricBlue to-cyanAccent animate-pulse"></div>
+                <div class="relative bg-cardBg border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="h-64 sm:h-80 overflow-hidden relative">
+                        <img id="display-hero-img" src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Bancada de Manutenção DBARROS TECH">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 bg-darkBg/80 backdrop-blur border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-mono text-cyanAccent uppercase">
+                            🔧 Bancada de Manutenção Profissional
+                        </span>
+                    </div>
+                </div>
             </div>
-
-            <!-- Col 4: VIP Client Club -->
-            <div>
-                <h4 class="text-white font-bold text-sm mb-3 uppercase tracking-wider">Clube VIP DBARROS</h4>
-                <p class="mb-3 text-gray-400">Cadastre-se para receber ofertas exclusivas de seminovos antes de todo mundo.</p>
-                <form onsubmit="registerVipClient(event)" class="space-y-2">
-                    <input type="text" id="vip-name" required placeholder="Seu Nome" class="w-full px-3 py-2 bg-gray-900 border border-gray-800 rounded-lg text-white focus:outline-none focus:border-cyan-400">
-                    <input type="tel" id="vip-phone" required placeholder="WhatsApp (75) 9..." class="w-full px-3 py-2 bg-gray-900 border border-gray-800 rounded-lg text-white focus:outline-none focus:border-cyan-400">
-                    <button type="submit" class="w-full py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-extrabold rounded-lg hover:opacity-90 transition">
-                        Cadastrar no Clube VIP
-                    </button>
-                </form>
-            </div>
-
         </div>
+    </section>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-gray-900 text-center text-gray-500">
-            &copy; 2026 DBARROS TECH. Todos os direitos reservados.
+    <!-- SEÇÃO DE SERVIÇOS -->
+    <section id="SERVICOS" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs uppercase font-mono tracking-widest text-secondary bg-secondary/10 px-3 py-1 rounded-full border border-secondary/30">Nossos Pilares</span>
+            <h2 class="text-2xl sm:text-3xl font-black mb-3 uppercase mt-3">SERVIÇOS ESPECIALIZADOS</h2>
+            <p class="text-slate-400 text-xs sm:text-sm">Assistência técnica de alto padrão para computadores, notebooks, redes e smartphones.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-cardBg border-2 border-electricBlue/50 rounded-2xl p-6 hover:border-cyanAccent transition-all group">
+                <div class="h-36 rounded-xl overflow-hidden mb-4 bg-slate-950">
+                    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <h3 class="text-xl font-bold mb-2 uppercase">PCS & NOTEBOOKS</h3>
+                <p class="text-slate-400 text-sm mb-4">Construção de PCs gamer/trabalho, manutenção preventiva, limpeza interna e troca de SSD.</p>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-cyanAccent transition-all group">
+                <div class="h-36 rounded-xl overflow-hidden mb-4 bg-slate-950">
+                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <h3 class="text-xl font-bold mb-2 uppercase">IPHONES & CELULARES</h3>
+                <p class="text-slate-400 text-sm mb-4">Revenda de smartphones seminovos testados com garantia e procedência.</p>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-pink-500 transition-all group">
+                <div class="h-36 rounded-xl overflow-hidden mb-4 bg-slate-950">
+                    <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <h3 class="text-xl font-bold mb-2 uppercase">STREAMING IPTV</h3>
+                <p class="text-slate-400 text-sm mb-4">Grade completa de canais ao vivo, filmes e séries via Flash TV Express.</p>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-cyanAccent transition-all group">
+                <div class="h-36 rounded-xl overflow-hidden mb-4 bg-slate-950">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <h3 class="text-xl font-bold mb-2 uppercase">REDES & MIKROTIK</h3>
+                <p class="text-slate-400 text-sm mb-4">Configuração profissional de roteadores MikroTik e Wi-Fi corporativo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO NOSSA LOJA / ATENDIMENTO PRESENCIAL -->
+    <section id="EMPRESA" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="bg-gradient-to-br from-cardBg via-slate-900 to-slate-950 border border-emerald-500/30 rounded-3xl p-8 sm:p-12 shadow-2xl">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <span class="text-xs uppercase font-mono tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30 font-bold">Atendimento Presencial</span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-white mt-3 mb-4 uppercase">NOSSA ESTRUTURA & LOJA FÍSICA</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm mb-6 leading-relaxed">
+                        Visite nossa loja técnica em Alagoinhas - Bahia! Dispomos de bancada de alta precisão para diagnóstico rápido, montagem de PCs e vitrine com smartphones revisados.
+                    </p>
+                    <div class="space-y-3 text-xs font-mono text-slate-300 mb-6">
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-emerald-400 text-base"></i> Alagoinhas, Bahia - Brasil</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-clock text-emerald-400 text-base"></i> Segunda a Sexta: 08:00h às 18:00h | Sábado: 08:00h às 12:00h</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-phone text-emerald-400 text-base"></i> (75) 99242-3627</div>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden border border-slate-800 shadow-2xl h-64 sm:h-80">
+                    <iframe class="w-full h-full border-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31182.253683935376!2d-38.4357288!3d-12.1352467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71440f959c9889d%3A0x633d77d12f37803d!2sAlagoinhas%2C%20BA!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE IPTV / STREAMING -->
+    <section id="IPTV" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="bg-gradient-to-r from-purple-950/60 via-cardBg to-blue-950/60 border border-pink-500/30 rounded-3xl p-8 sm:p-12 shadow-2xl grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <span class="text-xs uppercase font-mono tracking-widest text-pink-400 bg-pink-500/10 px-3 py-1 rounded-full border border-pink-500/30 font-bold">Flash TV Express</span>
+                <h2 class="text-2xl sm:text-4xl font-black text-white mt-3 mb-4 uppercase">STREAMING DE ENTRETENIMENTO COMPLETO</h2>
+                <p class="text-slate-300 text-xs sm:text-sm mb-6 leading-relaxed">
+                    Tenha acesso a mais de milhares de canais em alta definição, os maiores lançamentos do cinema, séries atualizadas e esportes ao vivo direto na sua Smart TV, TV Box, celular ou computador.
+                </p>
+                <div class="flex flex-wrap gap-4 mb-8 text-xs font-bold text-slate-200">
+                    <div class="flex items-center gap-2 bg-slate-900 px-3 py-2 rounded-xl border border-slate-800"><i class="fa-solid fa-check text-pink-400"></i> Canais HD / FHD / 4K</div>
+                    <div class="flex items-center gap-2 bg-slate-900 px-3 py-2 rounded-xl border border-slate-800"><i class="fa-solid fa-check text-pink-400"></i> Filmes e Séries On Demand</div>
+                    <div class="flex items-center gap-2 bg-slate-900 px-3 py-2 rounded-xl border border-slate-800"><i class="fa-solid fa-check text-pink-400"></i> Sem travamentos</div>
+                </div>
+                <a href="https://wa.me/5575992423627?text=Olá,%20quero%20testar%20o%20Flash%20TV%20Express!" target="_blank" class="px-6 py-3.5 bg-pink-600 hover:bg-pink-500 text-white font-black rounded-xl text-xs uppercase shadow-lg inline-flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i> QUERO FAZER UM TESTE GRÁTIS
+                </a>
+            </div>
+            <div class="relative rounded-2xl overflow-hidden border border-pink-500/40 shadow-2xl">
+                <img id="display-iptv-img" src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&q=80&w=800" class="w-full h-72 sm:h-96 object-cover" alt="Streaming IPTV">
+                <div class="absolute inset-0 bg-gradient-to-t from-darkBg/90 via-transparent to-transparent flex items-end p-6">
+                    <span class="text-xs font-mono text-pink-300 uppercase font-bold">⚡ Entretenimento Sem Limites na sua Tela</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VITRINE COM FILTROS DE CATEGORIA -->
+    <section id="LOJA" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900 bg-gradient-to-b from-darkBg to-slate-950/60 rounded-3xl my-8">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-6">
+            <div>
+                <span class="text-xs uppercase font-mono tracking-widest text-secondary bg-secondary/10 px-3 py-1 rounded-full border border-secondary/35">ESTOQUE EM DESTAQUE</span>
+                <h2 class="text-2xl sm:text-4xl font-black text-white mt-3 uppercase">🔥 APARELHOS & ACESSÓRIOS DISPONÍVEIS</h2>
+            </div>
+            <!-- Botões de Filtro -->
+            <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="filterProducts('all')" id="filter-btn-all" class="px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer">Todos</button>
+                <button type="button" onclick="filterProducts('apple')" id="filter-btn-apple" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">iPhones / Apple</button>
+                <button type="button" onclick="filterProducts('acessórios')" id="filter-btn-acessórios" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">Acessórios</button>
+            </div>
+        </div>
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+    </section>
+
+    <!-- SEÇÃO DE DICAS DE OTIMIZAÇÃO DE COMPUTADOR -->
+    <section id="OTIMIZACAO" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs uppercase font-mono tracking-widest text-cyanAccent bg-cyanAccent/10 px-3 py-1 rounded-full border border-cyanAccent/30">Performance & Velocidade</span>
+            <h2 class="text-2xl sm:text-3xl font-black mb-3 uppercase mt-3">POR QUE OTIMIZAR SEU COMPUTADOR?</h2>
+            <p class="text-slate-400 text-xs sm:text-sm">Manutenção preventiva e upgrades certos dão uma nova vida ao seu PC ou notebook.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 text-left">
+                <div class="w-12 h-12 rounded-xl bg-cyanAccent/10 text-cyanAccent flex items-center justify-center text-xl mb-4 font-bold">01</div>
+                <h3 class="font-bold text-white text-base mb-2 uppercase">Instalação de SSD NVMe / SATA</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">
+                    Substituir o antigo HD mecânico por um SSD acelera o boot do Windows em até 10x e elimina travamentos irritantes no dia a dia.
+                </p>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 text-left">
+                <div class="w-12 h-12 rounded-xl bg-electricBlue/10 text-secondary flex items-center justify-center text-xl mb-4 font-bold">02</div>
+                <h3 class="font-bold text-white text-base mb-2 uppercase">Limpeza e Pasta Térmica</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">
+                    A poeira acumulada faz o processador aquecer e perder desempenho. A troca periódica de pasta térmica garante operação fria e silenciosa.
+                </p>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 text-left">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4 font-bold">03</div>
+                <h3 class="font-bold text-white text-base mb-2 uppercase">Formatação e Limpeza de Software</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">
+                    Remoção de vírus, programas desnecessários em segundo plano e otimização completa do sistema operacional para máxima velocidade.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARROSSEL DE DEPOIMENTOS DE CLIENTES -->
+    <section id="DEPOIMENTOS" class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto border-t border-slate-900">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <span class="text-xs uppercase font-mono tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/30">Confiança & Qualidade</span>
+            <h2 class="text-2xl sm:text-3xl font-black mb-3 uppercase mt-3">O QUE DIZEM NOSSOS CLIENTES</h2>
+        </div>
+        <div class="bg-cardBg border border-slate-800 rounded-3xl p-8 sm:p-12 relative shadow-2xl text-center">
+            <div id="testimonial-container" class="min-h-[140px] flex flex-col justify-center items-center"></div>
+            <div class="flex justify-center items-center gap-4 mt-6">
+                <button type="button" onclick="prevTestimonial()" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition cursor-pointer">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <span id="testimonial-indicator" class="text-xs font-mono text-slate-400 uppercase">1 / 4</span>
+                <button type="button" onclick="nextTestimonial()" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition cursor-pointer">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE NOTÍCIAS TECH (RSS / AUTOMATIZADA) -->
+    <section id="NOTICIAS" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+            <div>
+                <span class="text-xs uppercase font-mono tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30 font-bold">Atualizações em Tempo Real</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-white mt-3 uppercase">📰 NOTÍCIAS DO MUNDO TECH</h2>
+            </div>
+            <span class="text-xs text-slate-400 font-mono"><i class="fa-solid fa-rss text-emerald-400 mr-1"></i> Feed Automatizado</span>
+        </div>
+        <div id="tech-news-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-cardBg border border-slate-800 p-6 rounded-2xl animate-pulse">
+                <div class="h-4 bg-slate-800 rounded w-3/4 mb-4"></div>
+                <div class="h-3 bg-slate-800 rounded w-full mb-2"></div>
+                <div class="h-3 bg-slate-800 rounded w-5/6"></div>
+            </div>
+            <div class="bg-cardBg border border-slate-800 p-6 rounded-2xl animate-pulse">
+                <div class="h-4 bg-slate-800 rounded w-3/4 mb-4"></div>
+                <div class="h-3 bg-slate-800 rounded w-full mb-2"></div>
+                <div class="h-3 bg-slate-800 rounded w-5/6"></div>
+            </div>
+            <div class="bg-cardBg border border-slate-800 p-6 rounded-2xl animate-pulse">
+                <div class="h-4 bg-slate-800 rounded w-3/4 mb-4"></div>
+                <div class="h-3 bg-slate-800 rounded w-full mb-2"></div>
+                <div class="h-3 bg-slate-800 rounded w-5/6"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLUBE VIP / ABAS DE CADASTRO E LOGIN -->
+    <section id="VIP" class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <div class="bg-gradient-to-br from-cardBg to-slate-900 border border-electricBlue/40 rounded-3xl p-6 sm:p-12 text-center shadow-2xl relative overflow-hidden animate-glow">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyanAccent/10 border border-cyanAccent/30 text-secondary text-xs font-semibold mb-4">
+                <i class="fa-solid fa-crown text-amber-400"></i>
+                <span class="uppercase font-bold">ACESSO EXCLUSIVO & CLUBE VIP</span>
+            </div>
+
+            <div id="vip-container">
+                <div class="flex justify-center gap-2 mb-6">
+                    <button type="button" onclick="switchVipTab('register')" id="vip-tab-reg-btn" class="px-5 py-2.5 bg-primary text-white font-black rounded-xl text-xs uppercase shadow transition cursor-pointer">Criar Cadastro VIP</button>
+                    <button type="button" onclick="switchVipTab('login')" id="vip-tab-log-btn" class="px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">Já tenho conta (Entrar)</button>
+                </div>
+
+                <div id="vip-form-register-box">
+                    <h2 class="text-2xl sm:text-3xl font-black mb-2 uppercase">CADASTRE-SE NO CLUBE VIP</h2>
+                    <p class="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto mb-6">Preencha seus dados para criar sua conta no Clube VIP e receber descontos exclusivos em primeira mão!</p>
+                    <form id="vip-form" onsubmit="handleUserRegistration(event)" class="max-w-md mx-auto space-y-3 text-left">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">NOME COMPLETO</label>
+                            <input type="text" id="reg-name" placeholder="Ex: Davi Barros" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">WHATSAPP</label>
+                                <input type="tel" id="reg-phone" placeholder="(75) 9XXXX-XXXX" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">E-MAIL</label>
+                                <input type="email" id="reg-email" placeholder="seu@email.com" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">SENHA DE ACESSO</label>
+                            <input type="password" id="reg-pass" placeholder="••••••••" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 bg-primary hover:opacity-90 text-white font-black rounded-xl shadow-lg uppercase text-xs mt-4 cursor-pointer">
+                            <i class="fa-solid fa-user-plus text-base mr-2"></i> CRIAR CONTA NO CLUBE VIP 🚀
+                        </button>
+                    </form>
+                </div>
+
+                <div id="vip-form-login-box" class="hidden">
+                    <h2 class="text-2xl sm:text-3xl font-black mb-2 uppercase">ENTRAR NA SUA CONTA VIP</h2>
+                    <p class="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto mb-6">Digite seu e-mail e senha cadastrados para acessar sua conta.</p>
+                    <div id="login-error-msg" class="hidden mb-3 p-2 bg-red-950/80 border border-red-800 text-red-300 text-xs rounded-lg font-bold uppercase">E-MAIL OU SENHA INCORRETOS!</div>
+                    <form id="vip-login-form" onsubmit="handleUserLogin(event)" class="max-w-md mx-auto space-y-3 text-left">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">E-MAIL CADASTRADO</label>
+                            <input type="email" id="log-email" placeholder="seu@email.com" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">SENHA</label>
+                            <input type="password" id="log-pass" placeholder="••••••••" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-90 text-white font-black rounded-xl shadow-lg uppercase text-xs mt-4 cursor-pointer">
+                            <i class="fa-solid fa-right-to-bracket text-base mr-2"></i> ENTRAR NO CLUBE VIP
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL AUTH ADMIN -->
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-cardBg border border-slate-800 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+            <button type="button" onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg font-bold cursor-pointer">✕</button>
+            <h3 class="text-xl font-bold mb-2 uppercase text-amber-400"><i class="fa-solid fa-lock mr-2"></i> ACESSO RESTRITO ADMIN</h3>
+            <p class="text-xs text-slate-400 mb-4">Digite a senha administrativa para abrir a central de gestão.</p>
+            <div id="admin-error" class="hidden mb-3 p-2 bg-red-950/80 border border-red-800 text-red-300 text-xs rounded-lg font-bold uppercase">SENHA INCORRETA!</div>
+            <form onsubmit="verifyAdmin(event)" class="space-y-4">
+                <input type="password" id="admin-pass" placeholder="SENHA ADMIN" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-amber-400 uppercase" required>
+                <button type="submit" class="w-full py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-xl transition uppercase text-xs cursor-pointer">ACESSAR PAINEL ADMIN</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER COM ÍCONES DO INSTAGRAM E BOTÃO ADMIN -->
+    <footer class="bg-darkBg border-t border-slate-900 py-8 text-center text-slate-400 text-xs uppercase font-bold relative z-20">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p>&copy; 2026 DBARROS TECH. TODOS OS DIREITOS RESERVADOS. ATENDIMENTO: (75) 99242-3627</p>
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.instagram.com/dbarrostech/" target="_blank" class="flex items-center gap-1.5 hover:text-pink-400 transition-colors">
+                        <i class="fa-brands fa-instagram text-base text-pink-500"></i> @dbarrostech
+                    </a>
+                    <a href="https://www.instagram.com/flashtvexpress/" target="_blank" class="flex items-center gap-1.5 hover:text-pink-400 transition-colors">
+                        <i class="fa-brands fa-instagram text-base text-pink-500"></i> @flashtvexpress
+                    </a>
+                </div>
+                <button type="button" onclick="openAdminModal()" class="text-[10px] text-slate-600 hover:text-amber-400 transition font-mono border border-slate-800 hover:border-amber-400/40 px-2.5 py-1 rounded-lg cursor-pointer" title="Acesso Admin">
+                    <i class="fa-solid fa-lock mr-1"></i> Admin
+                </button>
+            </div>
         </div>
     </footer>
 
-
-    <!-- 1. FLOATING AI TECHNICAL ASSISTANT (CHATBOT INTELLIGENT DRAWER) -->
-    <div id="ai-floating-container">
-        <!-- Floating Trigger Button -->
-        <button onclick="toggleAiChat()" id="ai-chat-trigger" class="relative group flex items-center gap-3 px-4 py-3 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-black font-extrabold shadow-2xl hover:scale-105 transition-all glow-btn-cyan">
-            <span class="relative flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-            </span>
-            <i class="fa-solid fa-robot text-lg"></i>
-            <span class="hidden sm:inline text-xs font-black uppercase tracking-wider">Técnico IA DBARROS</span>
-        </button>
-
-        <!-- Chat Window Box -->
-        <div id="ai-chat-window" class="hidden absolute bottom-16 right-0 w-[92vw] sm:w-[380px] h-[520px] max-h-[75vh] glass-panel border border-cyan-500/40 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
-            
-            <!-- Chat Header -->
-            <div class="p-3 bg-gradient-to-r from-cyan-950 to-gray-900 border-b border-cyan-500/30 flex items-center justify-between">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-8 h-8 rounded-lg bg-cyan-500 text-black flex items-center justify-center font-bold">
-                        <i class="fa-solid fa-headset text-sm"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xs font-extrabold text-white flex items-center gap-1.5">
-                            Assistente IA Técnico
-                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                        </h3>
-                        <p class="text-[10px] text-cyan-400">Suporte 24h & Dicas de Hardware</p>
-                    </div>
-                </div>
-                <button onclick="toggleAiChat()" class="text-gray-400 hover:text-white p-1">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-
-            <!-- Messages Area -->
-            <div id="ai-chat-messages" class="flex-grow p-3 overflow-y-auto space-y-3 text-xs">
-                <!-- Initial Welcome AI Message -->
-                <div class="flex gap-2">
-                    <div class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0 text-[10px]">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <div class="bg-gray-800/90 border border-gray-700/80 p-3 rounded-2xl rounded-tl-none text-gray-200 space-y-2">
-                        <p>Olá! Sou a **Inteligência Artificial da DBARROS TECH**. Como posso te ajudar agora?</p>
-                        <p class="text-[11px] text-gray-400">Selecione uma das opções rápidas abaixo ou digite sua dúvida:</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Action Preset Buttons -->
-            <div class="p-2 border-t border-gray-800/80 bg-gray-950/60 flex flex-wrap gap-1.5">
-                <button onclick="handleQuickPrompt('Minha máquina não liga')" class="px-2.5 py-1 rounded-lg bg-gray-800 hover:bg-cyan-500 hover:text-black border border-gray-700 text-[10px] text-cyan-300 font-medium transition">
-                    💻 Não liga
-                </button>
-                <button onclick="handleQuickPrompt('Dicas de upgrade SSD')" class="px-2.5 py-1 rounded-lg bg-gray-800 hover:bg-cyan-500 hover:text-black border border-gray-700 text-[10px] text-cyan-300 font-medium transition">
-                    🚀 Upgrade SSD
-                </button>
-                <button onclick="handleQuickPrompt('Preço de iPhones')" class="px-2.5 py-1 rounded-lg bg-gray-800 hover:bg-cyan-500 hover:text-black border border-gray-700 text-[10px] text-cyan-300 font-medium transition">
-                    📱 iPhones
-                </button>
-                <button onclick="handleQuickPrompt('Testar IPTV Flash TV Express')" class="px-2.5 py-1 rounded-lg bg-gray-800 hover:bg-cyan-500 hover:text-black border border-gray-700 text-[10px] text-cyan-300 font-medium transition">
-                    📺 IPTV Teste
-                </button>
-                <button onclick="handleQuickPrompt('Suporte MikroTik')" class="px-2.5 py-1 rounded-lg bg-gray-800 hover:bg-cyan-500 hover:text-black border border-gray-700 text-[10px] text-cyan-300 font-medium transition">
-                    🌐 MikroTik
-                </button>
-            </div>
-
-            <!-- Input Box -->
-            <form onsubmit="handleChatSubmit(event)" class="p-2 border-t border-cyan-500/20 bg-gray-950 flex items-center gap-2">
-                <input type="text" id="ai-chat-input" placeholder="Digite sua pergunta aqui..." class="flex-grow px-3 py-2 bg-gray-900 border border-gray-800 rounded-xl text-xs text-white focus:outline-none focus:border-cyan-400">
-                <button type="submit" class="p-2 rounded-xl bg-cyan-500 text-black font-bold hover:bg-cyan-400 transition">
-                    <i class="fa-solid fa-paper-plane text-xs"></i>
-                </button>
-            </form>
-
-        </div>
-    </div>
-
-
-    <!-- MODAL 1: ADMIN PASSWORD PROMPT -->
-    <div id="modal-admin-pass" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-panel w-full max-w-sm rounded-2xl p-6 border border-cyan-500/30 text-center">
-            <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center mx-auto text-xl mb-3">
-                <i class="fa-solid fa-lock"></i>
-            </div>
-            <h3 class="text-lg font-extrabold text-white">Central Administrativa</h3>
-            <p class="text-xs text-gray-400 mt-1 mb-4">Insira a senha de acesso (Padrão: <span class="text-cyan-400">admin</span>)</p>
-            
-            <input type="password" id="admin-pass-input" placeholder="Digite a senha..." class="w-full px-4 py-2.5 bg-gray-900 border border-gray-700 rounded-xl text-center text-sm text-white mb-4 focus:outline-none focus:border-cyan-400">
-            
-            <div class="flex gap-2">
-                <button onclick="closeModal('modal-admin-pass')" class="w-1/2 py-2 bg-gray-800 text-gray-300 rounded-xl text-xs font-bold hover:bg-gray-700">Cancelar</button>
-                <button onclick="verifyAdminPass()" class="w-1/2 py-2 bg-cyan-500 text-black font-extrabold rounded-xl text-xs hover:bg-cyan-400">Acessar</button>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- MODAL 2: MAIN ADMIN DASHBOARD & MANAGEMENT (CENTRAL DE GESTÃO) -->
-    <div id="modal-admin-dashboard" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-        <div class="glass-panel w-full max-w-5xl rounded-3xl border border-cyan-500/30 shadow-2xl max-h-[92vh] flex flex-col overflow-hidden my-auto">
-            
-            <!-- Admin Header -->
-            <div class="p-4 sm:p-6 bg-gray-950 border-b border-gray-800 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-cyan-500 text-black flex items-center justify-center font-extrabold">
-                        <i class="fa-solid fa-sliders text-lg"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-black text-white">Painel de Controle Admin DBARROS</h3>
-                        <p class="text-xs text-cyan-400">Gestão de Estoque, Finanças e Banners</p>
-                    </div>
-                </div>
-                <button onclick="closeModal('modal-admin-dashboard')" class="p-2 text-gray-400 hover:text-white rounded-lg hover:bg-gray-800">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-
-            <!-- Admin Nav Tabs -->
-            <div class="flex border-b border-gray-800 bg-gray-900/60 px-4 sm:px-6 overflow-x-auto">
-                <button onclick="switchAdminTab('stock')" id="tab-btn-stock" class="px-4 py-3 border-b-2 border-cyan-400 text-cyan-400 font-bold text-xs flex items-center gap-2 whitespace-nowrap">
-                    <i class="fa-solid fa-boxes-stacked"></i> Gestão de Estoque
-                </button>
-                <button onclick="switchAdminTab('finance')" id="tab-btn-finance" class="px-4 py-3 border-b-2 border-transparent text-gray-400 hover:text-white font-bold text-xs flex items-center gap-2 whitespace-nowrap">
-                    <i class="fa-solid fa-chart-line"></i> Balanço Financeiro
-                </button>
-                <button onclick="switchAdminTab('banners')" id="tab-btn-banners" class="px-4 py-3 border-b-2 border-transparent text-gray-400 hover:text-white font-bold text-xs flex items-center gap-2 whitespace-nowrap">
-                    <i class="fa-solid fa-images"></i> Imagens & Banners
-                </button>
-                <button onclick="switchAdminTab('vips')" id="tab-btn-vips" class="px-4 py-3 border-b-2 border-transparent text-gray-400 hover:text-white font-bold text-xs flex items-center gap-2 whitespace-nowrap">
-                    <i class="fa-solid fa-users"></i> Clientes VIP
-                </button>
-            </div>
-
-            <!-- Admin Body Tab Content -->
-            <div class="p-4 sm:p-6 overflow-y-auto flex-grow space-y-6">
-
-                <!-- TAB 1: STOCK MANAGEMENT -->
-                <div id="admin-tab-stock" class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h4 class="text-sm font-extrabold text-white uppercase tracking-wider">Aparelhos Cadastrados</h4>
-                        <!-- UX REQUIREMENT: Action button closes current popup and opens the new add product modal -->
-                        <button onclick="openAddProductModal()" class="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-black font-extrabold text-xs rounded-xl shadow hover:opacity-90 transition flex items-center gap-2">
-                            <i class="fa-solid fa-plus"></i> NOVO APARELHO
-                        </button>
-                    </div>
-
-                    <div class="overflow-x-auto border border-gray-800 rounded-2xl">
-                        <table class="w-full text-left text-xs text-gray-300">
-                            <thead class="bg-gray-900 text-cyan-400 font-extrabold uppercase">
-                                <tr>
-                                    <th class="p-3">Aparelho / Produto</th>
-                                    <th class="p-3">Armazenamento / Cor</th>
-                                    <th class="p-3">Custo</th>
-                                    <th class="p-3">Venda</th>
-                                    <th class="p-3">Status</th>
-                                    <th class="p-3 text-right">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-stock-table" class="divide-y divide-gray-800 bg-gray-950/60">
-                                <!-- Dynamic Rows -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- TAB 2: FINANCIAL BALANCE -->
-                <div id="admin-tab-finance" class="hidden space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="p-4 rounded-2xl bg-gray-900 border border-gray-800">
-                            <p class="text-[10px] text-gray-400 font-bold uppercase">Faturamento (Vendidos)</p>
-                            <h3 id="fin-revenue" class="text-xl font-black text-emerald-400 mt-1">R$ 0,00</h3>
-                        </div>
-                        <div class="p-4 rounded-2xl bg-gray-900 border border-gray-800">
-                            <p class="text-[10px] text-gray-400 font-bold uppercase">Custo Total Estoque</p>
-                            <h3 id="fin-cost" class="text-xl font-black text-rose-400 mt-1">R$ 0,00</h3>
-                        </div>
-                        <div class="p-4 rounded-2xl bg-gray-900 border border-gray-800">
-                            <p class="text-[10px] text-gray-400 font-bold uppercase">Lucro Líquido Real</p>
-                            <h3 id="fin-profit" class="text-xl font-black text-cyan-400 mt-1">R$ 0,00</h3>
-                        </div>
-                        <div class="p-4 rounded-2xl bg-gray-900 border border-gray-800">
-                            <p class="text-[10px] text-gray-400 font-bold uppercase">Valor em Estoque Ativo</p>
-                            <h3 id="fin-stock-val" class="text-xl font-black text-purple-400 mt-1">R$ 0,00</h3>
-                        </div>
-                    </div>
-                    <p class="text-xs text-gray-400 bg-gray-900/60 p-4 rounded-xl border border-gray-800">
-                        * O Lucro Líquido Real é calculado com base na diferença entre o Preço de Venda e Custo apenas dos aparelhos já marcados como <strong>VENDIDOS</strong>.
-                    </p>
-                </div>
-
-                <!-- TAB 3: BANNERS MANAGEMENT -->
-                <div id="admin-tab-banners" class="hidden space-y-4">
-                    <h4 class="text-sm font-extrabold text-white uppercase tracking-wider">Banners em Destaque</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="admin-banners-list">
-                        <!-- Dynamic Banners -->
-                    </div>
-                </div>
-
-                <!-- TAB 4: VIP CLIENTS & CSV EXPORT -->
-                <div id="admin-tab-vips" class="hidden space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h4 class="text-sm font-extrabold text-white uppercase tracking-wider">Base de Clientes Cadastrados</h4>
-                        <button onclick="exportVipCSV()" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl shadow transition flex items-center gap-2">
-                            <i class="fa-solid fa-file-csv"></i> Exportar CSV
-                        </button>
-                    </div>
-
-                    <div class="overflow-x-auto border border-gray-800 rounded-2xl">
-                        <table class="w-full text-left text-xs text-gray-300">
-                            <thead class="bg-gray-900 text-purple-400 font-extrabold uppercase">
-                                <tr>
-                                    <th class="p-3">Nome</th>
-                                    <th class="p-3">Telefone</th>
-                                    <th class="p-3">Data Cadastro</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-vips-table" class="divide-y divide-gray-800 bg-gray-950/60">
-                                <!-- Dynamic Rows -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- MODAL 3: ADD / EDIT PRODUCT FORM MODAL -->
-    <!-- UX RULE IMPLEMENTED: Opened cleanly after closing dashboard, and saves back to dashboard -->
-    <div id="modal-product-form" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-        <div class="glass-panel w-full max-w-lg rounded-3xl border border-cyan-500/30 p-6 shadow-2xl my-auto space-y-4">
-            
-            <div class="flex items-center justify-between border-b border-gray-800 pb-3">
-                <h3 id="product-form-title" class="text-lg font-black text-white">Cadastrar Aparelho</h3>
-                <button onclick="closeProductFormAndReturn()" class="p-1.5 text-gray-400 hover:text-white rounded-lg">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-
-            <form onsubmit="saveProductForm(event)" class="space-y-3 text-xs">
-                <input type="hidden" id="prod-id">
-
-                <div>
-                    <label class="block text-gray-400 font-bold mb-1">Nome do Aparelho / Modelo</label>
-                    <input type="text" id="prod-title" required placeholder="Ex: iPhone 13 Pro Max" class="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-cyan-400">
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-gray-400 font-bold mb-1">Armazenamento</label>
-                        <input type="text" id="prod-storage" placeholder="Ex: 128GB, 256GB" class="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-cyan-400">
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 font-bold mb-1">Cor</label>
-                        <input type="text" id="prod-color" placeholder="Ex: Azul Sierra" class="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-cyan-400">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-gray-400 font-bold mb-1">Saúde da Bateria (%)</label>
-                        <input type="text" id="prod-battery" placeholder="Ex: 88% ou 100% Lacrado" class="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-cyan-400">
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 font-bold mb-1">Status do Estoque</label>
-                        <select id="prod-status" class="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-cyan-400">
-                            <option value="DISPONIVEL">DISPONÍVEL</option>
-                            <option value="VENDIDO">VENDIDO</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-gray-400 font-bold mb-1">Preço Custo (R$)</label>
-                        <input type="number" step="0.01" id="prod-cost" required placeholder="0.00" class="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-cyan-400">
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 font-bold mb-1">Preço Venda (R$)</label>
-                        <input type="number" step="0.01" id="prod-price" required placeholder="0.00" class="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-cyan-400">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-gray-400 font-bold mb-1">URL da Imagem</label>
-                    <input type="url" id="prod-image" placeholder="https://..." class="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-cyan-400">
-                </div>
-
-                <div class="pt-3 flex gap-2">
-                    <button type="button" onclick="closeProductFormAndReturn()" class="w-1/2 py-2.5 bg-gray-800 text-gray-300 rounded-xl font-bold hover:bg-gray-700">
-                        Voltar
-                    </button>
-                    <button type="submit" class="w-1/2 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-extrabold rounded-xl hover:opacity-90 transition">
-                        Salvar e Voltar
-                    </button>
-                </div>
-            </form>
-
-        </div>
-    </div>
-
-
-    <!-- APP LOGIC JAVASCRIPT -->
+    <!-- SCRIPT GERAL -->
     <script>
-        // INITIAL MOCK DATA STORAGE
-        const DEFAULT_PRODUCTS = [
-            { id: 1, title: 'iPhone 13 Pro', storage: '128GB', color: 'Grafite', battery: '87%', price: 3890.00, cost: 2900.00, status: 'DISPONIVEL', image: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&w=600&q=80' },
-            { id: 2, title: 'iPhone 14 Pro Max', storage: '256GB', color: 'Roxo Profundo', battery: '92%', price: 5490.00, cost: 4200.00, status: 'DISPONIVEL', image: 'https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?auto=format&fit=crop&w=600&q=80' },
-            { id: 3, title: 'iPhone 11', storage: '64GB', color: 'Preto', battery: '84%', price: 1890.00, cost: 1250.00, status: 'VENDIDO', image: 'https://images.unsplash.com/photo-1574944985070-8f3297426535?auto=format&fit=crop&w=600&q=80' },
-            { id: 4, title: 'MacBook Air M1', storage: '256GB SSD / 8GB', color: 'Cinza Espacial', battery: '95%', price: 4790.00, cost: 3600.00, status: 'DISPONIVEL', image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=600&q=80' }
+        let products = JSON.parse(localStorage.getItem('dbarros_products')) || [
+            { id: 1, title: 'iPhone 13 Pro 128GB', category: 'apple', price: 3890.00, cost: 3100.00, specs: 'Bateria 94% • Caixa + Cabo • Garantia', image: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&q=80&w=600', status: 'Disponível' },
+            { id: 2, title: 'iPhone 11 64GB Black', category: 'apple', price: 1990.00, cost: 1450.00, specs: 'Tela Original • Revisado em Bancada', image: 'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&q=80&w=600', status: 'Disponível' },
+            { id: 3, title: 'Cabo USB-C p/ Lightning 2m', category: 'acessórios', price: 79.90, cost: 35.00, specs: 'Carga Rápida Turbo Baseus', image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&q=80&w=600', status: 'Disponível' }
         ];
 
-        const DEFAULT_BANNERS = [
-            { id: 1, title: 'Assistência Técnica de iPhones em Alagoinhas', subtitle: 'Troca de Tela OLED, Bateria e Reparo em Placa no mesmo dia!', bg: 'from-blue-900 to-purple-950', tag: 'ESPECIALISTAS APPLE' },
-            { id: 2, title: 'Flash TV Express & IPTV 4K', subtitle: 'Servidor ultra estável sem travamentos. Solicite o teste grátis no Chat IA!', bg: 'from-pink-900 to-purple-950', tag: 'ENTRETENIMENTO' }
-        ];
-
-        const DEFAULT_TESTIMONIALS = [
-            { name: "Carlos Eduardo", city: "Alagoinhas - BA", text: "Excelente atendimento! O técnico resolveu o problema da placa do meu iPhone 13 Pro em poucas horas." },
-            { name: "Mariana Souza", city: "Catu - BA", text: "Comprei meu iPhone 14 Pro Max com a DBARROS TECH. Aparelho impecável com garantia total." },
-            { name: "Lucas Neto", city: "Alagoinhas - BA", text: "A consultoria MikroTik na minha empresa deixou nossa rede 100% estável. Recomendadíssimo!" }
-        ];
-
-        // LOAD DATA FROM LOCAL STORAGE OR USE DEFAULTS
-        let products = JSON.parse(localStorage.getItem('dbarros_products')) || DEFAULT_PRODUCTS;
-        let banners = JSON.parse(localStorage.getItem('dbarros_banners')) || DEFAULT_BANNERS;
-        let vipClients = JSON.parse(localStorage.getItem('dbarros_vips')) || [
-            { name: "João Silva", phone: "(75) 99888-7766", date: "2026-10-15" }
-        ];
-
-        // STATE APP VARIABLES
-        let currentBannerIdx = 0;
-        let bannerTimer = null;
-        let currentTestimonialIdx = 0;
-        let isAudioPlaying = false;
-        let audioCtx = null;
-
-        // INITIALIZATION ON WINDOW LOAD
-        window.onload = function() {
-            renderCatalog();
-            renderBanners();
-            startBannerAutoSlide();
-            renderTestimonials();
-            startNewsTicker();
-            setupFooterScrollObserver();
+        let siteImages = JSON.parse(localStorage.getItem('dbarros_site_images')) || {
+            hero: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800',
+            iptv: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&q=80&w=800'
         };
 
-        // --- CATALOG RENDERING ---
-        function renderCatalog() {
-            const grid = document.getElementById('product-grid');
-            const search = document.getElementById('catalog-search').value.toLowerCase();
-            const statusFilter = document.getElementById('catalog-filter-status').value;
+        let registeredUsers = JSON.parse(localStorage.getItem('dbarros_vip_users')) || [
+            { date: '2026-10-27 10:00', name: 'Davi Barros', phone: '(75) 99999-9999', email: 'davi@dbarrostech.com', pass: '123456' }
+        ];
+        let currentUser = JSON.parse(localStorage.getItem('dbarros_user')) || null;
 
-            const filtered = products.filter(p => {
-                const matchesSearch = p.title.toLowerCase().includes(search) || 
-                                      p.storage.toLowerCase().includes(search) ||
-                                      p.color.toLowerCase().includes(search);
-                const matchesStatus = statusFilter === 'ALL' || p.status === statusFilter;
-                return matchesSearch && matchesStatus;
-            });
+        function loadSiteImages() {
+            const hero = document.getElementById('display-hero-img');
+            const iptv = document.getElementById('display-iptv-img');
+            if(hero) hero.src = siteImages.hero;
+            if(iptv) iptv.src = siteImages.iptv;
 
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full py-12 text-center text-gray-500">
-                        <i class="fa-solid fa-box-open text-4xl mb-2"></i>
-                        <p>Nenhum produto encontrado com os filtros selecionados.</p>
+            const inputHero = document.getElementById('img-site-hero');
+            const inputIptv = document.getElementById('img-site-iptv');
+            if(inputHero) inputHero.value = siteImages.hero;
+            if(inputIptv) inputIptv.value = siteImages.iptv;
+        }
+
+        function saveSiteImages(e) {
+            e.preventDefault();
+            siteImages.hero = document.getElementById('img-site-hero').value;
+            siteImages.iptv = document.getElementById('img-site-iptv').value;
+            localStorage.setItem('dbarros_site_images', JSON.stringify(siteImages));
+            loadSiteImages();
+            alert('Imagens do site atualizadas com sucesso!');
+        }
+
+        // CHAT ASSISTENTE DE IA
+        function toggleAiAssistantModal() {
+            const modal = document.getElementById('ai-assistant-modal');
+            if(modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
+        function askAi(topic) {
+            const chatBody = document.getElementById('ai-chat-body');
+            let userMsg = '';
+            let aiReply = '';
+
+            if(topic === 'pc_lento') {
+                userMsg = 'Por que meu PC está lento e por que instalar SSD?';
+                aiReply = 'O HD antigo atinge no máximo 100MB/s de leitura. Um SSD SATA/NVMe atinge mais de 550MB/s a 3500MB/s! A troca por SSD faz o Windows ligar em menos de 10 segundos e tira qualquer travamento.';
+            } else if(topic === 'iphones') {
+                userMsg = 'Quais iPhones estão disponíveis na vitrine?';
+                const avail = products.filter(p => p.category === 'apple' && p.status === 'Disponível');
+                aiReply = avail.length > 0 
+                    ? 'Temos em estoque: ' + avail.map(p => p.title + ' (' + Number(p.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + ')').join(', ') 
+                    : 'No momento os iPhones em estoque estão sendo revisados na bancada. Fale conosco no WhatsApp para reservas!';
+            } else if(topic === 'iptv') {
+                userMsg = 'Como funciona o teste do IPTV Flash TV Express?';
+                aiReply = 'Oferecemos teste grátis com liberação imediata! Você assiste a canais abertos/fechados, filmes e séries sem travamentos na Smart TV, TV Box ou celular.';
+            } else if(topic === 'mikrotik') {
+                userMsg = 'Como funciona o suporte para redes e MikroTik?';
+                aiReply = 'Configuramos balanceamento de carga (Load Balance Dual-ISP), regras de firewall, controle de banda e Wi-Fi corporativo para empresas e residências.';
+            }
+
+            chatBody.innerHTML += `
+                <div class="bg-electricBlue/20 border border-electricBlue/40 p-2.5 rounded-xl text-right text-cyanAccent font-bold">${userMsg}</div>
+                <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl text-slate-200">${aiReply}</div>
+            `;
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        // DEPOIMENTOS
+        const testimonials = [
+            { text: "Montei meu PC Gamer com o Davi e o atendimento foi impecável. Peças originais, organização de cabos perfeita e entrega rápida em Alagoinhas!", name: "Carlos Mendes", role: "Cliente de PC Gamer", initials: "CM" },
+            { text: "Comprei meu iPhone seminovo com procedência e garantia. Aparelho impecável, bateria em estado excelente. Super recomendo!", name: "Jéssica Ribeiro", role: "Cliente de iPhone", initials: "JR" },
+            { text: "O suporte de redes e configuração MikroTik aqui no escritório ficou nota 10. Zero quedas e sinal Wi-Fi excelente em todo o ambiente.", name: "Rodrigo Almeida", role: "Cliente Corporativo", initials: "RA" },
+            { text: "O Flash TV Express rodou liso na minha TV Box sem nenhum travamento. Atendimento nota 10 do suporte!", name: "Marcos Vinícius", role: "Cliente Streaming IPTV", initials: "MV" }
+        ];
+        let currentTestimonialIndex = 0;
+
+        function renderTestimonial() {
+            const container = document.getElementById('testimonial-container');
+            const indicator = document.getElementById('testimonial-indicator');
+            const t = testimonials[currentTestimonialIndex];
+            
+            if(container) {
+                container.innerHTML = `
+                    <div class="text-amber-400 text-sm mb-3">★★★★★</div>
+                    <p class="text-slate-200 text-xs sm:text-sm italic mb-6 leading-relaxed max-w-2xl mx-auto">"${t.text}"</p>
+                    <div class="flex items-center justify-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-electricBlue/20 text-secondary font-bold flex items-center justify-center text-xs">${t.initials}</div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-white text-xs uppercase">${t.name}</h4>
+                            <span class="text-[10px] text-slate-400 uppercase">${t.role}</span>
+                        </div>
                     </div>
                 `;
+            }
+            if(indicator) indicator.innerText = `${currentTestimonialIndex + 1} / ${testimonials.length}`;
+        }
+
+        function nextTestimonial() { currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length; renderTestimonial(); }
+        function prevTestimonial() { currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length; renderTestimonial(); }
+        renderTestimonial();
+        setInterval(nextTestimonial, 6000);
+
+        // NOTÍCIAS TECH
+        async function fetchTechNews() {
+            const grid = document.getElementById('tech-news-grid');
+            if(!grid) return;
+            try {
+                const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://tecnoblog.net/feed/');
+                const data = await response.json();
+                if(data.status === 'ok') {
+                    grid.innerHTML = '';
+                    data.items.slice(0, 3).forEach(item => {
+                        grid.innerHTML += `
+                            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all">
+                                <div>
+                                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20 uppercase mb-3 inline-block">Tecnologia</span>
+                                    <h3 class="font-bold text-white text-sm mb-2 uppercase leading-snug">${item.title}</h3>
+                                    <p class="text-slate-400 text-xs mb-4 line-clamp-3">${item.description.replace(/<[^>]*>?/gm, '')}</p>
+                                </div>
+                                <a href="${item.link}" target="_blank" class="text-xs font-bold text-emerald-400 hover:text-emerald-300 uppercase flex items-center gap-1 mt-auto pt-4 border-t border-slate-800/80">
+                                    Ler notícia completa <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                </a>
+                            </div>
+                        `;
+                    });
+                }
+            } catch (err) {
+                grid.innerHTML = `<div class="col-span-3 text-center text-slate-500 text-xs uppercase">Não foi possível carregar as notícias no momento.</div>`;
+            }
+        }
+        fetchTechNews();
+
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobile-drawer');
+            const overlay = document.getElementById('mobile-drawer-overlay');
+            drawer.classList.toggle('translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        function switchVipTab(tab) {
+            const regBox = document.getElementById('vip-form-register-box');
+            const logBox = document.getElementById('vip-form-login-box');
+            const regBtn = document.getElementById('vip-tab-reg-btn');
+            const logBtn = document.getElementById('vip-tab-log-btn');
+
+            if(tab === 'register') {
+                regBox.classList.remove('hidden');
+                logBox.classList.add('hidden');
+                regBtn.className = 'px-5 py-2.5 bg-primary text-white font-black rounded-xl text-xs uppercase shadow transition cursor-pointer';
+                logBtn.className = 'px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+            } else {
+                logBox.classList.remove('hidden');
+                regBox.classList.add('hidden');
+                logBtn.className = 'px-5 py-2.5 bg-emerald-600 text-white font-black rounded-xl text-xs uppercase shadow transition cursor-pointer';
+                regBtn.className = 'px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+            }
+        }
+
+        function handleUserRegistration(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const phone = document.getElementById('reg-phone').value;
+            const email = document.getElementById('reg-email').value;
+            const pass = document.getElementById('reg-pass').value;
+            const now = new Date().toLocaleString('pt-BR');
+
+            currentUser = { date: now, name, phone, email, pass };
+            localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
+            
+            registeredUsers.push(currentUser);
+            localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
+
+            document.getElementById('vip-form').reset();
+            document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu cadastro foi realizado com sucesso.`;
+            document.getElementById('vip-welcome-popup').classList.remove('hidden');
+            document.getElementById('vip-welcome-popup').classList.add('flex');
+
+            updateUIUserStatus();
+        }
+
+        function handleUserLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('log-email').value;
+            const pass = document.getElementById('log-pass').value;
+            const foundUser = registeredUsers.find(u => u.email === email && u.pass === pass);
+
+            if(foundUser) {
+                currentUser = foundUser;
+                localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
+                document.getElementById('vip-login-form').reset();
+                document.getElementById('login-error-msg').classList.add('hidden');
+                document.getElementById('welcome-user-greeting').innerHTML = `Olá de volta, <b>${currentUser.name}</b>! Login efetuado com sucesso.`;
+                document.getElementById('vip-welcome-popup').classList.remove('hidden');
+                document.getElementById('vip-welcome-popup').classList.add('flex');
+                updateUIUserStatus();
+            } else {
+                document.getElementById('login-error-msg').classList.remove('hidden');
+            }
+        }
+
+        function updateUIUserStatus() {
+            const desktopContainer = document.getElementById('desktop-user-status');
+            const mobileContainer = document.getElementById('mobile-user-status-card');
+            const vipContainer = document.getElementById('vip-container');
+
+            if(currentUser) {
+                if(desktopContainer) {
+                    desktopContainer.innerHTML = `
+                        <div class="flex items-center space-x-2 bg-emerald-950/80 border border-emerald-500/40 px-3 py-1.5 rounded-xl text-xs font-bold text-emerald-300">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span>${currentUser.name.split(' ')[0]} (VIP)</span>
+                            <button type="button" onclick="logoutUser()" class="ml-1 text-slate-400 hover:text-red-400 text-xs font-bold cursor-pointer">✕</button>
+                        </div>
+                    `;
+                }
+                if(mobileContainer) {
+                    mobileContainer.innerHTML = `
+                        <div class="flex items-center space-x-2 text-emerald-400 font-bold">
+                            <i class="fa-solid fa-user-check text-emerald-400"></i>
+                            <span>Olá, ${currentUser.name}! (VIP)</span>
+                        </div>
+                        <button type="button" onclick="logoutUser()" class="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded font-bold cursor-pointer">Sair</button>
+                    `;
+                }
+                if(vipContainer) {
+                    vipContainer.innerHTML = `
+                        <div class="text-center py-4">
+                            <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce-slow">
+                                <i class="fa-solid fa-crown"></i>
+                            </div>
+                            <h3 class="text-2xl font-black text-white mb-2 uppercase">BEM-VINDO AO CLUBE VIP, ${currentUser.name}</h3>
+                            <p class="text-slate-300 text-xs mb-6">Sua conta está ativa no sistema.</p>
+                            <button type="button" onclick="logoutUser()" class="px-5 py-3 bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white font-bold rounded-xl text-xs uppercase border border-red-500/30 cursor-pointer">
+                                Sair da Conta
+                            </button>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('dbarros_user');
+            currentUser = null;
+            location.reload();
+        }
+
+        function closeWelcomePopup() {
+            const popup = document.getElementById('vip-welcome-popup');
+            if(popup) {
+                popup.classList.remove('flex');
+                popup.classList.add('hidden');
+            }
+        }
+
+        function filterProducts(category) {
+            const btnAll = document.getElementById('filter-btn-all');
+            const btnApple = document.getElementById('filter-btn-apple');
+            const btnAccessory = document.getElementById('filter-btn-acessórios');
+
+            [btnAll, btnApple, btnAccessory].forEach(b => {
+                if(b) b.className = 'px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+            });
+
+            if(category === 'all') {
+                if(btnAll) btnAll.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+                renderProducts(products);
+            } else if(category === 'apple') {
+                if(btnApple) btnApple.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+                renderProducts(products.filter(p => p.category === 'apple'));
+            } else if(category === 'acessórios') {
+                if(btnAccessory) btnAccessory.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+                renderProducts(products.filter(p => p.category === 'acessórios'));
+            }
+        }
+
+        function renderProducts(listToRender) {
+            const grid = document.getElementById('product-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            
+            if(listToRender.length === 0) {
+                grid.innerHTML = `<div class="col-span-3 text-center py-8 text-slate-500 uppercase text-xs font-bold">Nenhum aparelho encontrado nesta categoria.</div>`;
                 return;
             }
 
-            grid.innerHTML = filtered.map(p => `
-                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
-                    <div class="relative h-52 bg-gray-900 overflow-hidden">
-                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/121723/ffffff?text=DBARROS+TECH'">
-                        <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-extrabold ${p.status === 'DISPONIVEL' ? 'bg-emerald-500 text-black' : 'bg-rose-500 text-white'} shadow-md">
-                            ${p.status === 'DISPONIVEL' ? 'DISPONÍVEL' : 'VENDIDO'}
-                        </span>
-                        <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur text-[10px] text-cyan-300 font-semibold border border-cyan-500/20">
-                            <i class="fa-solid fa-battery-half mr-1"></i>${p.battery}
-                        </span>
-                    </div>
+            listToRender.forEach(p => {
+                const statusBadge = p.status === 'Disponível' 
+                    ? '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase">Disponível</span>'
+                    : '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30 uppercase">Vendido</span>';
 
-                    <div class="p-5 space-y-2 flex-grow">
-                        <h3 class="font-extrabold text-white text-base leading-snug">${p.title}</h3>
-                        <p class="text-xs text-gray-400">${p.storage} • ${p.color}</p>
-                        
-                        <div class="pt-2 flex items-baseline justify-between">
-                            <div>
-                                <span class="text-[10px] text-gray-500 block">Valor à vista</span>
-                                <span class="text-xl font-black text-cyan-400">R$ ${p.price.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</span>
+                const formattedPrice = Number(p.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+                grid.innerHTML += `
+                    <div class="bg-cardBg border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between hover:border-cyanAccent transition-all group">
+                        <div>
+                            <div class="relative h-52 sm:h-56 overflow-hidden bg-slate-950">
+                                <img src="${p.image}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <div class="absolute top-3 left-3">${statusBadge}</div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-extrabold text-white text-base mb-2 uppercase">${p.title}</h3>
+                                <p class="text-slate-400 text-xs mb-4 uppercase">${p.specs}</p>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="p-5 pt-0">
-                        <button onclick="sendWhatsAppProduct('${p.title}', '${p.storage}', '${p.price}')" ${p.status === 'VENDIDO' ? 'disabled' : ''} class="w-full py-2.5 rounded-xl font-extrabold text-xs flex items-center justify-center gap-2 transition ${p.status === 'DISPONIVEL' ? 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black glow-btn-cyan' : 'bg-gray-800 text-gray-500 cursor-not-allowed'}">
-                            <i class="fa-brands fa-whatsapp text-sm"></i>
-                            ${p.status === 'DISPONIVEL' ? 'Tenho Interesse' : 'Indisponível'}
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // --- BANNER SLIDER ---
-        function renderBanners() {
-            const container = document.getElementById('banner-slides');
-            const dotsContainer = document.getElementById('banner-dots');
-
-            container.innerHTML = banners.map((b, i) => `
-                <div class="absolute inset-0 transition-opacity duration-700 flex items-center px-8 sm:px-16 bg-gradient-to-r ${b.bg} ${i === currentBannerIdx ? 'opacity-100 z-10' : 'opacity-0 z-0'}">
-                    <div class="max-w-xl space-y-3">
-                        <span class="px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 text-[10px] font-extrabold tracking-widest uppercase">
-                            ${b.tag}
-                        </span>
-                        <h1 class="text-2xl sm:text-4xl font-black text-white leading-tight">${b.title}</h1>
-                        <p class="text-xs sm:text-sm text-gray-300">${b.subtitle}</p>
-                        <div class="pt-2">
-                            <button onclick="sendWhatsAppService('${b.title}')" class="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold text-xs transition flex items-center gap-2">
-                                <i class="fa-brands fa-whatsapp"></i> Atendimento Rápido
-                            </button>
+                        <div class="p-5 pt-0 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+                            <span class="text-xl font-black text-secondary">${formattedPrice}</span>
+                            <a href="https://wa.me/5575992423627?text=Olá,%20tenho%20interesse%20no%20item%20${encodeURIComponent(p.title)}" target="_blank" class="bg-primary hover:opacity-90 text-white px-3 py-2 rounded-xl text-xs font-bold shadow-lg uppercase">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> Negociar
+                            </a>
                         </div>
                     </div>
-                </div>
-            `).join('');
-
-            dotsContainer.innerHTML = banners.map((_, i) => `
-                <button onclick="goToBanner(${i})" class="w-2.5 h-2.5 rounded-full transition-all ${i === currentBannerIdx ? 'bg-cyan-400 w-6' : 'bg-gray-600'}"></button>
-            `).join('');
-        }
-
-        function startBannerAutoSlide() {
-            clearInterval(bannerTimer);
-            bannerTimer = setInterval(() => nextBanner(), 6000);
-        }
-
-        function nextBanner() {
-            currentBannerIdx = (currentBannerIdx + 1) % banners.length;
-            renderBanners();
-        }
-
-        function prevBanner() {
-            currentBannerIdx = (currentBannerIdx - 1 + banners.length) % banners.length;
-            renderBanners();
-        }
-
-        function goToBanner(idx) {
-            currentBannerIdx = idx;
-            renderBanners();
-        }
-
-        // --- REAL-TIME NEWS FEED SIMULATION ---
-        function startNewsTicker() {
-            const newsItems = [
-                "🔥 DBARROS TECH traz os mais novos testes de firmware Apple para Alagoinhas-BA.",
-                "📱 Estoque renovado: iPhones Seminovo com garantia total e bateria testada.",
-                "🌐 Consultoria MikroTik: Otimize a performance do seu provedor de internet local.",
-                "📺 Flash TV Express: Assista aos seus jogos em 4K sem travamento com nosso servidor dedicado."
-            ];
-            let idx = 0;
-            const newsElem = document.getElementById('news-ticker-text');
-            setInterval(() => {
-                idx = (idx + 1) % newsItems.length;
-                newsElem.innerText = newsItems[idx];
-            }, 5000);
-        }
-
-        // --- TESTIMONIALS ---
-        function renderTestimonials() {
-            const container = document.getElementById('testimonial-container');
-            const dotsContainer = document.getElementById('testimonial-dots');
-
-            const t = DEFAULT_TESTIMONIALS[currentTestimonialIdx];
-
-            container.innerHTML = `
-                <div class="flex items-center justify-center gap-1 text-amber-400 text-xs mb-2">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <p class="text-gray-200 italic text-xs sm:text-sm max-w-xl">"${t.text}"</p>
-                <h4 class="text-white font-extrabold text-xs mt-3">${t.name} <span class="text-cyan-400 text-[10px] font-normal">• ${t.city}</span></h4>
-            `;
-
-            dotsContainer.innerHTML = DEFAULT_TESTIMONIALS.map((_, i) => `
-                <button onclick="setTestimonial(${i})" class="w-2 h-2 rounded-full transition-all ${i === currentTestimonialIdx ? 'bg-cyan-400 w-5' : 'bg-gray-600'}"></button>
-            `).join('');
-        }
-
-        function setTestimonial(idx) {
-            currentTestimonialIdx = idx;
-            renderTestimonials();
-        }
-
-        setInterval(() => {
-            currentTestimonialIdx = (currentTestimonialIdx + 1) % DEFAULT_TESTIMONIALS.length;
-            renderTestimonials();
-        }, 7000);
-
-        // --- FLOATING AI CHATBOT FUNCTIONALITY ---
-        function toggleAiChat() {
-            const win = document.getElementById('ai-chat-window');
-            win.classList.toggle('hidden');
-        }
-
-        function handleQuickPrompt(promptText) {
-            const input = document.getElementById('ai-chat-input');
-            input.value = promptText;
-            handleChatSubmit(new Event('submit'));
-        }
-
-        function handleChatSubmit(e) {
-            e.preventDefault();
-            const input = document.getElementById('ai-chat-input');
-            const userMsg = input.value.trim();
-            if (!userMsg) return;
-
-            appendChatMessage('user', userMsg);
-            input.value = '';
-
-            // Generate AI Response based on DBARROS TECH knowledge
-            setTimeout(() => {
-                const botReply = generateAiResponse(userMsg);
-                appendChatMessage('bot', botReply.text, botReply.hasWhatsAppBtn);
-            }, 500);
-        }
-
-        function appendChatMessage(sender, text, showWspBtn = false) {
-            const messagesContainer = document.getElementById('ai-chat-messages');
-            
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `flex gap-2 ${sender === 'user' ? 'justify-end' : ''}`;
-
-            if (sender === 'bot') {
-                msgDiv.innerHTML = `
-                    <div class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0 text-[10px]">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <div class="bg-gray-800/90 border border-gray-700/80 p-3 rounded-2xl rounded-tl-none text-gray-200 space-y-2">
-                        <p class="whitespace-pre-line">${text}</p>
-                        ${showWspBtn ? `
-                            <button onclick="sendWhatsAppService('Suporte Solicitado pelo Chat IA')" class="mt-2 w-full py-2 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold rounded-xl text-[11px] flex items-center justify-center gap-1.5 shadow">
-                                <i class="fa-brands fa-whatsapp"></i> Falar com Técnico Humano
-                            </button>
-                        ` : ''}
-                    </div>
                 `;
-            } else {
-                msgDiv.innerHTML = `
-                    <div class="bg-cyan-600 text-black font-medium p-3 rounded-2xl rounded-tr-none text-xs max-w-[80%]">
-                        ${text}
-                    </div>
-                `;
-            }
-
-            messagesContainer.appendChild(msgDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        function generateAiResponse(input) {
-            const query = input.toLowerCase();
-
-            if (query.includes('não liga') || query.includes('desligado') || query.includes('travado')) {
-                return {
-                    text: "💻 **Dica do Técnico IA:** Se o seu celular/PC não liga:\n1. Tente um reinício forçado (no iPhone: aperte Aumentar Volume, Diminuir Volume e segure o Botão Power).\n2. Verifique o cabo de energia/carregador.\n3. Pode ser falha na bateria ou curto na placa. Traga à nossa loja na Rua Doutor Pedro Lavigne para análise gratuita!",
-                    hasWhatsAppBtn: true
-                };
-            } else if (query.includes('ssd') || query.includes('upgrade') || query.includes('lento')) {
-                return {
-                    text: "🚀 **Dica de Upgrade:** Instalar um SSD NVMe aumenta a velocidade do seu computador em até 10 vezes! Realizamos a clonagem dos seus arquivos sem perda de dados aqui na DBARROS TECH.",
-                    hasWhatsAppBtn: true
-                };
-            } else if (query.includes('iphone') || query.includes('preço') || query.includes('valor')) {
-                return {
-                    text: "📱 **Tabela & Estoque de iPhones:** Temos diversos modelos do iPhone 11 ao 15 Pro Max com garantia e bateria verificada. Confira nossa seção de catálogo no site ou fale no WhatsApp para fotos em tempo real!",
-                    hasWhatsAppBtn: true
-                };
-            } else if (query.includes('iptv') || query.includes('flash tv')) {
-                return {
-                    text: "📺 **Flash TV Express:** Oferecemos o melhor serviço de IPTV do mercado com servidores dedicados 4K. Quer testar agora sem compromisso por 4 horas?",
-                    hasWhatsAppBtn: true
-                };
-            } else if (query.includes('mikrotik') || query.includes('rede') || query.includes('roteador')) {
-                return {
-                    text: "🌐 **Suporte MikroTik:** Configuramos Load Balance, VPN, Firewall e controle de banda para empresas e provedores com certificação.",
-                    hasWhatsAppBtn: true
-                };
-            } else {
-                return {
-                    text: "Entendi perfeitamente! Para essa questão específica ou orçamentos sob medida, o nosso técnico humano pode te atender imediatamente via WhatsApp.",
-                    hasWhatsAppBtn: true
-                };
-            }
-        }
-
-        // DYNAMIC POSITIONING OF FLOATING AI BOT ABOVE FOOTER
-        function setupFooterScrollObserver() {
-            window.addEventListener('scroll', adjustFloatingBotPosition);
-            window.addEventListener('resize', adjustFloatingBotPosition);
-        }
-
-        function adjustFloatingBotPosition() {
-            const container = document.getElementById('ai-floating-container');
-            const footer = document.getElementById('main-footer');
-            if (!container || !footer) return;
-
-            const footerRect = footer.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-
-            // If footer enters viewport, push the floating widget up so it doesn't overlap footer content
-            if (footerRect.top < viewportHeight) {
-                const overlap = viewportHeight - footerRect.top;
-                container.style.bottom = `${overlap + 20}px`;
-            } else {
-                container.style.bottom = '1.25rem';
-            }
-        }
-
-        // --- ADMIN MODALS & UX LOGIC ---
-        function openAdminPasswordModal() {
-            document.getElementById('modal-admin-pass').classList.remove('hidden');
-        }
-
-        function verifyAdminPass() {
-            const pass = document.getElementById('admin-pass-input').value;
-            if (pass === 'admin' || pass === 'DBARROS') {
-                closeModal('modal-admin-pass');
-                document.getElementById('admin-pass-input').value = '';
-                openAdminDashboard();
-            } else {
-                alert('Senha incorreta! Tente novamente.');
-            }
-        }
-
-        function openAdminDashboard() {
-            renderAdminStockTable();
-            renderAdminFinance();
-            renderAdminBanners();
-            renderAdminVips();
-            document.getElementById('modal-admin-dashboard').classList.remove('hidden');
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).classList.add('hidden');
-        }
-
-        function switchAdminTab(tab) {
-            ['stock', 'finance', 'banners', 'vips'].forEach(t => {
-                document.getElementById(`admin-tab-${t}`).classList.add('hidden');
-                const btn = document.getElementById(`tab-btn-${t}`);
-                btn.classList.remove('border-cyan-400', 'text-cyan-400');
-                btn.classList.add('border-transparent', 'text-gray-400');
             });
-
-            document.getElementById(`admin-tab-${tab}`).classList.remove('hidden');
-            const activeBtn = document.getElementById(`tab-btn-${tab}`);
-            activeBtn.classList.remove('border-transparent', 'text-gray-400');
-            activeBtn.classList.add('border-cyan-400', 'text-cyan-400');
         }
 
-        function renderAdminStockTable() {
-            const tbody = document.getElementById('admin-stock-table');
-            tbody.innerHTML = products.map(p => `
-                <tr class="hover:bg-gray-900/80">
-                    <td class="p-3 font-bold text-white flex items-center gap-2">
-                        <img src="${p.image}" class="w-8 h-8 rounded object-cover">
-                        ${p.title}
-                    </td>
-                    <td class="p-3">${p.storage} • ${p.color}</td>
-                    <td class="p-3 text-rose-400 font-semibold">R$ ${p.cost.toFixed(2)}</td>
-                    <td class="p-3 text-emerald-400 font-semibold">R$ ${p.price.toFixed(2)}</td>
-                    <td class="p-3">
-                        <span class="px-2 py-0.5 rounded text-[10px] font-black ${p.status === 'DISPONIVEL' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}">
-                            ${p.status}
-                        </span>
-                    </td>
-                    <td class="p-3 text-right space-x-2">
-                        <!-- UX REQUIREMENT: Edit closes dashboard, opens edit modal -->
-                        <button onclick="openEditProductModal(${p.id})" class="px-2 py-1 bg-cyan-500/20 hover:bg-cyan-500 text-cyan-400 hover:text-black rounded font-bold transition" title="Editar">
-                            ✏️
-                        </button>
-                        <button onclick="toggleProductStatus(${p.id})" class="px-2 py-1 bg-purple-500/20 hover:bg-purple-500 text-purple-400 hover:text-white rounded font-bold transition" title="Mudar Status">
-                            🔄
-                        </button>
-                        <button onclick="deleteProduct(${p.id})" class="px-2 py-1 bg-rose-500/20 hover:bg-rose-500 text-rose-400 hover:text-white rounded font-bold transition" title="Excluir">
-                            🗑️
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
+        // GERENCIAMENTO DE MODAIS DO ADMIN (ABRE E FECHA AUTOMATICAMENTE)
+        function openProductModal(prodId = null) {
+            closeAdminManagementModal(); // Fecha o painel admin atual
+
+            const modal = document.getElementById('product-form-modal');
+            const title = document.getElementById('product-modal-title');
+            const form = document.getElementById('product-form');
+            if(form) form.reset();
+
+            if(prodId) {
+                const prod = products.find(p => p.id === prodId);
+                if(prod) {
+                    if(title) title.innerText = '✏️ EDITAR ANÚNCIO DO APARELHO';
+                    document.getElementById('prod-id').value = prod.id;
+                    document.getElementById('prod-title').value = prod.title;
+                    document.getElementById('prod-price').value = prod.price;
+                    document.getElementById('prod-cost').value = prod.cost || (prod.price * 0.7);
+                    document.getElementById('prod-category').value = prod.category;
+                    document.getElementById('prod-status').value = prod.status;
+                    document.getElementById('prod-specs').value = prod.specs;
+                    document.getElementById('prod-image').value = prod.image;
+                }
+            } else {
+                if(title) title.innerText = '➕ ADICIONAR NOVO APARELHO';
+                document.getElementById('prod-id').value = '';
+            }
+
+            if(modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
         }
 
-        // UX SPECIFIC FLOW: CLOSE ADMIN DASHBOARD & OPEN PRODUCT FORM
-        function openAddProductModal() {
-            closeModal('modal-admin-dashboard');
-            document.getElementById('product-form-title').innerText = 'Cadastrar Novo Aparelho';
-            document.getElementById('prod-id').value = '';
-            document.getElementById('prod-title').value = '';
-            document.getElementById('prod-storage').value = '';
-            document.getElementById('prod-color').value = '';
-            document.getElementById('prod-battery').value = '';
-            document.getElementById('prod-cost').value = '';
-            document.getElementById('prod-price').value = '';
-            document.getElementById('prod-image').value = '';
-            document.getElementById('prod-status').value = 'DISPONIVEL';
-
-            document.getElementById('modal-product-form').classList.remove('hidden');
+        function closeProductModal() {
+            const modal = document.getElementById('product-form-modal');
+            if(modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
         }
 
-        function openEditProductModal(id) {
-            const p = products.find(prod => prod.id === id);
-            if (!p) return;
-
-            // UX REQUIREMENT: Close Current Popup First
-            closeModal('modal-admin-dashboard');
-
-            document.getElementById('product-form-title').innerText = 'Editar Aparelho';
-            document.getElementById('prod-id').value = p.id;
-            document.getElementById('prod-title').value = p.title;
-            document.getElementById('prod-storage').value = p.storage;
-            document.getElementById('prod-color').value = p.color;
-            document.getElementById('prod-battery').value = p.battery;
-            document.getElementById('prod-cost').value = p.cost;
-            document.getElementById('prod-price').value = p.price;
-            document.getElementById('prod-image').value = p.image;
-            document.getElementById('prod-status').value = p.status;
-
-            document.getElementById('modal-product-form').classList.remove('hidden');
-        }
-
-        function closeProductFormAndReturn() {
-            closeModal('modal-product-form');
-            openAdminDashboard();
-        }
-
-        function saveProductForm(e) {
+        function saveProduct(e) {
             e.preventDefault();
             const id = document.getElementById('prod-id').value;
             const title = document.getElementById('prod-title').value;
-            const storage = document.getElementById('prod-storage').value;
-            const color = document.getElementById('prod-color').value;
-            const battery = document.getElementById('prod-battery').value;
+            const price = parseFloat(document.getElementById('prod-price').value);
             const cost = parseFloat(document.getElementById('prod-cost').value) || 0;
-            const price = parseFloat(document.getElementById('prod-price').value) || 0;
-            const image = document.getElementById('prod-image').value || 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80';
+            const category = document.getElementById('prod-category').value;
             const status = document.getElementById('prod-status').value;
+            const specs = document.getElementById('prod-specs').value;
+            const image = document.getElementById('prod-image').value;
 
-            if (id) {
-                // Update Existing
-                const idx = products.findIndex(p => p.id == id);
-                if (idx !== -1) {
-                    products[idx] = { id: parseInt(id), title, storage, color, battery, cost, price, image, status };
+            if(id !== "") {
+                const index = products.findIndex(p => p.id === parseInt(id));
+                if(index !== -1) {
+                    products[index] = { id: parseInt(id), title, price, cost, category, status, specs, image };
                 }
             } else {
-                // New Product
-                const newId = products.length ? Math.max(...products.map(p => p.id)) + 1 : 1;
-                products.push({ id: newId, title, storage, color, battery, cost, price, image, status });
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({ id: newId, title, price, cost, category, status, specs, image });
             }
 
-            // Save LocalStorage
             localStorage.setItem('dbarros_products', JSON.stringify(products));
-            
-            // Refresh Front Catalog
-            renderCatalog();
-
-            // UX REQUIREMENT: Close edit modal and return to main admin dashboard updated
-            closeProductFormAndReturn();
+            closeProductModal();
+            renderProducts(products);
+            openAdminManagementModal(); // Reabre o painel central atualizado
         }
 
-        function toggleProductStatus(id) {
-            const p = products.find(item => item.id === id);
-            if (p) {
-                p.status = p.status === 'DISPONIVEL' ? 'VENDIDO' : 'DISPONIVEL';
+        function updateProductStatus(id, newStatus) {
+            const index = products.findIndex(p => p.id === id);
+            if(index !== -1) {
+                products[index].status = newStatus;
                 localStorage.setItem('dbarros_products', JSON.stringify(products));
-                renderAdminStockTable();
-                renderAdminFinance();
-                renderCatalog();
+                renderProducts(products);
+                openAdminManagementModal();
             }
         }
 
         function deleteProduct(id) {
-            if (confirm('Tem certeza que deseja excluir este produto do estoque?')) {
+            if(confirm('Excluir este aparelho do estoque?')) {
                 products = products.filter(p => p.id !== id);
                 localStorage.setItem('dbarros_products', JSON.stringify(products));
-                renderAdminStockTable();
-                renderAdminFinance();
-                renderCatalog();
+                renderProducts(products);
+                openAdminManagementModal();
             }
         }
 
-        // --- FINANCIAL CALCULATIONS ---
-        function renderAdminFinance() {
-            const soldItems = products.filter(p => p.status === 'VENDIDO');
-            const activeItems = products.filter(p => p.status === 'DISPONIVEL');
+        function calculateFinance() {
+            let totalRevenue = 0;
+            let totalCost = 0;
+            let stockValue = 0;
+            let countSold = 0;
+            let countAvailable = 0;
 
-            const revenue = soldItems.reduce((acc, p) => acc + p.price, 0);
-            const totalCosts = products.reduce((acc, p) => acc + p.cost, 0);
-            const soldCosts = soldItems.reduce((acc, p) => acc + p.cost, 0);
-            const netProfit = revenue - soldCosts;
-            const activeStockValue = activeItems.reduce((acc, p) => acc + p.price, 0);
+            products.forEach(p => {
+                const pPrice = Number(p.price) || 0;
+                const pCost = Number(p.cost) || (pPrice * 0.7);
 
-            document.getElementById('fin-revenue').innerText = `R$ ${revenue.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
-            document.getElementById('fin-cost').innerText = `R$ ${totalCosts.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
-            document.getElementById('fin-profit').innerText = `R$ ${netProfit.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
-            document.getElementById('fin-stock-val').innerText = `R$ ${activeStockValue.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+                if(p.status === 'Vendido') {
+                    totalRevenue += pPrice;
+                    totalCost += pCost;
+                    countSold++;
+                } else {
+                    stockValue += pCost;
+                    countAvailable++;
+                }
+            });
+
+            const netProfit = totalRevenue - totalCost;
+            const avgMargin = totalRevenue > 0 ? ((netProfit / totalRevenue) * 100).toFixed(1) : 0;
+
+            document.getElementById('fin-total-revenue').innerText = totalRevenue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('fin-total-cost').innerText = totalCost.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('fin-net-profit').innerText = netProfit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('fin-stock-value').innerText = stockValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            
+            document.getElementById('fin-count-sold').innerText = countSold;
+            document.getElementById('fin-count-available').innerText = countAvailable;
+            document.getElementById('fin-avg-margin').innerText = `${avgMargin}%`;
         }
 
-        // --- BANNERS MANAGEMENT ---
-        function renderAdminBanners() {
-            const container = document.getElementById('admin-banners-list');
-            container.innerHTML = banners.map(b => `
-                <div class="p-4 rounded-2xl bg-gray-900 border border-gray-800 space-y-2">
-                    <span class="text-[10px] text-cyan-400 font-extrabold uppercase">${b.tag}</span>
-                    <h4 class="font-extrabold text-white text-sm">${b.title}</h4>
-                    <p class="text-xs text-gray-400">${b.subtitle}</p>
-                </div>
-            `).join('');
+        function switchAdminTab(tab) {
+            const stockTab = document.getElementById('admin-tab-stock');
+            const financeTab = document.getElementById('admin-tab-finance');
+            const imagesTab = document.getElementById('admin-tab-images');
+            const usersTab = document.getElementById('admin-tab-users');
+
+            const stockBtn = document.getElementById('tab-btn-stock');
+            const financeBtn = document.getElementById('tab-btn-finance');
+            const imagesBtn = document.getElementById('tab-btn-images');
+            const usersBtn = document.getElementById('tab-btn-users');
+
+            [stockTab, financeTab, imagesTab, usersTab].forEach(t => { if(t) t.classList.add('hidden'); });
+            [stockBtn, financeBtn, imagesBtn, usersBtn].forEach(b => { if(b) b.className = 'px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer'; });
+
+            if(tab === 'stock') {
+                if(stockTab) stockTab.classList.remove('hidden');
+                if(stockBtn) stockBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+            } else if(tab === 'finance') {
+                if(financeTab) financeTab.classList.remove('hidden');
+                if(financeBtn) financeBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+                calculateFinance();
+            } else if(tab === 'images') {
+                if(imagesTab) imagesTab.classList.remove('hidden');
+                if(imagesBtn) imagesBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+                loadSiteImages();
+            } else if(tab === 'users') {
+                if(usersTab) usersTab.classList.remove('hidden');
+                if(usersBtn) usersBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+                renderAdminUsersTable();
+            }
         }
 
-        // --- VIP CLIENTS MANAGEMENT ---
-        function registerVipClient(e) {
-            e.preventDefault();
-            const name = document.getElementById('vip-name').value;
-            const phone = document.getElementById('vip-phone').value;
-            const date = new Date().toISOString().split('T')[0];
+        function renderAdminUsersTable(data = registeredUsers) {
+            const tbody = document.getElementById('admin-users-table-body');
+            if(!tbody) return;
+            tbody.innerHTML = '';
+            document.getElementById('stat-vip-count').innerText = registeredUsers.length;
+            document.getElementById('stat-prod-count').innerText = products.length;
 
-            vipClients.push({ name, phone, date });
-            localStorage.setItem('dbarros_vips', JSON.stringify(vipClients));
+            if(data.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500 uppercase">Nenhum cliente cadastrado até o momento.</td></tr>`;
+                return;
+            }
 
-            alert('Parabéns! Você foi cadastrado com sucesso no Clube VIP DBARROS TECH!');
-            document.getElementById('vip-name').value = '';
-            document.getElementById('vip-phone').value = '';
+            data.forEach((u, index) => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-900/80 transition-colors">
+                        <td class="p-3 font-mono text-[11px] text-slate-400">${u.date || 'N/A'}</td>
+                        <td class="p-3 font-bold text-white uppercase">${u.name}</td>
+                        <td class="p-3 text-cyanAccent font-mono">${u.phone}</td>
+                        <td class="p-3 text-slate-300 font-mono">${u.email}</td>
+                        <td class="p-3 text-amber-400 font-mono">${u.pass}</td>
+                        <td class="p-3 text-right">
+                            <button type="button" onclick="deleteAdminUser(${index})" class="bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-2.5 py-1 rounded text-[11px] font-bold transition cursor-pointer">Excluir</button>
+                        </td>
+                    </tr>
+                `;
+            });
         }
 
-        function renderAdminVips() {
-            const tbody = document.getElementById('admin-vips-table');
-            tbody.innerHTML = vipClients.map(v => `
-                <tr class="hover:bg-gray-900">
-                    <td class="p-3 font-bold text-white">${v.name}</td>
-                    <td class="p-3 text-cyan-400">${v.phone}</td>
-                    <td class="p-3 text-gray-400">${v.date}</td>
-                </tr>
-            `).join('');
+        function filterAdminUsers() {
+            const term = document.getElementById('search-users-input').value.toLowerCase();
+            const filtered = registeredUsers.filter(u => u.name.toLowerCase().includes(term) || u.email.toLowerCase().includes(term));
+            renderAdminUsersTable(filtered);
         }
 
-        function exportVipCSV() {
-            let csvContent = "data:text/csv;charset=utf-8,Nome,Telefone,DataCadastro\n";
-            vipClients.forEach(v => {
-                csvContent += `"${v.name}","${v.phone}","${v.date}"\n`;
+        function deleteAdminUser(index) {
+            if(confirm('Excluir este cadastro do banco de dados?')) {
+                registeredUsers.splice(index, 1);
+                localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
+                renderAdminUsersTable();
+            }
+        }
+
+        function exportUsersCSV() {
+            let csvContent = "data:text/csv;charset=utf-8,Data/Hora,Nome,WhatsApp,E-mail,Senha\n";
+            registeredUsers.forEach(u => {
+                csvContent += `"${u.date || ''}","${u.name}","${u.phone}","${u.email}","${u.pass}"\n`;
             });
             const encodedUri = encodeURI(csvContent);
             const link = document.createElement("a");
             link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "Clientes_VIP_DBARROS.csv");
+            link.setAttribute("download", `Clientes_VIP_DBARROS_${new Date().toISOString().slice(0,10)}.csv`);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         }
 
-        // --- WHATSAPP REDIRECTS ---
-        function sendWhatsAppProduct(title, storage, price) {
-            const phone = "5575999998888";
-            const text = encodeURIComponent(`Olá DBARROS TECH! Vi o anúncio no site do *${title} (${storage})* por R$ ${price} e gostaria de saber mais informações para fechar negócio.`);
-            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+        function openAdminManagementModal() {
+            const table = document.getElementById('admin-product-table');
+            if(!table) return;
+            table.innerHTML = '';
+            products.forEach(p => {
+                const isAvailable = p.status === 'Disponível';
+                const formattedPrice = Number(p.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+                table.innerHTML += `
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 gap-3">
+                        <div class="flex items-center gap-3">
+                            <img src="${p.image}" class="w-12 h-12 object-cover rounded-lg border border-slate-700">
+                            <div>
+                                <h4 class="font-bold text-white text-xs uppercase">${p.title}</h4>
+                                <span class="text-cyanAccent font-bold text-xs">${formattedPrice}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                            <select onchange="updateProductStatus(${p.id}, this.value)" class="bg-darkBg border ${isAvailable ? 'border-emerald-500 text-emerald-400' : 'border-red-500 text-red-400'} rounded-lg px-2.5 py-1.5 text-xs font-bold uppercase cursor-pointer">
+                                <option value="Disponível" ${isAvailable ? 'selected' : ''}>🟢 DISPONÍVEL</option>
+                                <option value="Vendido" ${!isAvailable ? 'selected' : ''}>🔴 VENDIDO</option>
+                            </select>
+                            <button type="button" onclick="openProductModal(${p.id})" class="bg-amber-500/20 hover:bg-amber-500 text-amber-400 hover:text-slate-950 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer" title="Editar Anúncio">
+                                <i class="fa-solid fa-pen"></i> Editar
+                            </button>
+                            <button type="button" onclick="deleteProduct(${p.id})" class="bg-red-500/25 hover:bg-red-500 text-red-400 hover:text-white px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer" title="Excluir Anúncio">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            const modal = document.getElementById('admin-management-modal');
+            if(modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+            switchAdminTab('stock');
         }
 
-        function sendWhatsAppService(serviceName) {
-            const phone = "5575999998888";
-            const text = encodeURIComponent(`Olá DBARROS TECH! Gostaria de solicitar informações / orçamento sobre: *${serviceName}*.`);
-            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
-        }
-
-        // --- CYBER AMBIENT AUDIO SYNTH ---
-        function toggleAudio() {
-            const btnIcon = document.getElementById('audio-icon');
-            if (!isAudioPlaying) {
-                if (!audioCtx) {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                }
-                playCyberTone();
-                btnIcon.className = "fa-solid fa-volume-high text-cyan-400";
-                isAudioPlaying = true;
-            } else {
-                btnIcon.className = "fa-solid fa-volume-xmark text-cyan-400";
-                isAudioPlaying = false;
+        function closeAdminManagementModal() {
+            const modal = document.getElementById('admin-management-modal');
+            if(modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
             }
         }
 
-        function playCyberTone() {
-            if (!isAudioPlaying || !audioCtx) return;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15);
-            
-            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.15);
+        function openAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            if(modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
         }
+
+        function closeAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            if(modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
+        function verifyAdmin(e) {
+            e.preventDefault();
+            const passInput = document.getElementById('admin-pass');
+            if (passInput && passInput.value === 'Aprovatt@123') {
+                const adminBar = document.getElementById('admin-bar');
+                if(adminBar) {
+                    adminBar.classList.remove('hidden');
+                    adminBar.classList.add('flex');
+                }
+                closeAdminModal();
+                openAdminManagementModal();
+            } else {
+                const err = document.getElementById('admin-error');
+                if(err) err.classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            const adminBar = document.getElementById('admin-bar');
+            if(adminBar) {
+                adminBar.classList.remove('flex');
+                adminBar.classList.add('hidden');
+            }
+        }
+
+        let isMusicPlaying = false;
+        function toggleMusic() {
+            const audio = document.getElementById('bg-music');
+            const icon = document.getElementById('music-icon');
+            const text = document.getElementById('music-text');
+            if (isMusicPlaying) {
+                audio.pause();
+                if(icon) icon.className = 'fa-solid fa-volume-xmark text-red-400';
+                if(text) text.innerText = 'SOM';
+                isMusicPlaying = false;
+            } else {
+                audio.volume = 0.3;
+                audio.play().then(() => {
+                    if(icon) icon.className = 'fa-solid fa-compact-disc text-cyanAccent animate-spin';
+                    if(text) text.innerText = 'TOCANDO';
+                    isMusicPlaying = true;
+                }).catch(() => {});
+            }
+        }
+
+        loadSiteImages();
+        renderProducts(products);
+        updateUIUserStatus();
     </script>
 </body>
 </html>
