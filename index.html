@@ -56,7 +56,7 @@
         <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=cyberpunk-2099-10701.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- POP-UP INICIAL DE NOVIDADES & APARELHOS CORRIGIDO -->
+    <!-- POP-UP INICIAL DE NOVIDADES & APARELHOS -->
     <div id="initial-promo-popup" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-cardBg border-2 border-cyanAccent rounded-3xl max-w-lg w-full p-6 text-center shadow-2xl relative animate-glow">
             <button type="button" onclick="closePromoPopup()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold p-2 z-10 cursor-pointer">✕</button>
@@ -74,7 +74,7 @@
         </div>
     </div>
 
-    <!-- POP-UP CRIATIVO DE BOAS-VINDAS AO CLUBE VIP -->
+    <!-- POP-UP DE BOAS-VINDAS AO CLUBE VIP -->
     <div id="vip-welcome-popup" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
         <div class="bg-gradient-to-br from-cardBg via-slate-900 to-blue-950 border-2 border-amber-400 rounded-3xl max-w-md w-full p-8 text-center shadow-2xl relative animate-glow">
             <button type="button" onclick="closeWelcomePopup()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold p-2 cursor-pointer">✕</button>
@@ -92,7 +92,7 @@
         </div>
     </div>
 
-    <!-- MENU LATERAL MOBILE (DRAWER) -->
+    <!-- MENU LATERAL MOBILE -->
     <div id="mobile-drawer-overlay" onclick="toggleMobileMenu()" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden transition-opacity duration-300"></div>
     <div id="mobile-drawer" class="fixed top-0 right-0 z-50 w-80 max-w-[85vw] h-full bg-cardBg border-l border-slate-800 p-6 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300">
         <div>
@@ -523,6 +523,7 @@
                 `;
             });
         }
+
         function closePromoPopup() {
             const popup = document.getElementById('initial-promo-popup');
             if (popup) {
@@ -619,6 +620,7 @@
             location.reload();
         }
 
+        // Cadastro VIP integrado com Google Apps Script
         function handleUserRegistration(e) {
             e.preventDefault();
             const name = document.getElementById('reg-name').value;
@@ -632,8 +634,20 @@
             registeredUsers.push(currentUser);
             localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
 
+            // URL do seu Google Apps Script configurado
+            const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwT_YqmbrKM9zM8yxq4XZ733ozmkLoRBmwkCHeHWydm1_PoDTk6B65pDE1K6EyRRwUXqg/exec';
+
+            if (WEBHOOK_URL) {
+                fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentUser)
+                }).catch(err => console.error("Erro ao enviar para a planilha:", err));
+            }
+
             document.getElementById('vip-form').reset();
-            document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu cadastro foi realizado com sucesso e sincronizado na planilha Google Sheets! Aproveite acesso prioritário a novos aparelhos.`;
+            document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu cadastro foi realizado com sucesso e enviado direto para a planilha Google Sheets!`;
             document.getElementById('vip-welcome-popup').classList.remove('hidden');
             document.getElementById('vip-welcome-popup').classList.add('flex');
 
@@ -653,7 +667,7 @@
                 document.getElementById('vip-login-form').reset();
                 document.getElementById('login-error-msg').classList.add('hidden');
 
-                document.getElementById('welcome-user-greeting').innerHTML = `Olá de volta, <b>${currentUser.name}</b>! Login efetuado com sucesso puxando suas informações da base.`;
+                document.getElementById('welcome-user-greeting').innerHTML = `Olá de volta, <b>${currentUser.name}</b>! Login efetuado com sucesso.`;
                 document.getElementById('vip-welcome-popup').classList.remove('hidden');
                 document.getElementById('vip-welcome-popup').classList.add('flex');
 
@@ -688,7 +702,7 @@
             }
             const msg = document.getElementById('pass-sent-msg');
             msg.classList.remove('hidden');
-            msg.innerHTML = `✉️ Código de verificação e nova senha salvos e enviados para <b>${currentUser.email}</b>!`;
+            msg.innerHTML = `✉️ Nova senha atualizada e salva com sucesso para <b>${currentUser.email}</b>!`;
             setTimeout(() => { closeChangePassModal(); }, 3000);
         }
 
