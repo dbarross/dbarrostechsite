@@ -56,10 +56,10 @@
         <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=cyberpunk-2099-10701.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- POP-UP INICIAL DE NOVIDADES & APARELHOS -->
+    <!-- POP-UP INICIAL DE NOVIDADES & APARELHOS CORRIGIDO -->
     <div id="initial-promo-popup" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-cardBg border-2 border-cyanAccent rounded-3xl max-w-lg w-full p-6 text-center shadow-2xl relative animate-glow">
-            <button onclick="closePromoPopup()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">✕</button>
+            <button type="button" onclick="closePromoPopup()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold p-2 z-10 cursor-pointer">✕</button>
             <div class="inline-block p-3 rounded-2xl bg-cyanAccent/10 text-cyanAccent text-2xl mb-3 animate-bounce-slow">
                 <i class="fa-solid fa-fire text-amber-400"></i>
             </div>
@@ -68,7 +68,7 @@
             <p class="text-slate-300 text-xs mb-6">Confira os aparelhos seminovos revisados e garanta seu acesso VIP com descontos exclusivos.</p>
             <div id="popup-products-list" class="space-y-2.5 text-left mb-6 max-h-48 overflow-y-auto pr-1"></div>
             <div class="flex gap-3">
-                <button onclick="closePromoPopup()" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-xl text-xs transition uppercase">Continuar no Site</button>
+                <button type="button" onclick="closePromoPopup()" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-xl text-xs transition uppercase cursor-pointer">Continuar no Site</button>
                 <a href="#LOJA" onclick="closePromoPopup()" class="w-full py-3 bg-primary hover:opacity-90 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-1 shadow-lg uppercase">Ver Vitrine</a>
             </div>
         </div>
@@ -77,7 +77,7 @@
     <!-- POP-UP CRIATIVO DE BOAS-VINDAS AO CLUBE VIP -->
     <div id="vip-welcome-popup" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
         <div class="bg-gradient-to-br from-cardBg via-slate-900 to-blue-950 border-2 border-amber-400 rounded-3xl max-w-md w-full p-8 text-center shadow-2xl relative animate-glow">
-            <button onclick="closeWelcomePopup()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">✕</button>
+            <button type="button" onclick="closeWelcomePopup()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold p-2 cursor-pointer">✕</button>
             <div class="w-16 h-16 rounded-2xl bg-amber-400/20 border border-amber-400/50 text-amber-400 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce-slow">
                 <i class="fa-solid fa-crown"></i>
             </div>
@@ -86,7 +86,7 @@
             <p id="welcome-user-greeting" class="text-slate-300 text-xs mb-6 leading-relaxed">
                 Seu login foi criado com sucesso e sincronizado na planilha! Agora você faz parte do seleto **Clube VIP da DBARROS TECH**.
             </p>
-            <button onclick="closeWelcomePopup()" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black rounded-xl text-xs uppercase shadow-lg hover:opacity-90 transition">
+            <button type="button" onclick="closeWelcomePopup()" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black rounded-xl text-xs uppercase shadow-lg hover:opacity-90 transition cursor-pointer">
                 Acessar Minha Conta VIP 🚀
             </button>
         </div>
@@ -101,7 +101,7 @@
                     <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-electricBlue to-cyanAccent flex items-center justify-center font-bold text-darkBg text-sm">DB</div>
                     <span class="font-black text-white text-base tracking-wider">DBARROS <span class="text-secondary">TECH</span></span>
                 </div>
-                <button onclick="toggleMobileMenu()" class="text-slate-400 hover:text-white text-2xl font-bold p-1">✕</button>
+                <button type="button" onclick="toggleMobileMenu()" class="text-slate-400 hover:text-white text-2xl font-bold p-1">✕</button>
             </div>
             <div id="mobile-user-status-card" class="my-4 p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs"></div>
             <nav class="flex flex-col space-y-4 my-6 text-xs font-extrabold tracking-wider text-slate-200 uppercase">
@@ -112,7 +112,7 @@
             </nav>
         </div>
         <div class="pt-4 border-t border-slate-800 space-y-3">
-            <button onclick="toggleMusic(); toggleMobileMenu();" class="w-full bg-slate-800 border border-slate-700 text-slate-300 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+            <button type="button" onclick="toggleMusic(); toggleMobileMenu();" class="w-full bg-slate-800 border border-slate-700 text-slate-300 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
                 <i class="fa-solid fa-volume-high text-cyanAccent"></i> CONTROLE DE SOM
             </button>
             <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20da%20DBARROS%20TECH!" target="_blank" class="w-full bg-primary hover:opacity-90 text-white py-3 rounded-xl text-xs font-extrabold uppercase transition text-center block shadow-lg">
@@ -124,7 +124,7 @@
     <!-- POP-UP CATÁLOGO COMPLETO -->
     <div id="all-products-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
         <div class="bg-cardBg border-2 border-cyanAccent rounded-3xl max-w-4xl w-full p-6 sm:p-8 text-left shadow-2xl relative animate-glow max-h-[90vh] flex flex-col">
-            <button onclick="closeAllProductsModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">✕</button>
+            <button type="button" onclick="closeAllProductsModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">✕</button>
             <div class="flex items-center gap-3 mb-4">
                 <div class="p-3 rounded-2xl bg-cyanAccent/10 text-cyanAccent text-2xl"><i class="fa-solid fa-store"></i></div>
                 <div>
@@ -134,7 +134,7 @@
             </div>
             <div id="modal-all-products-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-y-auto pr-2 flex-1"></div>
             <div class="mt-6 pt-4 border-t border-slate-800 flex justify-end">
-                <button onclick="closeAllProductsModal()" class="px-6 py-3 bg-primary text-white font-bold rounded-xl text-xs shadow-lg uppercase">Fechar Catálogo</button>
+                <button type="button" onclick="closeAllProductsModal()" class="px-6 py-3 bg-primary text-white font-bold rounded-xl text-xs shadow-lg uppercase">Fechar Catálogo</button>
             </div>
         </div>
     </div>
@@ -142,7 +142,7 @@
     <!-- PAINEL DE GESTÃO ADMIN INTEGRADO -->
     <div id="admin-management-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
         <div class="bg-cardBg border-2 border-emerald-500 rounded-3xl max-w-5xl w-full p-6 sm:p-8 text-left shadow-2xl relative max-h-[92vh] flex flex-col">
-            <button onclick="closeAdminManagementModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">✕</button>
+            <button type="button" onclick="closeAdminManagementModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">✕</button>
             
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 border-b border-slate-800 pb-4 gap-3">
                 <div class="flex items-center gap-3">
@@ -153,21 +153,19 @@
                     </div>
                 </div>
                 <div class="flex gap-2">
-                    <button onclick="switchAdminTab('stock')" id="tab-btn-stock" class="px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition">📦 Estoque</button>
-                    <button onclick="switchAdminTab('sheet')" id="tab-btn-sheet" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">📊 Planilha & Cadastros</button>
+                    <button type="button" onclick="switchAdminTab('stock')" id="tab-btn-stock" class="px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition">📦 Estoque</button>
+                    <button type="button" onclick="switchAdminTab('sheet')" id="tab-btn-sheet" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">📊 Planilha & Cadastros</button>
                 </div>
             </div>
 
-            <!-- ABA ESTOQUE -->
             <div id="admin-tab-stock" class="flex-1 flex flex-col overflow-hidden">
                 <div class="flex justify-between items-center mb-3">
                     <p class="text-slate-300 text-xs">Gerencie os produtos da vitrine em tempo real.</p>
-                    <button onclick="openProductModal()" class="bg-emerald-500 text-slate-950 font-black px-4 py-2 rounded-xl text-xs uppercase hover:bg-emerald-400 transition shadow-lg">+ Novo Aparelho</button>
+                    <button type="button" onclick="openProductModal()" class="bg-emerald-500 text-slate-950 font-black px-4 py-2 rounded-xl text-xs uppercase hover:bg-emerald-400 transition shadow-lg">+ Novo Aparelho</button>
                 </div>
                 <div id="admin-product-table" class="overflow-y-auto space-y-3 pr-2 flex-1"></div>
             </div>
 
-            <!-- ABA PLANILHA & CLIENTES CADASTRADOS -->
             <div id="admin-tab-sheet" class="flex-1 flex flex-col hidden overflow-hidden space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
@@ -199,7 +197,7 @@
             </div>
 
             <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
-                <button onclick="closeAdminManagementModal()" class="px-6 py-2.5 bg-slate-800 text-white font-bold rounded-xl text-xs uppercase">Fechar Painel</button>
+                <button type="button" onclick="closeAdminManagementModal()" class="px-6 py-2.5 bg-slate-800 text-white font-bold rounded-xl text-xs uppercase">Fechar Painel</button>
             </div>
         </div>
     </div>
@@ -211,8 +209,8 @@
             <span class="hidden md:inline">Gestão de estoque e planilha ativada.</span>
         </div>
         <div class="flex items-center space-x-2">
-            <button onclick="openAdminManagementModal()" class="bg-amber-400 text-slate-950 px-3 py-1 rounded-lg hover:bg-amber-300 transition font-black uppercase text-[11px]">⚙️ Central de Gestão</button>
-            <button onclick="logoutAdmin()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg transition font-bold uppercase text-[11px]">Sair</button>
+            <button type="button" onclick="openAdminManagementModal()" class="bg-amber-400 text-slate-950 px-3 py-1 rounded-lg hover:bg-amber-300 transition font-black uppercase text-[11px]">⚙️ Central de Gestão</button>
+            <button type="button" onclick="logoutAdmin()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg transition font-bold uppercase text-[11px]">Sair</button>
         </div>
     </div>
 
@@ -236,7 +234,7 @@
 
             <div class="flex items-center space-x-2 sm:space-x-3">
                 <div id="desktop-user-status" class="hidden sm:flex items-center"></div>
-                <button id="music-btn" onclick="toggleMusic()" class="bg-slate-800 border border-slate-700 hover:border-cyanAccent text-slate-300 px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow" title="Ligar/Desligar Música">
+                <button type="button" id="music-btn" onclick="toggleMusic()" class="bg-slate-800 border border-slate-700 hover:border-cyanAccent text-slate-300 px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow" title="Ligar/Desligar Música">
                     <i id="music-icon" class="fa-solid fa-volume-xmark text-red-400"></i>
                     <span id="music-text" class="hidden md:inline">SOM</span>
                 </button>
@@ -244,7 +242,7 @@
                     <i class="fa-brands fa-whatsapp text-sm"></i>
                     <span class="hidden lg:inline">FALAR COM TÉCNICO</span>
                 </a>
-                <button onclick="toggleMobileMenu()" class="lg:hidden bg-slate-800 border border-slate-700 text-slate-200 p-2.5 rounded-xl text-lg hover:text-cyanAccent transition focus:outline-none" title="Abrir Menu">
+                <button type="button" onclick="toggleMobileMenu()" class="lg:hidden bg-slate-800 border border-slate-700 text-slate-200 p-2.5 rounded-xl text-lg hover:text-cyanAccent transition focus:outline-none" title="Abrir Menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -270,7 +268,7 @@
                     <a href="#LOJA" class="bg-gradient-to-r from-electricBlue to-cyanAccent text-darkBg font-black px-6 py-3.5 rounded-xl shadow-xl hover:opacity-90 transition-all text-center uppercase text-xs animate-glow">
                         VER APARELHOS & COMPUTADORES
                     </a>
-                    <button onclick="openAllProductsModal()" class="bg-cardBg border border-cyanAccent/50 hover:border-cyanAccent text-cyanAccent font-bold px-6 py-3.5 rounded-xl transition-all text-center uppercase text-xs">
+                    <button type="button" onclick="openAllProductsModal()" class="bg-cardBg border border-cyanAccent/50 hover:border-cyanAccent text-cyanAccent font-bold px-6 py-3.5 rounded-xl transition-all text-center uppercase text-xs">
                         VER CATÁLOGO COMPLETO
                     </button>
                 </div>
@@ -339,7 +337,7 @@
                 <span class="text-xs uppercase font-mono tracking-widest text-secondary bg-secondary/10 px-3 py-1 rounded-full border border-secondary/35">ESTOQUE EM DESTAQUE</span>
                 <h2 class="text-2xl sm:text-4xl font-black text-white mt-3 uppercase">🔥 APARELHOS & ACESSÓRIOS DISPONÍVEIS</h2>
             </div>
-            <button onclick="openAllProductsModal()" class="px-5 py-3 bg-secondary text-darkBg font-black text-xs rounded-2xl shadow-lg uppercase hover:opacity-90 transition">
+            <button type="button" onclick="openAllProductsModal()" class="px-5 py-3 bg-secondary text-darkBg font-black text-xs rounded-2xl shadow-lg uppercase hover:opacity-90 transition">
                 📂 VER TODOS NO POP-UP
             </button>
         </div>
@@ -354,15 +352,12 @@
                 <span class="uppercase font-bold">ACESSO EXCLUSIVO & CLUBE VIP</span>
             </div>
 
-            <!-- CONTÊINER DINÂMICO DE CADASTRO / LOGIN / PAINEL -->
             <div id="vip-container">
-                <!-- ABAS DE NAVEGAÇÃO ENTRE CADASTRO E LOGIN -->
                 <div class="flex justify-center gap-2 mb-6">
-                    <button onclick="switchVipTab('register')" id="vip-tab-reg-btn" class="px-5 py-2.5 bg-primary text-white font-black rounded-xl text-xs uppercase shadow transition">Criar Cadastro VIP</button>
-                    <button onclick="switchVipTab('login')" id="vip-tab-log-btn" class="px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">Já tenho conta (Entrar)</button>
+                    <button type="button" onclick="switchVipTab('register')" id="vip-tab-reg-btn" class="px-5 py-2.5 bg-primary text-white font-black rounded-xl text-xs uppercase shadow transition">Criar Cadastro VIP</button>
+                    <button type="button" onclick="switchVipTab('login')" id="vip-tab-log-btn" class="px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">Já tenho conta (Entrar)</button>
                 </div>
 
-                <!-- FORMULÁRIO DE CADASTRO -->
                 <div id="vip-form-register-box">
                     <h2 class="text-2xl sm:text-3xl font-black mb-2 uppercase">CADASTRE-SE NO CLUBE VIP</h2>
                     <p class="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto mb-6">Preencha seus dados para sincronizar na planilha e receber novidades de iPhones e promoções em primeira mão!</p>
@@ -385,13 +380,12 @@
                             <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">SENHA DE ACESSO</label>
                             <input type="password" id="reg-pass" placeholder="••••••••" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
                         </div>
-                        <button type="submit" class="w-full py-3.5 bg-primary hover:opacity-90 text-white font-black rounded-xl shadow-lg uppercase text-xs mt-4">
+                        <button type="submit" class="w-full py-3.5 bg-primary hover:opacity-90 text-white font-black rounded-xl shadow-lg uppercase text-xs mt-4 cursor-pointer">
                             <i class="fa-solid fa-cloud-arrow-up text-base mr-2"></i> CADASTRAR E SINCRONIZAR NA PLANILHA 🚀
                         </button>
                     </form>
                 </div>
 
-                <!-- FORMULÁRIO DE LOGIN COM OPÇÃO DE REDEFINIR SENHA -->
                 <div id="vip-form-login-box" class="hidden">
                     <h2 class="text-2xl sm:text-3xl font-black mb-2 uppercase">ENTRAR NA SUA CONTA VIP</h2>
                     <p class="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto mb-6">Digite seu e-mail e senha cadastrados para acessar sua conta.</p>
@@ -402,13 +396,10 @@
                             <input type="email" id="log-email" placeholder="seu@email.com" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
                         </div>
                         <div>
-                            <div class="flex justify-between items-center mb-1">
-                                <label class="block text-xs font-bold text-slate-300 uppercase">SENHA</label>
-                                <button type="button" onclick="openChangePassModal()" class="text-[11px] text-cyanAccent hover:underline font-bold uppercase">Esqueci / Redefinir Senha?</button>
-                            </div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">SENHA</label>
                             <input type="password" id="log-pass" placeholder="••••••••" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
                         </div>
-                        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-90 text-white font-black rounded-xl shadow-lg uppercase text-xs mt-4">
+                        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-90 text-white font-black rounded-xl shadow-lg uppercase text-xs mt-4 cursor-pointer">
                             <i class="fa-solid fa-right-to-bracket text-base mr-2"></i> ENTRAR NO CLUBE VIP
                         </button>
                     </form>
@@ -417,48 +408,10 @@
         </div>
     </section>
 
-    <!-- WIDGET ASSISTENTE DE IA FLUTUANTE E MÓVEL COM LOGO -->
-    <div class="fixed bottom-5 right-5 z-50">
-        <div id="ai-chat-window" class="hidden w-72 sm:w-96 bg-cardBg border border-cyanAccent/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col mb-4">
-            <div class="bg-gradient-to-r from-electricBlue to-cyanAccent p-3.5 text-darkBg font-bold flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <div class="w-7 h-7 rounded-lg bg-darkBg text-cyanAccent flex items-center justify-center font-black text-xs">DB</div>
-                    <div>
-                        <span class="block text-xs font-black uppercase">DBARROS AI</span>
-                        <span class="block text-[9px] opacity-80 font-mono">SUPORTE INTELIGENTE</span>
-                    </div>
-                </div>
-                <button onclick="toggleAiChat()" class="text-darkBg hover:opacity-70 text-lg font-bold">✕</button>
-            </div>
-            <div id="ai-chat-messages" class="p-3.5 h-60 overflow-y-auto space-y-3 text-xs text-slate-300 font-mono">
-                <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
-                    <p class="font-bold text-secondary mb-1">🤖 DBARROS AI:</p>
-                    <p>Olá! Precisa de manutenção em PC/Notebook, iPhones disponíveis ou IPTV Flash TV?</p>
-                </div>
-            </div>
-            <div class="p-3 bg-slate-900 border-t border-slate-800 flex flex-col gap-2">
-                <div class="flex gap-1 overflow-x-auto pb-1 text-[10px] uppercase font-bold">
-                    <button onclick="sendAiQuick('Manutenção de PC e Notebook')" class="bg-slate-800 hover:bg-slate-700 text-secondary px-2 py-1 rounded whitespace-nowrap">💻 PC/Notebook</button>
-                    <button onclick="sendAiQuick('Ver iPhones disponiveis')" class="bg-slate-800 hover:bg-slate-700 text-secondary px-2 py-1 rounded whitespace-nowrap">📱 Aparelhos</button>
-                    <button onclick="sendAiQuick('Streaming IPTV Flash TV')" class="bg-slate-800 hover:bg-slate-700 text-pink-400 px-2 py-1 rounded whitespace-nowrap">📺 IPTV</button>
-                </div>
-                <div class="flex gap-2">
-                    <input type="text" id="ai-user-input" placeholder="Digite sua dúvida..." class="w-full bg-darkBg border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyanAccent" onkeypress="if(event.key==='Enter') sendAiMessage()">
-                    <button onclick="sendAiMessage()" class="bg-primary hover:opacity-90 text-white px-3 py-2 rounded-lg text-xs font-bold"><i class="fa-solid fa-paper-plane"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <button onclick="toggleAiChat()" class="w-14 h-14 bg-gradient-to-r from-electricBlue to-cyanAccent text-darkBg rounded-full shadow-2xl flex items-center justify-center text-xl font-bold hover:scale-110 transition-transform animate-glow relative border-2 border-white/20" title="Assistente Virtual DBARROS">
-            <div class="w-10 h-10 rounded-full bg-darkBg text-cyanAccent flex items-center justify-center font-black text-sm tracking-tighter">DB</div>
-            <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-darkBg rounded-full animate-ping"></span>
-        </button>
-    </div>
-
     <!-- MODAL AUTH ADMIN -->
     <div id="admin-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-cardBg border border-slate-800 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
-            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
+            <button type="button" onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg font-bold">✕</button>
             <h3 class="text-xl font-bold mb-2 uppercase text-amber-400"><i class="fa-solid fa-lock mr-2"></i> ACESSO RESTRITO ADMIN</h3>
             <p class="text-xs text-slate-400 mb-4">Digite a senha administrativa para abrir a central de gestão.</p>
             <div id="admin-error" class="hidden mb-3 p-2 bg-red-950/80 border border-red-800 text-red-300 text-xs rounded-lg font-bold uppercase">SENHA INCORRETA!</div>
@@ -472,7 +425,7 @@
     <!-- MODAL ADICIONAR PRODUTO -->
     <div id="product-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-cardBg border border-emerald-500/50 rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
-            <button onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
+            <button type="button" onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg font-bold">✕</button>
             <h3 class="text-xl font-bold mb-2 text-emerald-400 uppercase">📱 ADICIONAR NOVO APARELHO</h3>
             <form onsubmit="saveNewProduct(event)" class="space-y-3 text-xs uppercase font-bold mt-3">
                 <div>
@@ -500,30 +453,23 @@
                     <label class="block text-slate-300 mb-1">URL DA FOTO</label>
                     <input type="url" id="prod-image" placeholder="https://..." class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-slate-400 normal-case" required>
                 </div>
-                <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-lg mt-2">Cadastrar Aparelho</button>
+                <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-lg mt-2 cursor-pointer">Cadastrar Aparelho</button>
             </form>
         </div>
     </div>
 
-    <!-- MODAL REDEFINIR / ALTERAR SENHA -->
+    <!-- MODAL ALTERAR SENHA -->
     <div id="change-pass-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-cardBg border border-cyanAccent rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
-            <button onclick="closeChangePassModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
-            <h3 class="text-xl font-bold mb-2 uppercase text-cyanAccent">🔑 REDEFINIR / ALTERAR SENHA</h3>
-            <p class="text-xs text-slate-300 mb-4">Insira seu e-mail cadastrado e a nova senha desejada.</p>
-            <form onsubmit="handleRequestPassCode(event)" class="space-y-3 text-xs uppercase font-bold">
-                <div>
-                    <label class="block text-slate-300 mb-1">E-MAIL CADASTRADO</label>
-                    <input type="email" id="reset-email" placeholder="seu@email.com" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white normal-case" required>
-                </div>
-                <div>
-                    <label class="block text-slate-300 mb-1">NOVA SENHA</label>
-                    <input type="password" id="new-user-pass" placeholder="NOVA SENHA" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white normal-case" required>
-                </div>
-                <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-xl shadow-lg uppercase text-xs mt-2">ENVIAR CÓDIGO E ATUALIZAR SENHA</button>
+            <button type="button" onclick="closeChangePassModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg font-bold">✕</button>
+            <h3 class="text-xl font-bold mb-2 uppercase text-cyanAccent">🔑 ALTERAR SENHA</h3>
+            <p class="text-xs text-slate-300 mb-4">O código de segurança será enviado para o seu e-mail cadastrado.</p>
+            <form onsubmit="handleRequestPassCode(event)" class="space-y-4 text-xs uppercase font-bold">
+                <input type="password" id="new-user-pass" placeholder="NOVA SENHA" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white normal-case" required>
+                <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-xl shadow-lg uppercase text-xs cursor-pointer">ENVIAR CÓDIGO POR E-MAIL</button>
             </form>
             <div id="pass-sent-msg" class="hidden mt-3 p-2.5 bg-emerald-950/80 border border-emerald-700 text-emerald-300 text-xs rounded-xl font-bold uppercase text-center">
-                ✉️ SENHA REDEFINIDA COM SUCESSO E CÓDIGO ENVIADO AO E-MAIL!
+                ✉️ CÓDIGO ENVIADO COM SUCESSO PARA SEU E-MAIL!
             </div>
         </div>
     </div>
@@ -537,7 +483,7 @@
                     <a href="https://www.instagram.com/dbarrostech/" target="_blank" class="hover:text-pink-400 transition-colors">@dbarrostech</a>
                     <a href="https://www.instagram.com/flashtvexpress/" target="_blank" class="hover:text-pink-400 transition-colors">@flashtvexpress</a>
                 </div>
-                <button onclick="openAdminModal()" class="text-[10px] text-slate-600 hover:text-amber-400 transition font-mono border border-slate-800 hover:border-amber-400/40 px-2.5 py-1 rounded-lg" title="Acesso Admin">
+                <button type="button" onclick="openAdminModal()" class="text-[10px] text-slate-600 hover:text-amber-400 transition font-mono border border-slate-800 hover:border-amber-400/40 px-2.5 py-1 rounded-lg cursor-pointer" title="Acesso Admin">
                     <i class="fa-solid fa-lock mr-1"></i> Admin
                 </button>
             </div>
@@ -577,7 +523,13 @@
                 `;
             });
         }
-        function closePromoPopup() { document.getElementById('initial-promo-popup').classList.add('hidden'); }
+        function closePromoPopup() {
+            const popup = document.getElementById('initial-promo-popup');
+            if (popup) {
+                popup.style.display = 'none';
+                popup.classList.add('hidden');
+            }
+        }
         initPromoPopup();
 
         function toggleMobileMenu() {
@@ -616,7 +568,7 @@
                     <div class="flex items-center space-x-2 bg-emerald-950/80 border border-emerald-500/40 px-3 py-1.5 rounded-xl text-xs font-bold text-emerald-300">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                         <span>${currentUser.name.split(' ')[0]} (VIP)</span>
-                        <button onclick="logoutUser()" class="ml-1 text-slate-400 hover:text-red-400 text-xs font-bold" title="Sair">✕</button>
+                        <button type="button" onclick="logoutUser()" class="ml-1 text-slate-400 hover:text-red-400 text-xs font-bold cursor-pointer" title="Sair">✕</button>
                     </div>
                 `;
                 mobileContainer.innerHTML = `
@@ -624,4 +576,307 @@
                         <i class="fa-solid fa-user-check text-emerald-400"></i>
                         <span>Olá, ${currentUser.name}! (VIP)</span>
                     </div>
-                    <button onclick="logoutUser()" class="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded font-bold">
+                    <button type="button" onclick="logoutUser()" class="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded font-bold cursor-pointer">Sair</button>
+                `;
+
+                vipContainer.innerHTML = `
+                    <div class="text-center py-4">
+                        <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce-slow">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-2 uppercase">BEM-VINDO AO CLUBE VIP, ${currentUser.name}</h3>
+                        <p class="text-slate-300 text-xs mb-6">Sua conta está ativa e sincronizada na planilha de cadastros.</p>
+                        <div class="flex flex-col sm:flex-row justify-center gap-3">
+                            <button type="button" onclick="openChangePassModal()" class="px-5 py-3 bg-slate-800 hover:bg-slate-700 text-cyanAccent font-bold rounded-xl text-xs uppercase border border-cyanAccent/30 cursor-pointer">
+                                🔑 Alterar Senha (Enviar Código p/ E-mail)
+                            </button>
+                            <button type="button" onclick="logoutUser()" class="px-5 py-3 bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white font-bold rounded-xl text-xs uppercase border border-red-500/30 cursor-pointer">
+                                Sair da Conta
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                desktopContainer.innerHTML = `
+                    <a href="#VIP" class="flex items-center space-x-1.5 bg-slate-800 border border-slate-700 hover:border-cyanAccent text-slate-300 px-3 py-1.5 rounded-xl text-xs font-bold transition">
+                        <i class="fa-regular fa-user text-amber-400"></i>
+                        <span>Entrar / Cadastrar</span>
+                    </a>
+                `;
+                mobileContainer.innerHTML = `
+                    <div class="flex items-center space-x-2 text-slate-300 font-bold">
+                        <i class="fa-regular fa-user text-amber-400"></i>
+                        <span>Não logado</span>
+                    </div>
+                    <a href="#VIP" onclick="toggleMobileMenu()" class="text-[11px] bg-primary text-white px-2.5 py-1 rounded font-bold uppercase">Entrar</a>
+                `;
+            }
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('dbarros_user');
+            currentUser = null;
+            location.reload();
+        }
+
+        function handleUserRegistration(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const phone = document.getElementById('reg-phone').value;
+            const email = document.getElementById('reg-email').value;
+            const pass = document.getElementById('reg-pass').value;
+
+            currentUser = { name, phone, email, pass };
+            localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
+            
+            registeredUsers.push(currentUser);
+            localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
+
+            document.getElementById('vip-form').reset();
+            document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu cadastro foi realizado com sucesso e sincronizado na planilha Google Sheets! Aproveite acesso prioritário a novos aparelhos.`;
+            document.getElementById('vip-welcome-popup').classList.remove('hidden');
+            document.getElementById('vip-welcome-popup').classList.add('flex');
+
+            updateUIUserStatus();
+        }
+
+        function handleUserLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('log-email').value;
+            const pass = document.getElementById('log-pass').value;
+
+            const foundUser = registeredUsers.find(u => u.email === email && u.pass === pass);
+
+            if(foundUser) {
+                currentUser = foundUser;
+                localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
+                document.getElementById('vip-login-form').reset();
+                document.getElementById('login-error-msg').classList.add('hidden');
+
+                document.getElementById('welcome-user-greeting').innerHTML = `Olá de volta, <b>${currentUser.name}</b>! Login efetuado com sucesso puxando suas informações da base.`;
+                document.getElementById('vip-welcome-popup').classList.remove('hidden');
+                document.getElementById('vip-welcome-popup').classList.add('flex');
+
+                updateUIUserStatus();
+            } else {
+                document.getElementById('login-error-msg').classList.remove('hidden');
+            }
+        }
+
+        function closeWelcomePopup() {
+            document.getElementById('vip-welcome-popup').classList.remove('flex');
+            document.getElementById('vip-welcome-popup').classList.add('hidden');
+        }
+
+        function openChangePassModal() {
+            document.getElementById('change-pass-modal').classList.remove('hidden');
+            document.getElementById('change-pass-modal').classList.add('flex');
+        }
+        function closeChangePassModal() {
+            document.getElementById('change-pass-modal').classList.remove('flex');
+            document.getElementById('change-pass-modal').classList.add('hidden');
+            document.getElementById('pass-sent-msg').classList.add('hidden');
+        }
+        function handleRequestPassCode(e) {
+            e.preventDefault();
+            const newPass = document.getElementById('new-user-pass').value;
+            if(currentUser) {
+                currentUser.pass = newPass;
+                localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
+                registeredUsers = registeredUsers.map(u => u.email === currentUser.email ? currentUser : u);
+                localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
+            }
+            const msg = document.getElementById('pass-sent-msg');
+            msg.classList.remove('hidden');
+            msg.innerHTML = `✉️ Código de verificação e nova senha salvos e enviados para <b>${currentUser.email}</b>!`;
+            setTimeout(() => { closeChangePassModal(); }, 3000);
+        }
+
+        function openAllProductsModal() {
+            const list = document.getElementById('modal-all-products-list');
+            list.innerHTML = '';
+            products.forEach(p => {
+                const badge = p.status === 'Disponível' 
+                    ? '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">🟢 DISPONÍVEL</span>'
+                    : '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-500/20 text-red-400 border border-red-500/30">🔴 VENDIDO</span>';
+
+                list.innerHTML += `
+                    <div class="flex items-center justify-between bg-darkBg p-3 rounded-xl border border-slate-800">
+                        <div class="flex items-center gap-3">
+                            <img src="${p.image}" class="w-12 h-12 object-cover rounded-lg">
+                            <div>
+                                <h4 class="font-bold text-white text-xs uppercase">${p.title}</h4>
+                                <span class="text-secondary font-black text-xs">${p.price}</span>
+                                <span class="block text-[10px] text-slate-400">${p.specs}</span>
+                            </div>
+                        </div>
+                        <div class="text-right flex flex-col items-end gap-1">
+                            ${badge}
+                            <a href="https://wa.me/5575992423627?text=Olá,%20tenho%20interesse%20no%20item%20${encodeURIComponent(p.title)}" target="_blank" class="text-[10px] bg-primary text-white px-2.5 py-1 rounded font-bold uppercase mt-1">Negociar</a>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('all-products-modal').classList.remove('hidden');
+            document.getElementById('all-products-modal').classList.add('flex');
+        }
+        function closeAllProductsModal() { document.getElementById('all-products-modal').classList.remove('flex'); document.getElementById('all-products-modal').classList.add('hidden'); }
+
+        function switchAdminTab(tab) {
+            const stockTab = document.getElementById('admin-tab-stock');
+            const sheetTab = document.getElementById('admin-tab-sheet');
+            const stockBtn = document.getElementById('tab-btn-stock');
+            const sheetBtn = document.getElementById('tab-btn-sheet');
+
+            if(tab === 'stock') {
+                stockTab.classList.remove('hidden');
+                sheetTab.classList.add('hidden');
+                stockBtn.className = 'px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
+                sheetBtn.className = 'px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition';
+            } else {
+                sheetTab.classList.remove('hidden');
+                stockTab.classList.add('hidden');
+                sheetBtn.className = 'px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
+                stockBtn.className = 'px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition';
+                
+                document.getElementById('stat-vip-count').innerText = registeredUsers.length;
+                document.getElementById('stat-prod-count').innerText = products.length;
+            }
+        }
+
+        function openAdminManagementModal() {
+            const table = document.getElementById('admin-product-table');
+            table.innerHTML = '';
+            products.forEach(p => {
+                table.innerHTML += `
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 gap-3">
+                        <div class="flex items-center gap-3">
+                            <img src="${p.image}" class="w-12 h-12 object-cover rounded-lg border border-slate-700">
+                            <div>
+                                <h4 class="font-bold text-white text-xs uppercase">${p.title}</h4>
+                                <span class="text-cyanAccent font-bold text-xs">${p.price}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                            <select onchange="updateProductStatus(${p.id}, this.value)" class="bg-darkBg border ${p.status === 'Disponível' ? 'border-emerald-500 text-emerald-400' : 'border-red-500 text-red-400'} rounded-lg px-2.5 py-1.5 text-xs font-bold uppercase cursor-pointer">
+                                <option value="Disponível" ${p.status === 'Disponível' ? 'selected' : ''}>🟢 Disponível</option>
+                                <option value="Vendido" ${p.status === 'Vendido' ? 'selected' : ''}>🔴 Vendido</option>
+                            </select>
+                            <button type="button" onclick="deleteProduct(${p.id})" class="bg-red-500/25 hover:bg-red-500 text-red-400 hover:text-white px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('admin-management-modal').classList.remove('hidden');
+            document.getElementById('admin-management-modal').classList.add('flex');
+            switchAdminTab('stock');
+        }
+        function closeAdminManagementModal() { document.getElementById('admin-management-modal').classList.remove('flex'); document.getElementById('admin-management-modal').classList.add('hidden'); }
+
+        function updateProductStatus(id, newStatus) {
+            products = products.map(p => p.id === id ? {...p, status: newStatus} : p);
+            localStorage.setItem('dbarros_products', JSON.stringify(products));
+            renderProducts();
+            initPromoPopup();
+        }
+        function deleteProduct(id) {
+            if(confirm('Remover este item?')) {
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('dbarros_products', JSON.stringify(products));
+                renderProducts();
+                openAdminManagementModal();
+            }
+        }
+
+        let isMusicPlaying = false;
+        function toggleMusic() {
+            const audio = document.getElementById('bg-music');
+            const icon = document.getElementById('music-icon');
+            const text = document.getElementById('music-text');
+            if (isMusicPlaying) {
+                audio.pause();
+                icon.className = 'fa-solid fa-volume-xmark text-red-400';
+                text.innerText = 'SOM';
+                isMusicPlaying = false;
+            } else {
+                audio.volume = 0.3;
+                audio.play().then(() => {
+                    icon.className = 'fa-solid fa-compact-disc text-cyanAccent animate-spin';
+                    text.innerText = 'TOCANDO';
+                    isMusicPlaying = true;
+                }).catch(() => {});
+            }
+        }
+
+        function renderProducts(filter = 'all') {
+            const grid = document.getElementById('product-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            products.forEach(p => {
+                const statusBadge = p.status === 'Disponível' 
+                    ? '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase">Disponível</span>'
+                    : '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30 uppercase">Vendido</span>';
+
+                grid.innerHTML += `
+                    <div class="bg-cardBg border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between hover:border-cyanAccent transition-all group">
+                        <div>
+                            <div class="relative h-52 sm:h-56 overflow-hidden bg-slate-950">
+                                <img src="${p.image}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <div class="absolute top-3 left-3">${statusBadge}</div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-extrabold text-white text-base mb-2 uppercase">${p.title}</h3>
+                                <p class="text-slate-400 text-xs mb-4 uppercase">${p.specs}</p>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+                            <span class="text-xl font-black text-secondary">${p.price}</span>
+                            <a href="https://wa.me/5575992423627?text=Olá,%20interesse%20em%20${encodeURIComponent(p.title)}" target="_blank" class="bg-primary hover:opacity-90 text-white px-3 py-2 rounded-xl text-xs font-bold shadow-lg uppercase">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> Negociar
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function openAdminModal() { document.getElementById('admin-modal').classList.remove('hidden'); document.getElementById('admin-modal').classList.add('flex'); }
+        function closeAdminModal() { document.getElementById('admin-modal').classList.remove('flex'); document.getElementById('admin-modal').classList.add('hidden'); }
+        function verifyAdmin(e) {
+            e.preventDefault();
+            if (document.getElementById('admin-pass').value === 'Aprovatt@123') {
+                document.getElementById('admin-bar').classList.remove('hidden');
+                document.getElementById('admin-bar').classList.add('flex');
+                closeAdminModal();
+                openAdminManagementModal();
+            } else {
+                document.getElementById('admin-error').classList.remove('hidden');
+            }
+        }
+        function logoutAdmin() { document.getElementById('admin-bar').classList.remove('flex'); document.getElementById('admin-bar').classList.add('hidden'); }
+        function openProductModal() { document.getElementById('product-modal').classList.remove('hidden'); document.getElementById('product-modal').classList.add('flex'); }
+        function closeProductModal() { document.getElementById('product-modal').classList.remove('flex'); document.getElementById('product-modal').classList.add('hidden'); }
+        function saveNewProduct(e) {
+            e.preventDefault();
+            const newProd = {
+                id: Date.now(),
+                title: document.getElementById('prod-title').value,
+                price: document.getElementById('prod-price').value,
+                category: document.getElementById('prod-category').value,
+                specs: document.getElementById('prod-specs').value,
+                image: document.getElementById('prod-image').value,
+                status: 'Disponível'
+            };
+            products.push(newProd);
+            localStorage.setItem('dbarros_products', JSON.stringify(products));
+            renderProducts();
+            initPromoPopup();
+            closeProductModal();
+            openAdminManagementModal();
+        }
+
+        renderProducts();
+        updateUIUserStatus();
+    </script>
+</body>
+</html>
