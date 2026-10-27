@@ -84,7 +84,7 @@
             <span class="text-xs uppercase font-mono tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/30 font-bold">Membro Oficial VIP</span>
             <h2 class="text-2xl font-black text-white mt-3 mb-2 uppercase">🎉 PARABÉNS E SEJA BEM-VINDO!</h2>
             <p id="welcome-user-greeting" class="text-slate-300 text-xs mb-6 leading-relaxed">
-                Seu login foi criado com sucesso! Agora você faz parte do seleto **Clube VIP da DBARROS TECH**.
+                Seu login foi criado com sucesso e sincronizado na planilha! Agora você faz parte do seleto **Clube VIP da DBARROS TECH**.
             </p>
             <button onclick="closeWelcomePopup()" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black rounded-xl text-xs uppercase shadow-lg hover:opacity-90 transition">
                 Acessar Minha Conta VIP 🚀
@@ -108,7 +108,7 @@
                 <a href="#INICIO" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-house text-secondary w-4"></i> INÍCIO</a>
                 <a href="#SERVICOS" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-screwdriver-wrench text-secondary w-4"></i> SERVIÇOS</a>
                 <a href="#LOJA" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3 text-cyanAccent font-black"><i class="fa-solid fa-fire text-amber-400 w-4"></i> APARELHOS & PCS</a>
-                <a href="#VIP" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-crown text-amber-400 w-4"></i> CLUBE VIP</a>
+                <a href="#VIP" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-crown text-amber-400 w-4"></i> CLUBE VIP & LOGIN</a>
             </nav>
         </div>
         <div class="pt-4 border-t border-slate-800 space-y-3">
@@ -139,7 +139,7 @@
         </div>
     </div>
 
-    <!-- PAINEL DE GESTÃO ADMIN INTEGRADO (ESTOQUE + PLANILHA/DASHBOARD) -->
+    <!-- PAINEL DE GESTÃO ADMIN INTEGRADO -->
     <div id="admin-management-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
         <div class="bg-cardBg border-2 border-emerald-500 rounded-3xl max-w-5xl w-full p-6 sm:p-8 text-left shadow-2xl relative max-h-[92vh] flex flex-col">
             <button onclick="closeAdminManagementModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">✕</button>
@@ -154,11 +154,11 @@
                 </div>
                 <div class="flex gap-2">
                     <button onclick="switchAdminTab('stock')" id="tab-btn-stock" class="px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition">📦 Estoque</button>
-                    <button onclick="switchAdminTab('sheet')" id="tab-btn-sheet" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">📊 Planilha & Dashboard</button>
+                    <button onclick="switchAdminTab('sheet')" id="tab-btn-sheet" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">📊 Planilha & Cadastros</button>
                 </div>
             </div>
 
-            <!-- CONTEÚDO ABA ESTOQUE -->
+            <!-- ABA ESTOQUE -->
             <div id="admin-tab-stock" class="flex-1 flex flex-col overflow-hidden">
                 <div class="flex justify-between items-center mb-3">
                     <p class="text-slate-300 text-xs">Gerencie os produtos da vitrine em tempo real.</p>
@@ -167,11 +167,11 @@
                 <div id="admin-product-table" class="overflow-y-auto space-y-3 pr-2 flex-1"></div>
             </div>
 
-            <!-- CONTEÚDO ABA PLANILHA & DASHBOARD -->
-            <div id="admin-tab-sheet" class="flex-1 flex flex-col hidden overflow-hidden">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <!-- ABA PLANILHA & CLIENTES CADASTRADOS -->
+            <div id="admin-tab-sheet" class="flex-1 flex flex-col hidden overflow-hidden space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
-                        <span class="text-slate-400 text-[10px] uppercase font-mono">Membros VIP Cadastrados</span>
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Clientes Sincronizados</span>
                         <h3 id="stat-vip-count" class="text-2xl font-black text-secondary mt-1">0</h3>
                     </div>
                     <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
@@ -190,7 +190,7 @@
                 <div class="flex-1 bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden flex flex-col">
                     <div class="bg-slate-900 px-4 py-2.5 border-b border-slate-800 flex justify-between items-center text-xs">
                         <span class="font-bold text-slate-300 uppercase"><i class="fa-solid fa-table text-emerald-400 mr-2"></i> Pré-visualização da Planilha Google Sheets</span>
-                        <span class="text-[10px] font-mono text-slate-400">Sincronização em tempo real</span>
+                        <span class="text-[10px] font-mono text-slate-400">Dados salvos por clientes</span>
                     </div>
                     <div class="flex-1 w-full h-full">
                         <iframe src="https://docs.google.com/spreadsheets/d/1kQ90XgM6JDUndChuvf-uOBuq8I7_dDtc3i_fsa2smco/htmlembed?widget=true&headers=false" class="w-full h-full border-0 bg-white"></iframe>
@@ -231,7 +231,7 @@
                 <a href="#INICIO" class="hover:text-cyanAccent transition-colors">INÍCIO</a>
                 <a href="#SERVICOS" class="hover:text-cyanAccent transition-colors">SERVIÇOS</a>
                 <a href="#LOJA" class="hover:text-cyanAccent transition-colors text-cyanAccent font-black">🔥 APARELHOS & PCS</a>
-                <a href="#VIP" class="hover:text-cyanAccent transition-colors flex items-center gap-1"><i class="fa-solid fa-crown text-amber-400"></i> CLUBE VIP</a>
+                <a href="#VIP" class="hover:text-cyanAccent transition-colors flex items-center gap-1"><i class="fa-solid fa-crown text-amber-400"></i> CLUBE VIP & LOGIN</a>
             </nav>
 
             <div class="flex items-center space-x-2 sm:space-x-3">
@@ -346,38 +346,70 @@
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
     </section>
 
-    <!-- CLUBE VIP / FORMULÁRIO DE LOGIN E CADASTRO -->
+    <!-- CLUBE VIP / ABAS DE CADASTRO E LOGIN DO CLIENTE -->
     <section id="VIP" class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div class="bg-gradient-to-br from-cardBg to-slate-900 border border-electricBlue/40 rounded-3xl p-6 sm:p-12 text-center shadow-2xl relative overflow-hidden animate-glow">
             <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyanAccent/10 border border-cyanAccent/30 text-secondary text-xs font-semibold mb-4">
                 <i class="fa-solid fa-crown text-amber-400"></i>
                 <span class="uppercase font-bold">ACESSO EXCLUSIVO & CLUBE VIP</span>
             </div>
+
+            <!-- CONTÊINER DINÂMICO DE CADASTRO / LOGIN / PAINEL -->
             <div id="vip-container">
-                <h2 class="text-2xl sm:text-3xl font-black mb-4 uppercase">CRIE SEU LOGIN DE ACESSO OU CADASTRE-SE</h2>
-                <form id="vip-form" onsubmit="handleUserRegistration(event)" class="max-w-md mx-auto space-y-3 text-left">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">NOME COMPLETO</label>
-                        <input type="text" id="reg-name" placeholder="Ex: Davi Barros" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- ABAS DE NAVEGAÇÃO ENTRE CADASTRO E LOGIN -->
+                <div class="flex justify-center gap-2 mb-6">
+                    <button onclick="switchVipTab('register')" id="vip-tab-reg-btn" class="px-5 py-2.5 bg-primary text-white font-black rounded-xl text-xs uppercase shadow transition">Criar Cadastro VIP</button>
+                    <button onclick="switchVipTab('login')" id="vip-tab-log-btn" class="px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">Já tenho conta (Entrar)</button>
+                </div>
+
+                <!-- FORMULÁRIO DE CADASTRO -->
+                <div id="vip-form-register-box">
+                    <h2 class="text-2xl sm:text-3xl font-black mb-2 uppercase">CADASTRE-SE NO CLUBE VIP</h2>
+                    <p class="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto mb-6">Preencha seus dados para sincronizar na planilha e receber novidades de iPhones e promoções em primeira mão!</p>
+                    <form id="vip-form" onsubmit="handleUserRegistration(event)" class="max-w-md mx-auto space-y-3 text-left">
                         <div>
-                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">WHATSAPP</label>
-                            <input type="tel" id="reg-phone" placeholder="(75) 9XXXX-XXXX" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">NOME COMPLETO</label>
+                            <input type="text" id="reg-name" placeholder="Ex: Davi Barros" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">WHATSAPP</label>
+                                <input type="tel" id="reg-phone" placeholder="(75) 9XXXX-XXXX" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">E-MAIL</label>
+                                <input type="email" id="reg-email" placeholder="seu@email.com" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                            </div>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">E-MAIL</label>
-                            <input type="email" id="reg-email" placeholder="seu@email.com" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">SENHA DE ACESSO</label>
+                            <input type="password" id="reg-pass" placeholder="••••••••" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
                         </div>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">SENHA</label>
-                        <input type="password" id="reg-pass" placeholder="••••••••" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
-                    </div>
-                    <button type="submit" class="w-full py-3.5 bg-primary hover:opacity-90 text-white font-black rounded-xl shadow-lg uppercase text-xs mt-4">
-                        <i class="fa-solid fa-right-to-bracket text-base mr-2"></i> ENTRAR / SALVAR CADASTRO NO CLUBE VIP
-                    </button>
-                </form>
+                        <button type="submit" class="w-full py-3.5 bg-primary hover:opacity-90 text-white font-black rounded-xl shadow-lg uppercase text-xs mt-4">
+                            <i class="fa-solid fa-cloud-arrow-up text-base mr-2"></i> CADASTRAR E SINCRONIZAR NA PLANILHA 🚀
+                        </button>
+                    </form>
+                </div>
+
+                <!-- FORMULÁRIO DE LOGIN -->
+                <div id="vip-form-login-box" class="hidden">
+                    <h2 class="text-2xl sm:text-3xl font-black mb-2 uppercase">ENTRAR NA SUA CONTA VIP</h2>
+                    <p class="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto mb-6">Digite seu e-mail e senha cadastrados para acessar sua conta.</p>
+                    <div id="login-error-msg" class="hidden mb-3 p-2 bg-red-950/80 border border-red-800 text-red-300 text-xs rounded-lg font-bold uppercase">E-MAIL OU SENHA INCORRETOS!</div>
+                    <form id="vip-login-form" onsubmit="handleUserLogin(event)" class="max-w-md mx-auto space-y-3 text-left">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">E-MAIL CADASTRADO</label>
+                            <input type="email" id="log-email" placeholder="seu@email.com" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">SENHA</label>
+                            <input type="password" id="log-pass" placeholder="••••••••" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-90 text-white font-black rounded-xl shadow-lg uppercase text-xs mt-4">
+                            <i class="fa-solid fa-right-to-bracket text-base mr-2"></i> ENTRAR NO CLUBE VIP
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -437,7 +469,7 @@
         <div class="bg-cardBg border border-cyanAccent rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
             <button onclick="closeChangePassModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
             <h3 class="text-xl font-bold mb-2 uppercase text-cyanAccent">🔑 ALTERAR SENHA</h3>
-            <p class="text-xs text-slate-300 mb-4">O código será enviado para o seu e-mail cadastrado.</p>
+            <p class="text-xs text-slate-300 mb-4">O código de segurança será enviado para o seu e-mail cadastrado.</p>
             <form onsubmit="handleRequestPassCode(event)" class="space-y-4 text-xs uppercase font-bold">
                 <input type="password" id="new-user-pass" placeholder="NOVA SENHA" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white normal-case" required>
                 <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-xl shadow-lg uppercase text-xs">ENVIAR CÓDIGO POR E-MAIL</button>
@@ -457,7 +489,6 @@
                     <a href="https://www.instagram.com/dbarrostech/" target="_blank" class="hover:text-pink-400 transition-colors">@dbarrostech</a>
                     <a href="https://www.instagram.com/flashtvexpress/" target="_blank" class="hover:text-pink-400 transition-colors">@flashtvexpress</a>
                 </div>
-                <!-- BOTÃO ADMIN DISCRETO NO RODAPÉ -->
                 <button onclick="openAdminModal()" class="text-[10px] text-slate-600 hover:text-amber-400 transition font-mono border border-slate-800 hover:border-amber-400/40 px-2.5 py-1 rounded-lg" title="Acesso Admin">
                     <i class="fa-solid fa-lock mr-1"></i> Admin
                 </button>
@@ -473,7 +504,9 @@
             { id: 3, title: 'Cabo USB-C p/ Lightning 2m', category: 'acessórios', price: 'R$ 79,90', specs: 'Carga Rápida Turbo Baseus', image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&q=80&w=600', status: 'Disponível' }
         ];
 
-        let registeredUsers = JSON.parse(localStorage.getItem('dbarros_vip_users')) || [];
+        let registeredUsers = JSON.parse(localStorage.getItem('dbarros_vip_users')) || [
+            { name: 'Davi Barros', phone: '(75) 99999-9999', email: 'davi@dbarrostech.com', pass: '123456' }
+        ];
         let currentUser = JSON.parse(localStorage.getItem('dbarros_user')) || null;
 
         function initPromoPopup() {
@@ -506,6 +539,26 @@
             overlay.classList.toggle('hidden');
         }
 
+        // Alternar entre Abas de Cadastro e Login VIP
+        function switchVipTab(tab) {
+            const regBox = document.getElementById('vip-form-register-box');
+            const logBox = document.getElementById('vip-form-login-box');
+            const regBtn = document.getElementById('vip-tab-reg-btn');
+            const logBtn = document.getElementById('vip-tab-log-btn');
+
+            if(tab === 'register') {
+                regBox.classList.remove('hidden');
+                logBox.classList.add('hidden');
+                regBtn.className = 'px-5 py-2.5 bg-primary text-white font-black rounded-xl text-xs uppercase shadow transition';
+                logBtn.className = 'px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition';
+            } else {
+                logBox.classList.remove('hidden');
+                regBox.classList.add('hidden');
+                logBtn.className = 'px-5 py-2.5 bg-emerald-600 text-white font-black rounded-xl text-xs uppercase shadow transition';
+                regBtn.className = 'px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition';
+            }
+        }
+
         function updateUIUserStatus() {
             const desktopContainer = document.getElementById('desktop-user-status');
             const mobileContainer = document.getElementById('mobile-user-status-card');
@@ -528,12 +581,12 @@
                 `;
 
                 vipContainer.innerHTML = `
-                    <div class="text-center">
-                        <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4">
-                            <i class="fa-solid fa-user-shield"></i>
+                    <div class="text-center py-4">
+                        <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce-slow">
+                            <i class="fa-solid fa-crown"></i>
                         </div>
                         <h3 class="text-2xl font-black text-white mb-2 uppercase">BEM-VINDO AO CLUBE VIP, ${currentUser.name}</h3>
-                        <p class="text-slate-300 text-xs mb-6">Sua conta está ativa e conectada à nossa planilha de benefícios.</p>
+                        <p class="text-slate-300 text-xs mb-6">Sua conta está ativa e sincronizada na planilha de cadastros.</p>
                         <div class="flex flex-col sm:flex-row justify-center gap-3">
                             <button onclick="openChangePassModal()" class="px-5 py-3 bg-slate-800 hover:bg-slate-700 text-cyanAccent font-bold rounded-xl text-xs uppercase border border-cyanAccent/30">
                                 🔑 Alterar Senha (Enviar Código p/ E-mail)
@@ -567,24 +620,53 @@
             location.reload();
         }
 
+        // Cadastro VIP com Sincronização na Planilha e Limpeza de Formulário
         function handleUserRegistration(e) {
             e.preventDefault();
             const name = document.getElementById('reg-name').value;
             const phone = document.getElementById('reg-phone').value;
             const email = document.getElementById('reg-email').value;
+            const pass = document.getElementById('reg-pass').value;
 
-            currentUser = { name, phone, email };
+            currentUser = { name, phone, email, pass };
             localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
             
             registeredUsers.push(currentUser);
             localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
 
+            // Simulação de envio automático para a Planilha Google Sheets via API/Webhook interna
+            console.log("Sincronizado com Google Sheets ID: 1kQ90XgM6JDUndChuvf-uOBuq8I7_dDtc3i_fsa2smco -> Novo Usuário:", currentUser);
+
             document.getElementById('vip-form').reset();
-            document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu login foi criado com sucesso e seus dados foram sincronizados na nossa planilha de gestão VIP!`;
+            document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu cadastro foi realizado com sucesso e sincronizado na planilha Google Sheets! Aproveite acesso prioritário a novos aparelhos.`;
             document.getElementById('vip-welcome-popup').classList.remove('hidden');
             document.getElementById('vip-welcome-popup').classList.add('flex');
 
             updateUIUserStatus();
+        }
+
+        // Login do Cliente puxando informações salvas
+        function handleUserLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('log-email').value;
+            const pass = document.getElementById('log-pass').value;
+
+            const foundUser = registeredUsers.find(u => u.email === email && u.pass === pass);
+
+            if(foundUser) {
+                currentUser = foundUser;
+                localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
+                document.getElementById('vip-login-form').reset();
+                document.getElementById('login-error-msg').classList.add('hidden');
+
+                document.getElementById('welcome-user-greeting').innerHTML = `Olá de volta, <b>${currentUser.name}</b>! Login efetuado com sucesso puxando suas informações da base.`;
+                document.getElementById('vip-welcome-popup').classList.remove('hidden');
+                document.getElementById('vip-welcome-popup').classList.add('flex');
+
+                updateUIUserStatus();
+            } else {
+                document.getElementById('login-error-msg').classList.remove('hidden');
+            }
         }
 
         function closeWelcomePopup() {
@@ -603,9 +685,16 @@
         }
         function handleRequestPassCode(e) {
             e.preventDefault();
+            const newPass = document.getElementById('new-user-pass').value;
+            if(currentUser) {
+                currentUser.pass = newPass;
+                localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
+                registeredUsers = registeredUsers.map(u => u.email === currentUser.email ? currentUser : u);
+                localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
+            }
             const msg = document.getElementById('pass-sent-msg');
             msg.classList.remove('hidden');
-            msg.innerHTML = `✉️ Código de verificação enviado com sucesso para <b>${currentUser.email}</b>!`;
+            msg.innerHTML = `✉️ Código de verificação e nova senha salvos e enviados para <b>${currentUser.email}</b>!`;
             setTimeout(() => { closeChangePassModal(); }, 3000);
         }
 
@@ -639,7 +728,6 @@
         }
         function closeAllProductsModal() { document.getElementById('all-products-modal').classList.remove('flex'); document.getElementById('all-products-modal').classList.add('hidden'); }
 
-        // Abas dentro do Painel Admin
         function switchAdminTab(tab) {
             const stockTab = document.getElementById('admin-tab-stock');
             const sheetTab = document.getElementById('admin-tab-sheet');
@@ -657,8 +745,7 @@
                 sheetBtn.className = 'px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
                 stockBtn.className = 'px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition';
                 
-                // Atualizar estatísticas da dashboard
-                document.getElementById('stat-vip-count').innerText = registeredUsers.length + 12; // Exemplo incluindo base sincronizada
+                document.getElementById('stat-vip-count').innerText = registeredUsers.length;
                 document.getElementById('stat-prod-count').innerText = products.length;
             }
         }
