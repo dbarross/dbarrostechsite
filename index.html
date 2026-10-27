@@ -116,6 +116,57 @@
         </div>
     </div>
 
+    <!-- MODAL NOVO / EDITAR APARELHO -->
+    <div id="product-form-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-cardBg border-2 border-cyanAccent rounded-3xl max-w-lg w-full p-6 text-left shadow-2xl relative">
+            <button type="button" onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">✕</button>
+            <h3 id="product-modal-title" class="text-xl font-black text-white mb-4 uppercase">➕ ADICIONAR NOVO APARELHO</h3>
+            <form id="product-form" onsubmit="saveProduct(event)" class="space-y-3 text-xs">
+                <input type="hidden" id="prod-id">
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1 uppercase">Título / Nome do Item</label>
+                    <input type="text" id="prod-title" placeholder="Ex: iPhone 12 Pro 128GB" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Preço de Venda (R$)</label>
+                        <input type="number" step="0.01" id="prod-price" placeholder="2990.00" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Custo de Aquisição (R$)</label>
+                        <input type="number" step="0.01" id="prod-cost" placeholder="2100.00" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Categoria</label>
+                        <select id="prod-category" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent">
+                            <option value="apple">Apple / iPhones</option>
+                            <option value="acessórios">Acessórios</option>
+                            <option value="pc">PCs / Notebooks</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Status Inicial</label>
+                        <select id="prod-status" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent">
+                            <option value="Disponível">🟢 Disponível</option>
+                            <option value="Vendido">🔴 Vendido</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1 uppercase">Especificações / Detalhes</label>
+                    <input type="text" id="prod-specs" placeholder="Ex: Bateria 89% • Cabo + Carregador • 3 Meses Garantia" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1 uppercase">URL da Imagem</label>
+                    <input type="url" id="prod-image" placeholder="https://..." class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                </div>
+                <button type="submit" class="w-full py-3 bg-cyanAccent text-slate-950 font-black rounded-xl uppercase hover:opacity-90 transition mt-2">Salvar Anúncio</button>
+            </form>
+        </div>
+    </div>
+
     <!-- PAINEL DE GESTÃO ADMIN INTEGRADO -->
     <div id="admin-management-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
         <div class="bg-cardBg border-2 border-emerald-500 rounded-3xl max-w-5xl w-full p-6 sm:p-8 text-left shadow-2xl relative max-h-[92vh] flex flex-col">
@@ -129,9 +180,11 @@
                         <h2 class="text-xl sm:text-2xl font-black text-white mt-1 uppercase">CENTRAL DE GESTÃO DBARROS</h2>
                     </div>
                 </div>
-                <div class="flex gap-2">
-                    <button type="button" onclick="switchAdminTab('stock')" id="tab-btn-stock" class="px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition">📦 Estoque</button>
-                    <button type="button" onclick="switchAdminTab('users')" id="tab-btn-users" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">👥 Clientes Cadastrados</button>
+                <div class="flex flex-wrap gap-2">
+                    <button type="button" onclick="switchAdminTab('stock')" id="tab-btn-stock" class="px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition">📦 Estoque</button>
+                    <button type="button" onclick="switchAdminTab('finance')" id="tab-btn-finance" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">📊 Balanço Financeiro</button>
+                    <button type="button" onclick="switchAdminTab('images')" id="tab-btn-images" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">🖼️ Banners & Imagens</button>
+                    <button type="button" onclick="switchAdminTab('users')" id="tab-btn-users" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">👥 Clientes</button>
                 </div>
             </div>
 
@@ -139,9 +192,65 @@
             <div id="admin-tab-stock" class="flex-1 flex flex-col overflow-hidden">
                 <div class="flex justify-between items-center mb-3">
                     <p class="text-slate-300 text-xs">Gerencie os produtos da vitrine em tempo real.</p>
-                    <button type="button" onclick="openProductModal()" class="bg-emerald-500 text-slate-950 font-black px-4 py-2 rounded-xl text-xs uppercase hover:bg-emerald-400 transition shadow-lg">+ Novo Aparelho</button>
+                    <button type="button" onclick="openProductModal()" class="bg-emerald-500 text-slate-950 font-black px-4 py-2 rounded-xl text-xs uppercase hover:bg-emerald-400 transition shadow-lg cursor-pointer">+ Novo Aparelho</button>
                 </div>
                 <div id="admin-product-table" class="overflow-y-auto space-y-3 pr-2 flex-1"></div>
+            </div>
+
+            <!-- ABA BALANÇO FINANCEIRO EMPRESARIAL -->
+            <div id="admin-tab-finance" class="flex-1 flex flex-col hidden overflow-y-auto space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Faturamento (Vendas)</span>
+                        <h3 id="fin-total-revenue" class="text-2xl font-black text-emerald-400 mt-1">R$ 0,00</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Custo dos Vendidos</span>
+                        <h3 id="fin-total-cost" class="text-2xl font-black text-amber-400 mt-1">R$ 0,00</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-emerald-500/30 p-4 rounded-2xl bg-emerald-950/20">
+                        <span class="text-emerald-400 text-[10px] uppercase font-mono font-bold">Lucro Líquido Real</span>
+                        <h3 id="fin-net-profit" class="text-2xl font-black text-cyanAccent mt-1">R$ 0,00</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Valor em Estoque</span>
+                        <h3 id="fin-stock-value" class="text-2xl font-black text-purple-400 mt-1">R$ 0,00</h3>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3">
+                    <h4 class="font-bold text-white text-xs uppercase"><i class="fa-solid fa-chart-pie text-cyanAccent mr-2"></i> Resumo Operacional</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                        <div class="bg-darkBg p-3 rounded-xl border border-slate-800">
+                            <span class="text-slate-400 block text-[10px] uppercase">Itens Vendidos</span>
+                            <span id="fin-count-sold" class="text-lg font-black text-white">0</span>
+                        </div>
+                        <div class="bg-darkBg p-3 rounded-xl border border-slate-800">
+                            <span class="text-slate-400 block text-[10px] uppercase">Itens Disponíveis</span>
+                            <span id="fin-count-available" class="text-lg font-black text-white">0</span>
+                        </div>
+                        <div class="bg-darkBg p-3 rounded-xl border border-slate-800 col-span-2 sm:col-span-1">
+                            <span class="text-slate-400 block text-[10px] uppercase">Margem Média de Lucro</span>
+                            <span id="fin-avg-margin" class="text-lg font-black text-emerald-400">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA DE GESTÃO DE BANNERS E IMAGENS DO SITE -->
+            <div id="admin-tab-images" class="flex-1 flex flex-col hidden overflow-y-auto space-y-4">
+                <p class="text-xs text-slate-300">Altere os links das imagens principais exibidas no site.</p>
+                <form onsubmit="saveSiteImages(event)" class="space-y-4 text-xs">
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Imagem de Capa (Bancada Principal)</label>
+                        <input type="url" id="img-site-hero" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Banner da Seção IPTV / Streaming</label>
+                        <input type="url" id="img-site-iptv" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                    </div>
+                    <button type="submit" class="px-5 py-2.5 bg-emerald-500 text-slate-950 font-black rounded-xl uppercase hover:bg-emerald-400 transition">Salvar Alterações das Imagens</button>
+                </form>
             </div>
 
             <!-- ABA CLIENTES CADASTRADOS -->
@@ -268,10 +377,10 @@
                 <div class="absolute -inset-1 rounded-3xl blur-2xl opacity-25 bg-gradient-to-r from-electricBlue to-cyanAccent animate-pulse"></div>
                 <div class="relative bg-cardBg border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
                     <div class="h-64 sm:h-80 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Bancada de Manutenção DBARROS TECH">
+                        <img id="display-hero-img" src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Bancada de Manutenção DBARROS TECH">
                         <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent"></div>
                         <span class="absolute bottom-4 left-4 bg-darkBg/80 backdrop-blur border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-mono text-cyanAccent uppercase">
-                            🔧 Bancada de Bancada Profissional
+                            🔧 Bancada de Manutenção Profissional
                         </span>
                     </div>
                 </div>
@@ -337,7 +446,7 @@
                 </a>
             </div>
             <div class="relative rounded-2xl overflow-hidden border border-pink-500/40 shadow-2xl">
-                <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&q=80&w=800" class="w-full h-72 sm:h-96 object-cover" alt="Streaming IPTV">
+                <img id="display-iptv-img" src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&q=80&w=800" class="w-full h-72 sm:h-96 object-cover" alt="Streaming IPTV">
                 <div class="absolute inset-0 bg-gradient-to-t from-darkBg/90 via-transparent to-transparent flex items-end p-6">
                     <span class="text-xs font-mono text-pink-300 uppercase font-bold">⚡ Entretenimento Sem Limites na sua Tela</span>
                 </div>
@@ -401,14 +510,12 @@
             <h2 class="text-2xl sm:text-3xl font-black mb-3 uppercase mt-3">O QUE DIZEM NOSSOS CLIENTES</h2>
         </div>
         <div class="bg-cardBg border border-slate-800 rounded-3xl p-8 sm:p-12 relative shadow-2xl text-center">
-            <div id="testimonial-container" class="min-h-[140px] flex flex-col justify-center items-center">
-                <!-- Conteúdo injetado via JS -->
-            </div>
+            <div id="testimonial-container" class="min-h-[140px] flex flex-col justify-center items-center"></div>
             <div class="flex justify-center items-center gap-4 mt-6">
                 <button type="button" onclick="prevTestimonial()" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition cursor-pointer">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
-                <span id="testimonial-indicator" class="text-xs font-mono text-slate-400 uppercase">1 / 3</span>
+                <span id="testimonial-indicator" class="text-xs font-mono text-slate-400 uppercase">1 / 4</span>
                 <button type="button" onclick="nextTestimonial()" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition cursor-pointer">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
@@ -426,7 +533,6 @@
             <span class="text-xs text-slate-400 font-mono"><i class="fa-solid fa-rss text-emerald-400 mr-1"></i> Feed Automatizado</span>
         </div>
         <div id="tech-news-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Cards de notícias injetados via script RSS -->
             <div class="bg-cardBg border border-slate-800 p-6 rounded-2xl animate-pulse">
                 <div class="h-4 bg-slate-800 rounded w-3/4 mb-4"></div>
                 <div class="h-3 bg-slate-800 rounded w-full mb-2"></div>
@@ -546,17 +652,43 @@
     <!-- SCRIPT GERAL -->
     <script>
         let products = JSON.parse(localStorage.getItem('dbarros_products')) || [
-            { id: 1, title: 'iPhone 13 Pro 128GB', category: 'apple', price: 'R$ 3.890', specs: 'Bateria 94% • Caixa + Cabo • Garantia', image: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&q=80&w=600', status: 'Disponível' },
-            { id: 2, title: 'iPhone 11 64GB Black', category: 'apple', price: 'R$ 1.990', specs: 'Tela Original • Revisado em Bancada', image: 'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&q=80&w=600', status: 'Disponível' },
-            { id: 3, title: 'Cabo USB-C p/ Lightning 2m', category: 'acessórios', price: 'R$ 79,90', specs: 'Carga Rápida Turbo Baseus', image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&q=80&w=600', status: 'Disponível' }
+            { id: 1, title: 'iPhone 13 Pro 128GB', category: 'apple', price: 3890.00, cost: 3100.00, specs: 'Bateria 94% • Caixa + Cabo • Garantia', image: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&q=80&w=600', status: 'Disponível' },
+            { id: 2, title: 'iPhone 11 64GB Black', category: 'apple', price: 1990.00, cost: 1450.00, specs: 'Tela Original • Revisado em Bancada', image: 'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&q=80&w=600', status: 'Disponível' },
+            { id: 3, title: 'Cabo USB-C p/ Lightning 2m', category: 'acessórios', price: 79.90, cost: 35.00, specs: 'Carga Rápida Turbo Baseus', image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&q=80&w=600', status: 'Disponível' }
         ];
+
+        let siteImages = JSON.parse(localStorage.getItem('dbarros_site_images')) || {
+            hero: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800',
+            iptv: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&q=80&w=800'
+        };
 
         let registeredUsers = JSON.parse(localStorage.getItem('dbarros_vip_users')) || [
             { date: '2026-10-27 10:00', name: 'Davi Barros', phone: '(75) 99999-9999', email: 'davi@dbarrostech.com', pass: '123456' }
         ];
         let currentUser = JSON.parse(localStorage.getItem('dbarros_user')) || null;
 
-        // CARROSSEL DE DEPOIMENTOS
+        function loadSiteImages() {
+            const hero = document.getElementById('display-hero-img');
+            const iptv = document.getElementById('display-iptv-img');
+            if(hero) hero.src = siteImages.hero;
+            if(iptv) iptv.src = siteImages.iptv;
+
+            const inputHero = document.getElementById('img-site-hero');
+            const inputIptv = document.getElementById('img-site-iptv');
+            if(inputHero) inputHero.value = siteImages.hero;
+            if(inputIptv) inputIptv.value = siteImages.iptv;
+        }
+
+        function saveSiteImages(e) {
+            e.preventDefault();
+            siteImages.hero = document.getElementById('img-site-hero').value;
+            siteImages.iptv = document.getElementById('img-site-iptv').value;
+            localStorage.setItem('dbarros_site_images', JSON.stringify(siteImages));
+            loadSiteImages();
+            alert('Imagens do site atualizadas com sucesso!');
+        }
+
+        // DEPOIMENTOS
         const testimonials = [
             { text: "Montei meu PC Gamer com o Davi e o atendimento foi impecável. Peças originais, organização de cabos perfeita e entrega rápida em Alagoinhas!", name: "Carlos Mendes", role: "Cliente de PC Gamer", initials: "CM" },
             { text: "Comprei meu iPhone seminovo com procedência e garantia. Aparelho impecável, bateria em estado excelente. Super recomendo!", name: "Jéssica Ribeiro", role: "Cliente de iPhone", initials: "JR" },
@@ -584,23 +716,15 @@
             indicator.innerText = `${currentTestimonialIndex + 1} / ${testimonials.length}`;
         }
 
-        function nextTestimonial() {
-            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
-            renderTestimonial();
-        }
-
-        function prevTestimonial() {
-            currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
-            renderTestimonial();
-        }
+        function nextTestimonial() { currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length; renderTestimonial(); }
+        function prevTestimonial() { currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length; renderTestimonial(); }
         renderTestimonial();
-        setInterval(nextTestimonial, 6000); // Passa sozinho a cada 6 segundos
+        setInterval(nextTestimonial, 6000);
 
-        // FETCH NOTÍCIAS TECH (RSS G1 / TECNOBLOG)
+        // NOTÍCIAS TECH
         async function fetchTechNews() {
             const grid = document.getElementById('tech-news-grid');
             try {
-                // Usando API pública de RSS para JSON
                 const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://tecnoblog.net/feed/');
                 const data = await response.json();
                 if(data.status === 'ok') {
@@ -667,7 +791,7 @@
             localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
 
             document.getElementById('vip-form').reset();
-            document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu cadastro foi realizado com sucesso e salvo no banco de dados VIP.`;
+            document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu cadastro foi realizado com sucesso.`;
             document.getElementById('vip-welcome-popup').classList.remove('hidden');
             document.getElementById('vip-welcome-popup').classList.add('flex');
 
@@ -678,7 +802,6 @@
             e.preventDefault();
             const email = document.getElementById('log-email').value;
             const pass = document.getElementById('log-pass').value;
-
             const foundUser = registeredUsers.find(u => u.email === email && u.pass === pass);
 
             if(foundUser) {
@@ -686,11 +809,9 @@
                 localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
                 document.getElementById('vip-login-form').reset();
                 document.getElementById('login-error-msg').classList.add('hidden');
-
                 document.getElementById('welcome-user-greeting').innerHTML = `Olá de volta, <b>${currentUser.name}</b>! Login efetuado com sucesso.`;
                 document.getElementById('vip-welcome-popup').classList.remove('hidden');
                 document.getElementById('vip-welcome-popup').classList.add('flex');
-
                 updateUIUserStatus();
             } else {
                 document.getElementById('login-error-msg').classList.remove('hidden');
@@ -707,7 +828,7 @@
                     <div class="flex items-center space-x-2 bg-emerald-950/80 border border-emerald-500/40 px-3 py-1.5 rounded-xl text-xs font-bold text-emerald-300">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                         <span>${currentUser.name.split(' ')[0]} (VIP)</span>
-                        <button type="button" onclick="logoutUser()" class="ml-1 text-slate-400 hover:text-red-400 text-xs font-bold cursor-pointer" title="Sair">✕</button>
+                        <button type="button" onclick="logoutUser()" class="ml-1 text-slate-400 hover:text-red-400 text-xs font-bold cursor-pointer">✕</button>
                     </div>
                 `;
                 mobileContainer.innerHTML = `
@@ -717,7 +838,6 @@
                     </div>
                     <button type="button" onclick="logoutUser()" class="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded font-bold cursor-pointer">Sair</button>
                 `;
-
                 vipContainer.innerHTML = `
                     <div class="text-center py-4">
                         <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce-slow">
@@ -780,6 +900,8 @@
                     ? '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase">Disponível</span>'
                     : '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30 uppercase">Vendido</span>';
 
+                const formattedPrice = Number(p.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
                 grid.innerHTML += `
                     <div class="bg-cardBg border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between hover:border-cyanAccent transition-all group">
                         <div>
@@ -793,7 +915,7 @@
                             </div>
                         </div>
                         <div class="p-5 pt-0 border-t border-slate-800/80 flex items-center justify-between mt-auto">
-                            <span class="text-xl font-black text-secondary">${p.price}</span>
+                            <span class="text-xl font-black text-secondary">${formattedPrice}</span>
                             <a href="https://wa.me/5575992423627?text=Olá,%20tenho%20interesse%20no%20item%20${encodeURIComponent(p.title)}" target="_blank" class="bg-primary hover:opacity-90 text-white px-3 py-2 rounded-xl text-xs font-bold shadow-lg uppercase">
                                 <i class="fa-brands fa-whatsapp text-sm"></i> Negociar
                             </a>
@@ -803,23 +925,147 @@
             });
         }
 
+        // GERENCIAMENTO DO ESTOQUE & MODAL DE PRODUTOS
+        function openProductModal(prodId = null) {
+            const modal = document.getElementById('product-form-modal');
+            const title = document.getElementById('product-modal-title');
+            document.getElementById('product-form').reset();
+
+            if(prodId) {
+                const prod = products.find(p => p.id === prodId);
+                if(prod) {
+                    title.innerText = '✏️ EDITAR ANÚNCIO DO APARELHO';
+                    document.getElementById('prod-id').value = prod.id;
+                    document.getElementById('prod-title').value = prod.title;
+                    document.getElementById('prod-price').value = prod.price;
+                    document.getElementById('prod-cost').value = prod.cost || (prod.price * 0.7);
+                    document.getElementById('prod-category').value = prod.category;
+                    document.getElementById('prod-status').value = prod.status;
+                    document.getElementById('prod-specs').value = prod.specs;
+                    document.getElementById('prod-image').value = prod.image;
+                }
+            } else {
+                title.innerText = '➕ ADICIONAR NOVO APARELHO';
+                document.getElementById('prod-id').value = '';
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-form-modal').classList.remove('flex');
+            document.getElementById('product-form-modal').classList.add('hidden');
+        }
+
+        function saveProduct(e) {
+            e.preventDefault();
+            const id = document.getElementById('prod-id').value;
+            const title = document.getElementById('prod-title').value;
+            const price = parseFloat(document.getElementById('prod-price').value);
+            const cost = parseFloat(document.getElementById('prod-cost').value) || 0;
+            const category = document.getElementById('prod-category').value;
+            const status = document.getElementById('prod-status').value;
+            const specs = document.getElementById('prod-specs').value;
+            const image = document.getElementById('prod-image').value;
+
+            if(id) {
+                const index = products.findIndex(p => p.id === parseInt(id));
+                if(index !== -1) {
+                    products[index] = { id: parseInt(id), title, price, cost, category, status, specs, image };
+                }
+            } else {
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({ id: newId, title, price, cost, category, status, specs, image });
+            }
+
+            localStorage.setItem('dbarros_products', JSON.stringify(products));
+            closeProductModal();
+            renderProducts(products);
+            openAdminManagementModal();
+        }
+
+        function updateProductStatus(id, newStatus) {
+            const index = products.findIndex(p => p.id === id);
+            if(index !== -1) {
+                products[index].status = newStatus;
+                localStorage.setItem('dbarros_products', JSON.stringify(products));
+                renderProducts(products);
+                openAdminManagementModal();
+            }
+        }
+
+        function deleteProduct(id) {
+            if(confirm('Excluir este aparelho do estoque?')) {
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('dbarros_products', JSON.stringify(products));
+                renderProducts(products);
+                openAdminManagementModal();
+            }
+        }
+
+        function calculateFinance() {
+            let totalRevenue = 0;
+            let totalCost = 0;
+            let stockValue = 0;
+            let countSold = 0;
+            let countAvailable = 0;
+
+            products.forEach(p => {
+                const pPrice = Number(p.price) || 0;
+                const pCost = Number(p.cost) || (pPrice * 0.7);
+
+                if(p.status === 'Vendido') {
+                    totalRevenue += pPrice;
+                    totalCost += pCost;
+                    countSold++;
+                } else {
+                    stockValue += pCost;
+                    countAvailable++;
+                }
+            });
+
+            const netProfit = totalRevenue - totalCost;
+            const avgMargin = totalRevenue > 0 ? ((netProfit / totalRevenue) * 100).toFixed(1) : 0;
+
+            document.getElementById('fin-total-revenue').innerText = totalRevenue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('fin-total-cost').innerText = totalCost.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('fin-net-profit').innerText = netProfit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('fin-stock-value').innerText = stockValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            
+            document.getElementById('fin-count-sold').innerText = countSold;
+            document.getElementById('fin-count-available').innerText = countAvailable;
+            document.getElementById('fin-avg-margin').innerText = `${avgMargin}%`;
+        }
+
         function switchAdminTab(tab) {
             const stockTab = document.getElementById('admin-tab-stock');
+            const financeTab = document.getElementById('admin-tab-finance');
+            const imagesTab = document.getElementById('admin-tab-images');
             const usersTab = document.getElementById('admin-tab-users');
+
             const stockBtn = document.getElementById('tab-btn-stock');
+            const financeBtn = document.getElementById('tab-btn-finance');
+            const imagesBtn = document.getElementById('tab-btn-images');
             const usersBtn = document.getElementById('tab-btn-users');
+
+            [stockTab, financeTab, imagesTab, usersTab].forEach(t => t.classList.add('hidden'));
+            [stockBtn, financeBtn, imagesBtn, usersBtn].forEach(b => b.className = 'px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition');
 
             if(tab === 'stock') {
                 stockTab.classList.remove('hidden');
-                usersTab.classList.add('hidden');
-                stockBtn.className = 'px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
-                usersBtn.className = 'px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition';
-            } else {
+                stockBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
+            } else if(tab === 'finance') {
+                financeTab.classList.remove('hidden');
+                financeBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
+                calculateFinance();
+            } else if(tab === 'images') {
+                imagesTab.classList.remove('hidden');
+                imagesBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
+                loadSiteImages();
+            } else if(tab === 'users') {
                 usersTab.classList.remove('hidden');
-                stockTab.classList.add('hidden');
-                usersBtn.className = 'px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
-                stockBtn.className = 'px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition';
-                
+                usersBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
                 renderAdminUsersTable();
             }
         }
@@ -883,21 +1129,29 @@
             const table = document.getElementById('admin-product-table');
             table.innerHTML = '';
             products.forEach(p => {
+                const isAvailable = p.status === 'Disponível';
+                const formattedPrice = Number(p.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
                 table.innerHTML += `
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 gap-3">
                         <div class="flex items-center gap-3">
                             <img src="${p.image}" class="w-12 h-12 object-cover rounded-lg border border-slate-700">
                             <div>
                                 <h4 class="font-bold text-white text-xs uppercase">${p.title}</h4>
-                                <span class="text-cyanAccent font-bold text-xs">${p.price}</span>
+                                <span class="text-cyanAccent font-bold text-xs">${formattedPrice}</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
-                            <select onchange="updateProductStatus(${p.id}, this.value)" class="bg-darkBg border ${p.status === 'Disponível' ? 'border-emerald-500 text-emerald-400' : 'border-red-500 text-red-400'} rounded-lg px-2.5 py-1.5 text-xs font-bold uppercase cursor-pointer">
-                                <option value="Disponível" ${p.status === 'Disponível' ? 'selected' : ''}>🟢 Disponível</option>
-                                <option value="Vendido" ${p.status === 'Vendido' ? 'selected' : ''}>🔴 Vendido</option>
+                            <select onchange="updateProductStatus(${p.id}, this.value)" class="bg-darkBg border ${isAvailable ? 'border-emerald-500 text-emerald-400' : 'border-red-500 text-red-400'} rounded-lg px-2.5 py-1.5 text-xs font-bold uppercase cursor-pointer">
+                                <option value="Disponível" ${isAvailable ? 'selected' : ''}>🟢 DISPONÍVEL</option>
+                                <option value="Vendido" ${!isAvailable ? 'selected' : ''}>🔴 VENDIDO</option>
                             </select>
-                            <button type="button" onclick="deleteProduct(${p.id})" class="bg-red-500/25 hover:bg-red-500 text-red-400 hover:text-white px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" onclick="openProductModal(${p.id})" class="bg-amber-500/20 hover:bg-amber-500 text-amber-400 hover:text-slate-950 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer" title="Editar Anúncio">
+                                <i class="fa-solid fa-pen"></i> Editar
+                            </button>
+                            <button type="button" onclick="deleteProduct(${p.id})" class="bg-red-500/25 hover:bg-red-500 text-red-400 hover:text-white px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer" title="Excluir Anúncio">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
                         </div>
                     </div>
                 `;
@@ -907,7 +1161,10 @@
             switchAdminTab('stock');
         }
 
-        function closeAdminManagementModal() { document.getElementById('admin-management-modal').classList.remove('flex'); document.getElementById('admin-management-modal').classList.add('hidden'); }
+        function closeAdminManagementModal() {
+            document.getElementById('admin-management-modal').classList.remove('flex');
+            document.getElementById('admin-management-modal').classList.add('hidden');
+        }
 
         function openAdminModal() { document.getElementById('admin-modal').classList.remove('hidden'); document.getElementById('admin-modal').classList.add('flex'); }
         function closeAdminModal() { document.getElementById('admin-modal').classList.remove('flex'); document.getElementById('admin-modal').classList.add('hidden'); }
@@ -944,6 +1201,7 @@
             }
         }
 
+        loadSiteImages();
         renderProducts(products);
         updateUIUserStatus();
     </script>
