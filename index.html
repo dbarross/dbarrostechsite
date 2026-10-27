@@ -84,7 +84,7 @@
             <span class="text-xs uppercase font-mono tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/30 font-bold">Membro Oficial VIP</span>
             <h2 class="text-2xl font-black text-white mt-3 mb-2 uppercase">🎉 PARABÉNS E SEJA BEM-VINDO!</h2>
             <p id="welcome-user-greeting" class="text-slate-300 text-xs mb-6 leading-relaxed">
-                Seu login foi criado com sucesso e sincronizado na planilha! Agora você faz parte do seleto **Clube VIP da DBARROS TECH**.
+                Seu cadastro foi realizado com sucesso e enviado direto para a planilha Google Sheets!
             </p>
             <button type="button" onclick="closeWelcomePopup()" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black rounded-xl text-xs uppercase shadow-lg hover:opacity-90 transition cursor-pointer">
                 Acessar Minha Conta VIP 🚀
@@ -589,7 +589,7 @@
                         <p class="text-slate-300 text-xs mb-6">Sua conta está ativa e sincronizada na planilha de cadastros.</p>
                         <div class="flex flex-col sm:flex-row justify-center gap-3">
                             <button type="button" onclick="openChangePassModal()" class="px-5 py-3 bg-slate-800 hover:bg-slate-700 text-cyanAccent font-bold rounded-xl text-xs uppercase border border-cyanAccent/30 cursor-pointer">
-                                🔑 Alterar Senha (Enviar Código p/ E-mail)
+                                🔑 Alterar Senha
                             </button>
                             <button type="button" onclick="logoutUser()" class="px-5 py-3 bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white font-bold rounded-xl text-xs uppercase border border-red-500/30 cursor-pointer">
                                 Sair da Conta
@@ -621,43 +621,43 @@
         }
 
         // Cadastro VIP integrado com Google Apps Script
-     function handleUserRegistration(e) {
-    e.preventDefault();
-    const name = document.getElementById('reg-name').value;
-    const phone = document.getElementById('reg-phone').value;
-    const email = document.getElementById('reg-email').value;
-    const pass = document.getElementById('reg-pass').value;
+        function handleUserRegistration(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const phone = document.getElementById('reg-phone').value;
+            const email = document.getElementById('reg-email').value;
+            const pass = document.getElementById('reg-pass').value;
 
-    currentUser = { name, phone, email, pass };
-    localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
-    
-    registeredUsers.push(currentUser);
-    localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
+            currentUser = { name, phone, email, pass };
+            localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
+            
+            registeredUsers.push(currentUser);
+            localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
 
-    const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwT_YqmbrKM9zM8yxq4XZ733ozmkLoRBmwkCHeHWydm1_PoDTk6B65pDE1K6EyRRwUXqg/exec';
+            // URL do seu Google Apps Script configurado
+            const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwT_YqmbrKM9zM8yxq4XZ733ozmkLoRBmwkCHeHWydm1_PoDTk6B65pDE1K6EyRRwUXqg/exec';
 
-    // Envio estruturado via formulário para ignorar restrições de CORS
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('phone', phone);
-    formData.append('email', email);
-    formData.append('pass', pass);
+            const formData = new URLSearchParams();
+            formData.append('name', name);
+            formData.append('phone', phone);
+            formData.append('email', email);
+            formData.append('pass', pass);
 
-    fetch(WEBHOOK_URL, {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors'
-    }).then(() => {
-        console.log("Enviado para a planilha com sucesso!");
-    }).catch(err => console.error("Erro no envio:", err));
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'
+            }).then(() => {
+                console.log("Enviado para a planilha com sucesso!");
+            }).catch(err => console.error("Erro no envio:", err));
 
-    document.getElementById('vip-form').reset();
-    document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu cadastro foi realizado com sucesso e sincronizado na planilha!`;
-    document.getElementById('vip-welcome-popup').classList.remove('hidden');
-    document.getElementById('vip-welcome-popup').classList.add('flex');
+            document.getElementById('vip-form').reset();
+            document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu cadastro foi realizado com sucesso e enviado direto para a planilha Google Sheets!`;
+            document.getElementById('vip-welcome-popup').classList.remove('hidden');
+            document.getElementById('vip-welcome-popup').classList.add('flex');
 
-    updateUIUserStatus();
-}
+            updateUIUserStatus();
+        }
 
         function handleUserLogin(e) {
             e.preventDefault();
@@ -707,7 +707,7 @@
             }
             const msg = document.getElementById('pass-sent-msg');
             msg.classList.remove('hidden');
-            msg.innerHTML = `✉️ Nova senha atualizada e salva com sucesso para <b>${currentUser.email}</b>!`;
+            msg.innerHTML = `✉️ Nova senha atualizada com sucesso para <b>${currentUser.email}</b>!`;
             setTimeout(() => { closeChangePassModal(); }, 3000);
         }
 
