@@ -147,6 +147,9 @@
             <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20da%20DBARROS%20TECH!" target="_blank" class="w-full bg-primary hover:opacity-90 text-white py-3 rounded-xl text-xs font-extrabold uppercase transition text-center block shadow-lg">
                 <i class="fa-brands fa-whatsapp mr-1"></i> FALAR NO WHATSAPP
             </a>
+            <button onclick="openAdminModal(); toggleMobileMenu();" class="w-full bg-amber-500/20 border border-amber-500/40 text-amber-300 py-2.5 rounded-xl text-xs font-bold uppercase transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-lock"></i> PAINEL ADMIN
+            </button>
         </div>
     </div>
 
@@ -220,7 +223,7 @@
         </div>
     </div>
 
-    <!-- HEADER / NAVBAR -->
+    <!-- HEADER / NAVBAR COM BOTÃO ADMIN DESTAQUE NO TOPO -->
     <header class="sticky top-0 z-40 bg-darkBg/90 backdrop-blur-md border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
@@ -245,6 +248,12 @@
                 <div id="desktop-user-status" class="hidden sm:flex items-center">
                     <!-- Injetado dinamicamente -->
                 </div>
+
+                <!-- BOTÃO ADMIN DESTAQUE NO TOPO -->
+                <button onclick="openAdminModal()" class="bg-amber-500/20 border border-amber-500/50 hover:bg-amber-500 text-amber-300 hover:text-darkBg px-3 py-2 rounded-xl text-xs font-extrabold transition flex items-center gap-1.5 uppercase shadow" title="Painel Administrativo">
+                    <i class="fa-solid fa-lock"></i>
+                    <span class="hidden sm:inline">Admin</span>
+                </button>
 
                 <button id="music-btn" onclick="toggleMusic()" class="bg-slate-800 border border-slate-700 hover:border-cyanAccent text-slate-300 px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow" title="Ligar/Desligar Música">
                     <i id="music-icon" class="fa-solid fa-volume-xmark text-red-400"></i>
@@ -411,7 +420,6 @@
                 <span class="uppercase font-bold">ACESSO EXCLUSIVO & CLUBE VIP</span>
             </div>
             
-            <!-- CONTÊINER DINÂMICO DO FORMULÁRIO OU PAINEL LOGADO -->
             <div id="vip-container">
                 <h2 class="text-2xl sm:text-3xl font-black mb-4 uppercase">CRIE SEU LOGIN DE ACESSO OU CADASTRE-SE</h2>
                 <p class="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto mb-8">
@@ -658,7 +666,6 @@
                     <button onclick="logoutUser()" class="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded font-bold">Sair</button>
                 `;
 
-                // Transformar a seção Clube VIP em Painel do Usuário Logado
                 vipContainer.innerHTML = `
                     <div class="text-center">
                         <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4">
@@ -709,10 +716,8 @@
             currentUser = { name, phone, email };
             localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
             
-            // Limpar formulário
             document.getElementById('vip-form').reset();
 
-            // Exibir pop-up criativo de boas-vindas
             document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu login foi criado com sucesso e seus dados foram sincronizados na nossa planilha. Aproveite acesso prioritário a novos aparelhos!`;
             document.getElementById('vip-welcome-popup').classList.remove('hidden');
             document.getElementById('vip-welcome-popup').classList.add('flex');
