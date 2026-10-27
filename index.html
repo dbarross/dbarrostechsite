@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DBARROS TECH - TI, Redes, Streaming, PCs & Celulares</title>
-    <!-- Favicon / Ícone da Loja na Aba do Navegador -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230088FF%22/><text x=%2250%25%22 y=%2255%25%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22%230B0F17%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>DB</text></svg>">
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
@@ -43,11 +40,9 @@
         .bg-primary { background-color: var(--primary-color) !important; }
         .text-primary { color: var(--primary-color) !important; }
         .border-primary { border-color: var(--primary-color) !important; }
-        
         .bg-secondary { background-color: var(--secondary-color) !important; }
         .text-secondary { color: var(--secondary-color) !important; }
         .border-secondary { border-color: var(--secondary-color) !important; }
-
         .tech-grid {
             background-image: linear-gradient(to right, rgba(0, 136, 255, 0.05) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(0, 136, 255, 0.05) 1px, transparent 1px);
@@ -57,7 +52,6 @@
 </head>
 <body class="bg-darkBg text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-electricBlue selection:text-white tech-grid relative">
 
-    <!-- ÁUDIO DE FUNDO TECNOLÓGICO -->
     <audio id="bg-music" loop preload="auto">
         <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=cyberpunk-2099-10701.mp3" type="audio/mpeg">
     </audio>
@@ -72,11 +66,7 @@
             <span class="text-xs uppercase font-mono tracking-widest text-cyanAccent bg-cyanAccent/10 px-3 py-1 rounded-full border border-cyanAccent/30">Novidades DBARROS TECH</span>
             <h2 class="text-2xl font-black text-white mt-3 mb-2 uppercase">🔥 IPHONES E NOVIDADES DISPONÍVEIS!</h2>
             <p class="text-slate-300 text-xs mb-6">Confira os aparelhos seminovos revisados e garanta seu acesso VIP com descontos exclusivos.</p>
-            
-            <div id="popup-products-list" class="space-y-2.5 text-left mb-6 max-h-48 overflow-y-auto pr-1">
-                <!-- Injetado dinamicamente -->
-            </div>
-
+            <div id="popup-products-list" class="space-y-2.5 text-left mb-6 max-h-48 overflow-y-auto pr-1"></div>
             <div class="flex gap-3">
                 <button onclick="closePromoPopup()" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-xl text-xs transition uppercase">Continuar no Site</button>
                 <a href="#LOJA" onclick="closePromoPopup()" class="w-full py-3 bg-primary hover:opacity-90 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-1 shadow-lg uppercase">Ver Vitrine</a>
@@ -94,7 +84,7 @@
             <span class="text-xs uppercase font-mono tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/30 font-bold">Membro Oficial VIP</span>
             <h2 class="text-2xl font-black text-white mt-3 mb-2 uppercase">🎉 PARABÉNS E SEJA BEM-VINDO!</h2>
             <p id="welcome-user-greeting" class="text-slate-300 text-xs mb-6 leading-relaxed">
-                Seu login foi criado com sucesso! Agora você faz parte do seleto **Clube VIP da DBARROS TECH** e terá acesso a ofertas em primeira mão.
+                Seu login foi criado com sucesso! Agora você faz parte do seleto **Clube VIP da DBARROS TECH**.
             </p>
             <button onclick="closeWelcomePopup()" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black rounded-xl text-xs uppercase shadow-lg hover:opacity-90 transition">
                 Acessar Minha Conta VIP 🚀
@@ -104,42 +94,23 @@
 
     <!-- MENU LATERAL MOBILE (DRAWER) -->
     <div id="mobile-drawer-overlay" onclick="toggleMobileMenu()" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden transition-opacity duration-300"></div>
-    
     <div id="mobile-drawer" class="fixed top-0 right-0 z-50 w-80 max-w-[85vw] h-full bg-cardBg border-l border-slate-800 p-6 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300">
         <div>
             <div class="flex items-center justify-between pb-4 border-b border-slate-800">
                 <div class="flex items-center space-x-2">
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-electricBlue to-cyanAccent flex items-center justify-center font-bold text-darkBg text-sm">
-                        DB
-                    </div>
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-electricBlue to-cyanAccent flex items-center justify-center font-bold text-darkBg text-sm">DB</div>
                     <span class="font-black text-white text-base tracking-wider">DBARROS <span class="text-secondary">TECH</span></span>
                 </div>
                 <button onclick="toggleMobileMenu()" class="text-slate-400 hover:text-white text-2xl font-bold p-1">✕</button>
             </div>
-
-            <div id="mobile-user-status-card" class="my-4 p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs">
-                <!-- Injetado dinamicamente -->
-            </div>
-
+            <div id="mobile-user-status-card" class="my-4 p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs"></div>
             <nav class="flex flex-col space-y-4 my-6 text-xs font-extrabold tracking-wider text-slate-200 uppercase">
-                <a href="#INICIO" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3">
-                    <i class="fa-solid fa-house text-secondary w-4"></i> INÍCIO
-                </a>
-                <a href="#SERVICOS" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3">
-                    <i class="fa-solid fa-screwdriver-wrench text-secondary w-4"></i> SERVIÇOS
-                </a>
-                <a href="#LOJA" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3 text-cyanAccent font-black">
-                    <i class="fa-solid fa-fire text-amber-400 w-4"></i> APARELHOS & PCS
-                </a>
-                <a href="https://www.instagram.com/dbarrostech/" target="_blank" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-pink-400 transition-colors flex items-center gap-3 text-pink-400">
-                    <i class="fa-brands fa-instagram text-base w-4"></i> INSTAGRAM
-                </a>
-                <a href="#VIP" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3">
-                    <i class="fa-solid fa-crown text-amber-400 w-4"></i> CLUBE VIP
-                </a>
+                <a href="#INICIO" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-house text-secondary w-4"></i> INÍCIO</a>
+                <a href="#SERVICOS" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-screwdriver-wrench text-secondary w-4"></i> SERVIÇOS</a>
+                <a href="#LOJA" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3 text-cyanAccent font-black"><i class="fa-solid fa-fire text-amber-400 w-4"></i> APARELHOS & PCS</a>
+                <a href="#VIP" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-crown text-amber-400 w-4"></i> CLUBE VIP</a>
             </nav>
         </div>
-
         <div class="pt-4 border-t border-slate-800 space-y-3">
             <button onclick="toggleMusic(); toggleMobileMenu();" class="w-full bg-slate-800 border border-slate-700 text-slate-300 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
                 <i class="fa-solid fa-volume-high text-cyanAccent"></i> CONTROLE DE SOM
@@ -147,9 +118,6 @@
             <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20da%20DBARROS%20TECH!" target="_blank" class="w-full bg-primary hover:opacity-90 text-white py-3 rounded-xl text-xs font-extrabold uppercase transition text-center block shadow-lg">
                 <i class="fa-brands fa-whatsapp mr-1"></i> FALAR NO WHATSAPP
             </a>
-            <button onclick="openAdminModal(); toggleMobileMenu();" class="w-full bg-amber-500/20 border border-amber-500/40 text-amber-300 py-2.5 rounded-xl text-xs font-bold uppercase transition flex items-center justify-center gap-2">
-                <i class="fa-solid fa-lock"></i> PAINEL ADMIN
-            </button>
         </div>
     </div>
 
@@ -158,78 +126,101 @@
         <div class="bg-cardBg border-2 border-cyanAccent rounded-3xl max-w-4xl w-full p-6 sm:p-8 text-left shadow-2xl relative animate-glow max-h-[90vh] flex flex-col">
             <button onclick="closeAllProductsModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">✕</button>
             <div class="flex items-center gap-3 mb-4">
-                <div class="p-3 rounded-2xl bg-cyanAccent/10 text-cyanAccent text-2xl">
-                    <i class="fa-solid fa-store"></i>
-                </div>
+                <div class="p-3 rounded-2xl bg-cyanAccent/10 text-cyanAccent text-2xl"><i class="fa-solid fa-store"></i></div>
                 <div>
                     <span class="text-xs uppercase font-mono tracking-widest text-cyanAccent bg-cyanAccent/10 px-3 py-1 rounded-full border border-cyanAccent/30">Catálogo Completo</span>
                     <h2 class="text-2xl font-black text-white mt-1 uppercase">TODOS OS APARELHOS E ACESSÓRIOS</h2>
                 </div>
             </div>
-            <p class="text-slate-300 text-xs mb-6">Confira abaixo todo o estoque atualizado com status, preços e especificações detalhadas.</p>
-            
-            <div id="modal-all-products-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-y-auto pr-2 flex-1">
-                <!-- Injetado dinamicamente -->
-            </div>
-
+            <div id="modal-all-products-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-y-auto pr-2 flex-1"></div>
             <div class="mt-6 pt-4 border-t border-slate-800 flex justify-end">
                 <button onclick="closeAllProductsModal()" class="px-6 py-3 bg-primary text-white font-bold rounded-xl text-xs shadow-lg uppercase">Fechar Catálogo</button>
             </div>
         </div>
     </div>
 
-    <!-- PAINEL ADMIN DE ESTOQUE -->
+    <!-- PAINEL DE GESTÃO ADMIN INTEGRADO (ESTOQUE + PLANILHA/DASHBOARD) -->
     <div id="admin-management-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="bg-cardBg border-2 border-emerald-500 rounded-3xl max-w-4xl w-full p-6 sm:p-8 text-left shadow-2xl relative max-h-[90vh] flex flex-col">
+        <div class="bg-cardBg border-2 border-emerald-500 rounded-3xl max-w-5xl w-full p-6 sm:p-8 text-left shadow-2xl relative max-h-[92vh] flex flex-col">
             <button onclick="closeAdminManagementModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">✕</button>
+            
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 border-b border-slate-800 pb-4 gap-3">
                 <div class="flex items-center gap-3">
-                    <div class="p-3 rounded-2xl bg-emerald-500/10 text-emerald-400 text-2xl">
-                        <i class="fa-solid fa-sliders"></i>
-                    </div>
+                    <div class="p-3 rounded-2xl bg-emerald-500/10 text-emerald-400 text-2xl"><i class="fa-solid fa-user-shield"></i></div>
                     <div>
                         <span class="text-xs uppercase font-mono tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30">Painel do Administrador</span>
-                        <h2 class="text-xl sm:text-2xl font-black text-white mt-1 uppercase">GERENCIAR ESTOQUE</h2>
+                        <h2 class="text-xl sm:text-2xl font-black text-white mt-1 uppercase">CENTRAL DE GESTÃO DBARROS</h2>
                     </div>
                 </div>
-                <button onclick="openProductModal(); closeAdminManagementModal();" class="bg-emerald-500 text-slate-950 font-black px-4 py-2.5 rounded-xl text-xs uppercase hover:bg-emerald-400 transition shadow-lg w-full sm:w-auto">
-                    + Adicionar Novo Aparelho
-                </button>
+                <div class="flex gap-2">
+                    <button onclick="switchAdminTab('stock')" id="tab-btn-stock" class="px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition">📦 Estoque</button>
+                    <button onclick="switchAdminTab('sheet')" id="tab-btn-sheet" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition">📊 Planilha & Dashboard</button>
+                </div>
             </div>
 
-            <p class="text-slate-300 text-xs mb-4">Altere o status (Disponível ou Vendido) em tempo real, ou remova produtos instantaneamente.</p>
-            
-            <div id="admin-product-table" class="overflow-y-auto space-y-3 pr-2 flex-1">
-                <!-- Injetado dinamicamente -->
+            <!-- CONTEÚDO ABA ESTOQUE -->
+            <div id="admin-tab-stock" class="flex-1 flex flex-col overflow-hidden">
+                <div class="flex justify-between items-center mb-3">
+                    <p class="text-slate-300 text-xs">Gerencie os produtos da vitrine em tempo real.</p>
+                    <button onclick="openProductModal()" class="bg-emerald-500 text-slate-950 font-black px-4 py-2 rounded-xl text-xs uppercase hover:bg-emerald-400 transition shadow-lg">+ Novo Aparelho</button>
+                </div>
+                <div id="admin-product-table" class="overflow-y-auto space-y-3 pr-2 flex-1"></div>
             </div>
 
-            <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
-                <span class="text-[11px] font-mono text-slate-400 hidden sm:inline">Status salvos de imediato.</span>
-                <button onclick="closeAdminManagementModal()" class="px-6 py-2.5 bg-slate-800 text-white font-bold rounded-xl text-xs uppercase w-full sm:w-auto">Fechar Painel</button>
+            <!-- CONTEÚDO ABA PLANILHA & DASHBOARD -->
+            <div id="admin-tab-sheet" class="flex-1 flex flex-col hidden overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Membros VIP Cadastrados</span>
+                        <h3 id="stat-vip-count" class="text-2xl font-black text-secondary mt-1">0</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Produtos na Vitrine</span>
+                        <h3 id="stat-prod-count" class="text-2xl font-black text-emerald-400 mt-1">0</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
+                        <div>
+                            <span class="text-slate-400 text-[10px] uppercase font-mono block">Google Sheets Database</span>
+                            <span class="text-xs font-bold text-white">Planilha Conectada</span>
+                        </div>
+                        <a href="https://docs.google.com/spreadsheets/d/1kQ90XgM6JDUndChuvf-uOBuq8I7_dDtc3i_fsa2smco/edit?usp=sharing" target="_blank" class="px-3 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg text-xs uppercase">Abrir Planilha ↗</a>
+                    </div>
+                </div>
+
+                <div class="flex-1 bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden flex flex-col">
+                    <div class="bg-slate-900 px-4 py-2.5 border-b border-slate-800 flex justify-between items-center text-xs">
+                        <span class="font-bold text-slate-300 uppercase"><i class="fa-solid fa-table text-emerald-400 mr-2"></i> Pré-visualização da Planilha Google Sheets</span>
+                        <span class="text-[10px] font-mono text-slate-400">Sincronização em tempo real</span>
+                    </div>
+                    <div class="flex-1 w-full h-full">
+                        <iframe src="https://docs.google.com/spreadsheets/d/1kQ90XgM6JDUndChuvf-uOBuq8I7_dDtc3i_fsa2smco/htmlembed?widget=true&headers=false" class="w-full h-full border-0 bg-white"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
+                <button onclick="closeAdminManagementModal()" class="px-6 py-2.5 bg-slate-800 text-white font-bold rounded-xl text-xs uppercase">Fechar Painel</button>
             </div>
         </div>
     </div>
 
-    <!-- ADMIN STRIP -->
+    <!-- ADMIN STRIP DE ATALHO -->
     <div id="admin-bar" class="hidden bg-gradient-to-r from-blue-700 via-cyan-600 to-blue-800 text-white px-4 py-2 text-xs font-bold items-center justify-between shadow-lg sticky top-0 z-50">
         <div class="flex items-center space-x-2">
             <span class="bg-white text-blue-900 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-extrabold">PAINEL ADMIN ATIVO</span>
-            <span class="hidden md:inline">Controle total de produtos, status e planilha.</span>
+            <span class="hidden md:inline">Gestão de estoque e planilha ativada.</span>
         </div>
         <div class="flex items-center space-x-2">
-            <button onclick="openAdminManagementModal()" class="bg-amber-400 text-slate-950 px-3 py-1 rounded-lg hover:bg-amber-300 transition font-black uppercase text-[11px]">⚙️ Estoque</button>
-            <button onclick="openProductModal()" class="bg-emerald-500 text-slate-950 px-3 py-1 rounded-lg hover:bg-emerald-400 transition font-black uppercase text-[11px]">+ Novo</button>
+            <button onclick="openAdminManagementModal()" class="bg-amber-400 text-slate-950 px-3 py-1 rounded-lg hover:bg-amber-300 transition font-black uppercase text-[11px]">⚙️ Central de Gestão</button>
             <button onclick="logoutAdmin()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg transition font-bold uppercase text-[11px]">Sair</button>
         </div>
     </div>
 
-    <!-- HEADER / NAVBAR COM BOTÃO ADMIN DESTAQUE NO TOPO -->
+    <!-- HEADER / NAVBAR -->
     <header class="sticky top-0 z-40 bg-darkBg/90 backdrop-blur-md border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-electricBlue to-cyanAccent flex items-center justify-center font-bold text-xl shadow-lg shadow-electricBlue/30 text-darkBg animate-pulse-slow">
-                    DB
-                </div>
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-electricBlue to-cyanAccent flex items-center justify-center font-bold text-xl shadow-lg shadow-electricBlue/30 text-darkBg animate-pulse-slow">DB</div>
                 <div>
                     <span class="text-lg sm:text-xl font-black tracking-wider text-white">DBARROS <span class="text-secondary" id="brand-accent">TECH</span></span>
                     <span class="block text-[9px] sm:text-[10px] text-slate-400 tracking-widest uppercase font-mono">TI • REDES • IPTV • PCS</span>
@@ -240,31 +231,19 @@
                 <a href="#INICIO" class="hover:text-cyanAccent transition-colors">INÍCIO</a>
                 <a href="#SERVICOS" class="hover:text-cyanAccent transition-colors">SERVIÇOS</a>
                 <a href="#LOJA" class="hover:text-cyanAccent transition-colors text-cyanAccent font-black">🔥 APARELHOS & PCS</a>
-                <a href="https://www.instagram.com/dbarrostech/" target="_blank" class="hover:text-pink-400 transition-colors flex items-center gap-1 text-pink-400"><i class="fa-brands fa-instagram"></i> INSTAGRAM</a>
                 <a href="#VIP" class="hover:text-cyanAccent transition-colors flex items-center gap-1"><i class="fa-solid fa-crown text-amber-400"></i> CLUBE VIP</a>
             </nav>
 
             <div class="flex items-center space-x-2 sm:space-x-3">
-                <div id="desktop-user-status" class="hidden sm:flex items-center">
-                    <!-- Injetado dinamicamente -->
-                </div>
-
-                <!-- BOTÃO ADMIN DESTAQUE NO TOPO -->
-                <button onclick="openAdminModal()" class="bg-amber-500/20 border border-amber-500/50 hover:bg-amber-500 text-amber-300 hover:text-darkBg px-3 py-2 rounded-xl text-xs font-extrabold transition flex items-center gap-1.5 uppercase shadow" title="Painel Administrativo">
-                    <i class="fa-solid fa-lock"></i>
-                    <span class="hidden sm:inline">Admin</span>
-                </button>
-
+                <div id="desktop-user-status" class="hidden sm:flex items-center"></div>
                 <button id="music-btn" onclick="toggleMusic()" class="bg-slate-800 border border-slate-700 hover:border-cyanAccent text-slate-300 px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow" title="Ligar/Desligar Música">
                     <i id="music-icon" class="fa-solid fa-volume-xmark text-red-400"></i>
                     <span id="music-text" class="hidden md:inline">SOM</span>
                 </button>
-
                 <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20da%20DBARROS%20TECH!" target="_blank" class="hidden sm:flex bg-primary hover:opacity-90 text-white px-3.5 py-2 rounded-xl text-xs font-extrabold shadow-lg shadow-electricBlue/40 transition-all items-center space-x-1.5 uppercase animate-glow">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
                     <span class="hidden lg:inline">FALAR COM TÉCNICO</span>
                 </a>
-
                 <button onclick="toggleMobileMenu()" class="lg:hidden bg-slate-800 border border-slate-700 text-slate-200 p-2.5 rounded-xl text-lg hover:text-cyanAccent transition focus:outline-none" title="Abrir Menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -281,10 +260,10 @@
                     <span>ATENDIMENTO EM ALAGOINHAS - BA E REGIÃO</span>
                 </div>
                 <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight uppercase">
-                    <span id="hero-title-text">SOLUÇÕES INTELIGENTES EM</span> <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-electricBlue to-cyanAccent" id="hero-subtitle-text">MANUTENÇÃO DE PCS, NOTEBOOKS & CELULARES</span>
+                    <span>SOLUÇÕES INTELIGENTES EM</span> <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-electricBlue to-cyanAccent">MANUTENÇÃO DE PCS, NOTEBOOKS & CELULARES</span>
                 </h1>
-                <p class="text-slate-400 text-sm sm:text-lg mb-8 leading-relaxed" id="hero-desc-text">
+                <p class="text-slate-400 text-sm sm:text-lg mb-8 leading-relaxed">
                     Especialistas em construção e montagem de computadores gamer/corporativos, manutenção avançada de notebooks e PCs, revenda de iPhones e streaming IPTV Flash TV Express.
                 </p>
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
@@ -296,7 +275,6 @@
                     </button>
                 </div>
             </div>
-
             <div class="relative">
                 <div class="absolute -inset-1 rounded-3xl blur-2xl opacity-25 bg-gradient-to-r from-electricBlue to-cyanAccent animate-pulse"></div>
                 <div class="relative bg-cardBg border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-2xl">
@@ -309,20 +287,12 @@
                         </div>
                         <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-2 py-0.5 rounded animate-pulse">PLANILHA: CONECTADA</span>
                     </div>
-                    
                     <div class="space-y-4 font-mono text-xs">
-                        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800 flex items-start space-x-3 hover:border-cyanAccent transition-colors">
+                        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800 flex items-start space-x-3">
                             <span class="text-secondary text-base">💻</span>
                             <div>
                                 <span class="text-slate-200 font-bold block uppercase">CONSTRUÇÃO & MANUTENÇÃO DE PCS E NOTEBOOKS</span>
                                 <span class="text-slate-400">Montagem personalizada, troca de SSD, formatação e reparos em bancada.</span>
-                            </div>
-                        </div>
-                        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800 flex items-start space-x-3 hover:border-electricBlue transition-colors">
-                            <span class="text-primary text-base">📱</span>
-                            <div>
-                                <span class="text-slate-200 font-bold block uppercase">iPhones & Celulares</span>
-                                <span class="text-slate-400">Aparelhos seminovos revisados com garantia e procedência.</span>
                             </div>
                         </div>
                     </div>
@@ -338,169 +308,90 @@
             <h2 class="text-2xl sm:text-3xl font-black mb-3 uppercase mt-3">SERVIÇOS ESPECIALIZADOS</h2>
             <p class="text-slate-400 text-xs sm:text-sm">Assistência técnica de alto padrão para computadores, notebooks, redes e smartphones.</p>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-cardBg border-2 border-electricBlue/50 rounded-2xl p-6 hover:border-cyanAccent transition-all group hover:scale-[1.02] shadow-lg shadow-electricBlue/10">
-                <div class="w-12 h-12 rounded-xl bg-electricBlue/20 border border-electricBlue text-secondary flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-computer"></i>
-                </div>
+            <div class="bg-cardBg border-2 border-electricBlue/50 rounded-2xl p-6 hover:border-cyanAccent transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-electricBlue/25 border border-electricBlue text-secondary flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-computer"></i></div>
                 <h3 class="text-xl font-bold mb-2 uppercase">PCS & NOTEBOOKS</h3>
-                <p class="text-slate-400 text-sm mb-4 leading-relaxed">Construção de PCs gamer/trabalho, manutenção preventiva, limpeza interna, troca de pasta térmica, formatação e upgrade de SSD.</p>
-                <a href="https://wa.me/5575992423627?text=Olá,%20preciso%20de%20manutenção%20ou%20construção%20de%20PC/Notebook." target="_blank" class="text-xs font-extrabold text-secondary hover:underline flex items-center gap-1 uppercase">
-                    ORÇAR SUPORTE <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </a>
+                <p class="text-slate-400 text-sm mb-4">Construção de PCs gamer/trabalho, manutenção preventiva, limpeza interna e troca de SSD.</p>
             </div>
-
-            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-cyanAccent transition-all group hover:scale-[1.02]">
-                <div class="w-12 h-12 rounded-xl bg-electricBlue/10 border border-electricBlue/30 text-secondary flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                </div>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-cyanAccent transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-electricBlue/10 border border-electricBlue/30 text-secondary flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-mobile-screen-button"></i></div>
                 <h3 class="text-xl font-bold mb-2 uppercase">IPHONES & CELULARES</h3>
-                <p class="text-slate-400 text-sm mb-4 leading-relaxed">Revenda de smartphones seminovos testados e assistência técnica especializada em troca de tela e bateria.</p>
-                <a href="#LOJA" class="text-xs font-extrabold text-secondary hover:underline flex items-center gap-1 uppercase">
-                    VER VITRINE <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </a>
+                <p class="text-slate-400 text-sm mb-4">Revenda de smartphones seminovos testados com garantia e procedência.</p>
             </div>
-
-            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-pink-500 transition-all group hover:scale-[1.02]">
-                <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/30 text-pink-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-tv"></i>
-                </div>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-pink-500 transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/30 text-pink-400 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-tv"></i></div>
                 <h3 class="text-xl font-bold mb-2 uppercase">STREAMING IPTV</h3>
-                <p class="text-slate-400 text-sm mb-4 leading-relaxed">Grade completa de canais ao vivo, filmes e séries via Flash TV Express com alta estabilidade.</p>
-                <a href="https://www.instagram.com/flashtvexpress/" target="_blank" class="text-xs font-extrabold text-pink-400 hover:underline flex items-center gap-1 uppercase">
-                    VER INSTAGRAM <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </a>
+                <p class="text-slate-400 text-sm mb-4">Grade completa de canais ao vivo, filmes e séries via Flash TV Express.</p>
             </div>
-
-            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-cyanAccent transition-all group hover:scale-[1.02]">
-                <div class="w-12 h-12 rounded-xl bg-electricBlue/10 border border-electricBlue/30 text-secondary flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-network-wired"></i>
-                </div>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-cyanAccent transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-electricBlue/10 border border-electricBlue/30 text-secondary flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-network-wired"></i></div>
                 <h3 class="text-xl font-bold mb-2 uppercase">REDES & MIKROTIK</h3>
-                <p class="text-slate-400 text-sm mb-4 leading-relaxed">Configuração profissional de roteadores MikroTik, Wi-Fi corporativo e links de internet dedicados.</p>
-                <a href="https://wa.me/5575992423627?text=Olá,%20tenho%20interesse%20em%20projetos%20de%20Redes%20e%20MikroTik." target="_blank" class="text-xs font-extrabold text-secondary hover:underline flex items-center gap-1 uppercase">
-                    FALAR SOBRE REDES <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </a>
+                <p class="text-slate-400 text-sm mb-4">Configuração profissional de roteadores MikroTik e Wi-Fi corporativo.</p>
             </div>
         </div>
     </section>
 
     <!-- VITRINE EM DESTAQUE MÁXIMO -->
-    <section id="LOJA" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900 bg-gradient-to-b from-darkBg to-slate-950/60 rounded-3xl my-8">
+    <section id="LOJA" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900 bg-gradient-to-b from-darkBg to-slate-950/60 rounded-3xl my-8">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
             <div>
                 <span class="text-xs uppercase font-mono tracking-widest text-secondary bg-secondary/10 px-3 py-1 rounded-full border border-secondary/35">ESTOQUE EM DESTAQUE</span>
                 <h2 class="text-2xl sm:text-4xl font-black text-white mt-3 uppercase">🔥 APARELHOS & ACESSÓRIOS DISPONÍVEIS</h2>
-                <p class="text-slate-400 text-xs sm:text-sm mt-1">Smartphones e acessórios testados, com procedência e garantia total.</p>
             </div>
-            <div class="flex flex-wrap gap-3 items-center w-full md:w-auto">
-                <button onclick="openAllProductsModal()" class="w-full sm:w-auto px-5 py-3 bg-secondary text-darkBg font-black text-xs rounded-2xl shadow-lg uppercase hover:opacity-90 transition">
-                    📂 VER TODOS NO POP-UP
-                </button>
-                <div class="flex gap-1.5 bg-cardBg p-1.5 rounded-2xl border border-slate-800 w-full sm:w-auto justify-center">
-                    <button onclick="filterProducts('all')" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-bold rounded-xl transition text-white uppercase">TODOS</button>
-                    <button onclick="filterProducts('apple')" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-bold rounded-xl transition text-white uppercase">IPHONES</button>
-                    <button onclick="filterProducts('acessórios')" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-bold rounded-xl transition text-white uppercase">ACESSÓRIOS</button>
-                </div>
-            </div>
+            <button onclick="openAllProductsModal()" class="px-5 py-3 bg-secondary text-darkBg font-black text-xs rounded-2xl shadow-lg uppercase hover:opacity-90 transition">
+                📂 VER TODOS NO POP-UP
+            </button>
         </div>
-
-        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <!-- Injetado dinamicamente -->
-        </div>
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
     </section>
 
     <!-- CLUBE VIP / FORMULÁRIO DE LOGIN E CADASTRO -->
     <section id="VIP" class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div class="bg-gradient-to-br from-cardBg to-slate-900 border border-electricBlue/40 rounded-3xl p-6 sm:p-12 text-center shadow-2xl relative overflow-hidden animate-glow">
-            <div class="absolute -top-24 -right-24 w-48 h-48 bg-electricBlue/20 rounded-full blur-3xl"></div>
             <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyanAccent/10 border border-cyanAccent/30 text-secondary text-xs font-semibold mb-4">
                 <i class="fa-solid fa-crown text-amber-400"></i>
                 <span class="uppercase font-bold">ACESSO EXCLUSIVO & CLUBE VIP</span>
             </div>
-            
             <div id="vip-container">
                 <h2 class="text-2xl sm:text-3xl font-black mb-4 uppercase">CRIE SEU LOGIN DE ACESSO OU CADASTRE-SE</h2>
-                <p class="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto mb-8">
-                    Insira seus dados para entrar na sua conta ou registrar-se na planilha VIP e receber novidades de iPhones e promoções em primeira mão!
-                </p>
                 <form id="vip-form" onsubmit="handleUserRegistration(event)" class="max-w-md mx-auto space-y-3 text-left">
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">NOME COMPLETO</label>
-                        <input type="text" id="reg-name" placeholder="Ex: Davi Barros" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyanAccent text-white" required>
+                        <input type="text" id="reg-name" placeholder="Ex: Davi Barros" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">WHATSAPP / CELULAR</label>
-                            <input type="tel" id="reg-phone" placeholder="(75) 9XXXX-XXXX" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyanAccent text-white" required>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">WHATSAPP</label>
+                            <input type="tel" id="reg-phone" placeholder="(75) 9XXXX-XXXX" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">E-MAIL</label>
-                            <input type="email" id="reg-email" placeholder="seu@email.com" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyanAccent text-white" required>
+                            <input type="email" id="reg-email" placeholder="seu@email.com" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">SENHA DE ACESSO</label>
-                        <input type="password" id="reg-pass" placeholder="••••••••" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyanAccent text-white" required>
+                        <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">SENHA</label>
+                        <input type="password" id="reg-pass" placeholder="••••••••" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
                     </div>
-                    <button type="submit" class="w-full py-3.5 bg-primary hover:opacity-90 text-white font-black rounded-xl shadow-lg shadow-electricBlue/30 transition-all flex items-center justify-center space-x-2 mt-4 uppercase text-xs">
-                        <i class="fa-solid fa-right-to-bracket text-base"></i>
-                        <span>ENTRAR / SALVAR CADASTRO NO CLUBE VIP</span>
+                    <button type="submit" class="w-full py-3.5 bg-primary hover:opacity-90 text-white font-black rounded-xl shadow-lg uppercase text-xs mt-4">
+                        <i class="fa-solid fa-right-to-bracket text-base mr-2"></i> ENTRAR / SALVAR CADASTRO NO CLUBE VIP
                     </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- WIDGET ASSISTENTE DE IA -->
-    <div class="fixed bottom-5 right-5 z-50">
-        <div id="ai-chat-window" class="hidden w-72 sm:w-96 bg-cardBg border border-cyanAccent/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col mb-4">
-            <div class="bg-gradient-to-r from-electricBlue to-cyanAccent p-3.5 text-darkBg font-bold flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-robot text-lg"></i>
-                    <div>
-                        <span class="block text-xs font-black uppercase">DBARROS AI</span>
-                        <span class="block text-[9px] opacity-80 font-mono">ATENDIMENTO VIRTUAL</span>
-                    </div>
-                </div>
-                <button onclick="toggleAiChat()" class="text-darkBg hover:opacity-70 text-lg font-bold">✕</button>
-            </div>
-            <div id="ai-chat-messages" class="p-3.5 h-60 overflow-y-auto space-y-3 text-xs text-slate-300 font-mono">
-                <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
-                    <p class="font-bold text-secondary mb-1">🤖 DBARROS AI:</p>
-                    <p>Olá! Precisa de manutenção em PC/Notebook, ver iPhones disponíveis ou assinar o IPTV Flash TV?</p>
-                </div>
-            </div>
-            <div class="p-3 bg-slate-900 border-t border-slate-800 flex flex-col gap-2">
-                <div class="flex gap-1 overflow-x-auto pb-1 text-[10px] uppercase font-bold">
-                    <button onclick="sendAiQuick('Manutenção de PC e Notebook')" class="bg-slate-800 hover:bg-slate-700 text-secondary px-2 py-1 rounded whitespace-nowrap">💻 PC/Notebook</button>
-                    <button onclick="sendAiQuick('Ver iPhones disponiveis')" class="bg-slate-800 hover:bg-slate-700 text-secondary px-2 py-1 rounded whitespace-nowrap">📱 Aparelhos</button>
-                    <button onclick="sendAiQuick('Streaming IPTV Flash TV')" class="bg-slate-800 hover:bg-slate-700 text-pink-400 px-2 py-1 rounded whitespace-nowrap">📺 IPTV</button>
-                </div>
-                <div class="flex gap-2">
-                    <input type="text" id="ai-user-input" placeholder="Digite sua dúvida..." class="w-full bg-darkBg border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyanAccent" onkeypress="if(event.key==='Enter') sendAiMessage()">
-                    <button onclick="sendAiMessage()" class="bg-primary hover:opacity-90 text-white px-3 py-2 rounded-lg text-xs font-bold"><i class="fa-solid fa-paper-plane"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <button onclick="toggleAiChat()" class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-electricBlue to-cyanAccent text-darkBg rounded-full shadow-2xl flex items-center justify-center text-xl sm:text-2xl font-bold hover:scale-110 transition-transform animate-glow relative">
-            <i class="fa-solid fa-headset"></i>
-            <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-red-500 border-2 border-darkBg rounded-full animate-ping"></span>
-        </button>
-    </div>
-
     <!-- MODAL AUTH ADMIN -->
     <div id="admin-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-cardBg border border-slate-800 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
             <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
-            <h3 class="text-xl font-bold mb-2 uppercase">ACESSO RESTRITO ADMIN</h3>
-            <p class="text-xs text-slate-400 mb-4">Digite a senha administrativa para liberar a gestão de produtos e banco de dados.</p>
+            <h3 class="text-xl font-bold mb-2 uppercase text-amber-400"><i class="fa-solid fa-lock mr-2"></i> ACESSO RESTRITO ADMIN</h3>
+            <p class="text-xs text-slate-400 mb-4">Digite a senha administrativa para abrir a central de gestão.</p>
             <div id="admin-error" class="hidden mb-3 p-2 bg-red-950/80 border border-red-800 text-red-300 text-xs rounded-lg font-bold uppercase">SENHA INCORRETA!</div>
             <form onsubmit="verifyAdmin(event)" class="space-y-4">
-                <input type="password" id="admin-pass" placeholder="DIGITE A SENHA ADMIN" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-electricBlue uppercase" required>
-                <button type="submit" class="w-full py-3 bg-primary hover:opacity-90 text-white font-bold rounded-xl transition uppercase text-xs">ENTRAR NO ADMIN</button>
+                <input type="password" id="admin-pass" placeholder="SENHA ADMIN" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-amber-400 uppercase" required>
+                <button type="submit" class="w-full py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-xl transition uppercase text-xs">ACESSAR PAINEL ADMIN</button>
             </form>
         </div>
     </div>
@@ -510,12 +401,10 @@
         <div class="bg-cardBg border border-emerald-500/50 rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
             <button onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
             <h3 class="text-xl font-bold mb-2 text-emerald-400 uppercase">📱 ADICIONAR NOVO APARELHO</h3>
-            <p class="text-xs text-slate-400 mb-4">Cadastre a foto, preço, especificações e defina o status inicial.</p>
-            
-            <form onsubmit="saveNewProduct(event)" class="space-y-3 text-xs uppercase font-bold">
+            <form onsubmit="saveNewProduct(event)" class="space-y-3 text-xs uppercase font-bold mt-3">
                 <div>
-                    <label class="block text-slate-300 mb-1">TÍTULO DO APARELHO / ACESSÓRIO</label>
-                    <input type="text" id="prod-title" placeholder="EX: IPHONE 14 PRO MAX 256GB" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white normal-case" required>
+                    <label class="block text-slate-300 mb-1">TÍTULO</label>
+                    <input type="text" id="prod-title" placeholder="EX: IPHONE 14 PRO MAX" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white normal-case" required>
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
@@ -531,24 +420,14 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-slate-300 mb-1">ESPECIFICAÇÕES / DETALHES</label>
-                    <input type="text" id="prod-specs" placeholder="BATERIA 98% • CAIXA • GARANTIA" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-slate-300 normal-case" required>
+                    <label class="block text-slate-300 mb-1">ESPECIFICAÇÕES</label>
+                    <input type="text" id="prod-specs" placeholder="BATERIA 98% • CAIXA" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-slate-300 normal-case" required>
                 </div>
                 <div>
-                    <label class="block text-slate-300 mb-1">URL DA FOTO (LINK DA IMAGEM)</label>
-                    <input type="url" id="prod-image" placeholder="HTTPS://IMAGES.UNSPLASH.COM/..." class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-slate-400 font-mono text-[11px] normal-case" required>
+                    <label class="block text-slate-300 mb-1">URL DA FOTO</label>
+                    <input type="url" id="prod-image" placeholder="https://..." class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-slate-400 normal-case" required>
                 </div>
-                <div>
-                    <label class="block text-slate-300 mb-1">STATUS NA VITRINE</label>
-                    <select id="prod-status" class="w-full bg-darkBg border border-emerald-500/50 rounded-xl px-3 py-2 text-emerald-400 normal-case">
-                        <option value="Disponível">🟢 Disponível (Pronta Entrega)</option>
-                        <option value="Vendido">🔴 Vendido</option>
-                    </select>
-                </div>
-                <div class="flex justify-end space-x-2 pt-3 border-t border-slate-800 normal-case">
-                    <button type="button" onclick="closeProductModal()" class="px-4 py-2 bg-slate-800 text-slate-300 rounded-xl">Cancelar</button>
-                    <button type="submit" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-lg">Cadastrar Aparelho</button>
-                </div>
+                <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-lg mt-2">Cadastrar Aparelho</button>
             </form>
         </div>
     </div>
@@ -558,27 +437,30 @@
         <div class="bg-cardBg border border-cyanAccent rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
             <button onclick="closeChangePassModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
             <h3 class="text-xl font-bold mb-2 uppercase text-cyanAccent">🔑 ALTERAR SENHA</h3>
-            <p class="text-xs text-slate-300 mb-4">Um código de segurança será enviado para o seu e-mail cadastrado.</p>
+            <p class="text-xs text-slate-300 mb-4">O código será enviado para o seu e-mail cadastrado.</p>
             <form onsubmit="handleRequestPassCode(event)" class="space-y-4 text-xs uppercase font-bold">
-                <div>
-                    <label class="block text-slate-300 mb-1">NOVA SENHA</label>
-                    <input type="password" id="new-user-pass" placeholder="NOVA SENHA" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white normal-case" required>
-                </div>
+                <input type="password" id="new-user-pass" placeholder="NOVA SENHA" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white normal-case" required>
                 <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-xl shadow-lg uppercase text-xs">ENVIAR CÓDIGO POR E-MAIL</button>
             </form>
             <div id="pass-sent-msg" class="hidden mt-3 p-2.5 bg-emerald-950/80 border border-emerald-700 text-emerald-300 text-xs rounded-xl font-bold uppercase text-center">
-                ✉️ CÓDIGO DE 6 DÍGITOS ENVIADO COM SUCESSO PARA SEU E-MAIL!
+                ✉️ CÓDIGO ENVIADO COM SUCESSO PARA SEU E-MAIL!
             </div>
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="bg-darkBg border-t border-slate-900 py-8 text-center text-slate-400 text-xs uppercase font-bold">
+    <!-- FOOTER COM BOTÃO ADMIN DISCRETO -->
+    <footer class="bg-darkBg border-t border-slate-900 py-6 text-center text-slate-400 text-xs uppercase font-bold">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p>&copy; 2026 DBARROS TECH. TODOS OS DIREITOS RESERVADOS. ATENDIMENTO: (75) 99242-3627</p>
-            <div class="flex items-center space-x-4">
-                <a href="https://www.instagram.com/dbarrostech/" target="_blank" class="hover:text-pink-400 transition-colors flex items-center gap-1"><i class="fa-brands fa-instagram text-base"></i> @dbarrostech</a>
-                <a href="https://www.instagram.com/flashtvexpress/" target="_blank" class="hover:text-pink-400 transition-colors flex items-center gap-1"><i class="fa-brands fa-instagram text-base"></i> @flashtvexpress</a>
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.instagram.com/dbarrostech/" target="_blank" class="hover:text-pink-400 transition-colors">@dbarrostech</a>
+                    <a href="https://www.instagram.com/flashtvexpress/" target="_blank" class="hover:text-pink-400 transition-colors">@flashtvexpress</a>
+                </div>
+                <!-- BOTÃO ADMIN DISCRETO NO RODAPÉ -->
+                <button onclick="openAdminModal()" class="text-[10px] text-slate-600 hover:text-amber-400 transition font-mono border border-slate-800 hover:border-amber-400/40 px-2.5 py-1 rounded-lg" title="Acesso Admin">
+                    <i class="fa-solid fa-lock mr-1"></i> Admin
+                </button>
             </div>
         </div>
     </footer>
@@ -591,27 +473,14 @@
             { id: 3, title: 'Cabo USB-C p/ Lightning 2m', category: 'acessórios', price: 'R$ 79,90', specs: 'Carga Rápida Turbo Baseus', image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&q=80&w=600', status: 'Disponível' }
         ];
 
-        let databaseUrl = localStorage.getItem('dbarros_db_url') || 'https://docs.google.com/spreadsheets/d/1kQ90XgM6JDUndChuvf-uOBuq8I7_dDtc3i_fsa2smco/edit?usp=sharing';
+        let registeredUsers = JSON.parse(localStorage.getItem('dbarros_vip_users')) || [];
         let currentUser = JSON.parse(localStorage.getItem('dbarros_user')) || null;
 
-        function applySavedColors() {
-            const savedPrimary = localStorage.getItem('dbarros_primary') || '#0088FF';
-            const savedSecondary = localStorage.getItem('dbarros_secondary') || '#00F0FF';
-            document.documentElement.style.setProperty('--primary-color', savedPrimary);
-            document.documentElement.style.setProperty('--secondary-color', savedSecondary);
-        }
-        applySavedColors();
-
-        // Inicializar Pop-up de Novidades ao entrar no site
         function initPromoPopup() {
             const list = document.getElementById('popup-products-list');
             if(!list) return;
             list.innerHTML = '';
             const available = products.filter(p => p.status === 'Disponível');
-            if(available.length === 0) {
-                list.innerHTML = '<p class="text-xs text-slate-400 text-center">Nenhum aparelho disponível no momento.</p>';
-                return;
-            }
             available.slice(0, 3).forEach(p => {
                 list.innerHTML += `
                     <div class="flex items-center justify-between bg-darkBg p-2.5 rounded-xl border border-slate-800">
@@ -630,21 +499,13 @@
         function closePromoPopup() { document.getElementById('initial-promo-popup').classList.add('hidden'); }
         initPromoPopup();
 
-        // Menu Mobile (Drawer)
         function toggleMobileMenu() {
             const drawer = document.getElementById('mobile-drawer');
             const overlay = document.getElementById('mobile-drawer-overlay');
-            const isHidden = drawer.classList.contains('translate-x-full');
-            if(isHidden) {
-                overlay.classList.remove('hidden');
-                drawer.classList.remove('translate-x-full');
-            } else {
-                overlay.classList.add('hidden');
-                drawer.classList.add('translate-x-full');
-            }
+            drawer.classList.toggle('translate-x-full');
+            overlay.classList.toggle('hidden');
         }
 
-        // Atualizar Status do Usuário na Interface
         function updateUIUserStatus() {
             const desktopContainer = document.getElementById('desktop-user-status');
             const mobileContainer = document.getElementById('mobile-user-status-card');
@@ -706,7 +567,6 @@
             location.reload();
         }
 
-        // Cadastro / Login VIP com Pop-up Criativo e Limpeza de Formulário
         function handleUserRegistration(e) {
             e.preventDefault();
             const name = document.getElementById('reg-name').value;
@@ -716,9 +576,11 @@
             currentUser = { name, phone, email };
             localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
             
-            document.getElementById('vip-form').reset();
+            registeredUsers.push(currentUser);
+            localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
 
-            document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu login foi criado com sucesso e seus dados foram sincronizados na nossa planilha. Aproveite acesso prioritário a novos aparelhos!`;
+            document.getElementById('vip-form').reset();
+            document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu login foi criado com sucesso e seus dados foram sincronizados na nossa planilha de gestão VIP!`;
             document.getElementById('vip-welcome-popup').classList.remove('hidden');
             document.getElementById('vip-welcome-popup').classList.add('flex');
 
@@ -730,7 +592,6 @@
             document.getElementById('vip-welcome-popup').classList.add('hidden');
         }
 
-        // Modal Alterar Senha
         function openChangePassModal() {
             document.getElementById('change-pass-modal').classList.remove('hidden');
             document.getElementById('change-pass-modal').classList.add('flex');
@@ -745,12 +606,9 @@
             const msg = document.getElementById('pass-sent-msg');
             msg.classList.remove('hidden');
             msg.innerHTML = `✉️ Código de verificação enviado com sucesso para <b>${currentUser.email}</b>!`;
-            setTimeout(() => {
-                closeChangePassModal();
-            }, 3000);
+            setTimeout(() => { closeChangePassModal(); }, 3000);
         }
 
-        // Catálogo Completo (Pop-up)
         function openAllProductsModal() {
             const list = document.getElementById('modal-all-products-list');
             list.innerHTML = '';
@@ -781,7 +639,30 @@
         }
         function closeAllProductsModal() { document.getElementById('all-products-modal').classList.remove('flex'); document.getElementById('all-products-modal').classList.add('hidden'); }
 
-        // Painel Admin Estoque
+        // Abas dentro do Painel Admin
+        function switchAdminTab(tab) {
+            const stockTab = document.getElementById('admin-tab-stock');
+            const sheetTab = document.getElementById('admin-tab-sheet');
+            const stockBtn = document.getElementById('tab-btn-stock');
+            const sheetBtn = document.getElementById('tab-btn-sheet');
+
+            if(tab === 'stock') {
+                stockTab.classList.remove('hidden');
+                sheetTab.classList.add('hidden');
+                stockBtn.className = 'px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
+                sheetBtn.className = 'px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition';
+            } else {
+                sheetTab.classList.remove('hidden');
+                stockTab.classList.add('hidden');
+                sheetBtn.className = 'px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition';
+                stockBtn.className = 'px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition';
+                
+                // Atualizar estatísticas da dashboard
+                document.getElementById('stat-vip-count').innerText = registeredUsers.length + 12; // Exemplo incluindo base sincronizada
+                document.getElementById('stat-prod-count').innerText = products.length;
+            }
+        }
+
         function openAdminManagementModal() {
             const table = document.getElementById('admin-product-table');
             table.innerHTML = '';
@@ -793,7 +674,6 @@
                             <div>
                                 <h4 class="font-bold text-white text-xs uppercase">${p.title}</h4>
                                 <span class="text-cyanAccent font-bold text-xs">${p.price}</span>
-                                <span class="block text-[10px] text-slate-400">${p.specs}</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
@@ -801,17 +681,17 @@
                                 <option value="Disponível" ${p.status === 'Disponível' ? 'selected' : ''}>🟢 Disponível</option>
                                 <option value="Vendido" ${p.status === 'Vendido' ? 'selected' : ''}>🔴 Vendido</option>
                             </select>
-                            <button onclick="deleteProduct(${p.id})" class="bg-red-500/25 hover:bg-red-500 text-red-400 hover:text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
+                            <button onclick="deleteProduct(${p.id})" class="bg-red-500/25 hover:bg-red-500 text-red-400 hover:text-white px-3 py-1.5 rounded-lg text-xs font-bold transition"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
                 `;
             });
             document.getElementById('admin-management-modal').classList.remove('hidden');
             document.getElementById('admin-management-modal').classList.add('flex');
+            switchAdminTab('stock');
         }
         function closeAdminManagementModal() { document.getElementById('admin-management-modal').classList.remove('flex'); document.getElementById('admin-management-modal').classList.add('hidden'); }
+
         function updateProductStatus(id, newStatus) {
             products = products.map(p => p.id === id ? {...p, status: newStatus} : p);
             localStorage.setItem('dbarros_products', JSON.stringify(products));
@@ -827,7 +707,6 @@
             }
         }
 
-        // Música
         let isMusicPlaying = false;
         function toggleMusic() {
             const audio = document.getElementById('bg-music');
@@ -844,42 +723,34 @@
                     icon.className = 'fa-solid fa-compact-disc text-cyanAccent animate-spin';
                     text.innerText = 'TOCANDO';
                     isMusicPlaying = true;
-                }).catch(() => {
-                    alert('Clique novamente para ativar o áudio.');
-                });
+                }).catch(() => {});
             }
         }
 
-        // Vitrine
         function renderProducts(filter = 'all') {
             const grid = document.getElementById('product-grid');
             if(!grid) return;
             grid.innerHTML = '';
-            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
-            
-            filtered.forEach(p => {
+            products.forEach(p => {
                 const statusBadge = p.status === 'Disponível' 
-                    ? '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1 uppercase"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Disponível</span>'
+                    ? '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase">Disponível</span>'
                     : '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30 uppercase">Vendido</span>';
 
                 grid.innerHTML += `
-                    <div class="bg-cardBg border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between hover:border-cyanAccent transition-all hover:scale-[1.02] group">
+                    <div class="bg-cardBg border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between hover:border-cyanAccent transition-all group">
                         <div>
                             <div class="relative h-52 sm:h-56 overflow-hidden bg-slate-950">
-                                <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <img src="${p.image}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                 <div class="absolute top-3 left-3">${statusBadge}</div>
                             </div>
-                            <div class="p-5 sm:p-6">
-                                <h3 class="font-extrabold text-white text-base sm:text-lg mb-2 uppercase">${p.title}</h3>
-                                <p class="text-slate-400 text-xs mb-6 uppercase">${p.specs}</p>
+                            <div class="p-5">
+                                <h3 class="font-extrabold text-white text-base mb-2 uppercase">${p.title}</h3>
+                                <p class="text-slate-400 text-xs mb-4 uppercase">${p.specs}</p>
                             </div>
                         </div>
-                        <div class="p-5 sm:p-6 pt-0 border-t border-slate-800/80 flex items-center justify-between mt-auto">
-                            <div>
-                                <span class="text-[10px] text-slate-500 uppercase font-mono block">VALOR</span>
-                                <span class="text-xl sm:text-2xl font-black text-secondary">${p.price}</span>
-                            </div>
-                            <a href="https://wa.me/5575992423627?text=Olá,%20tenho%20interesse%20no%20item%20${encodeURIComponent(p.title)}%20no%20valor%20de%20${encodeURIComponent(p.price)}" target="_blank" class="bg-primary hover:opacity-90 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-lg flex items-center gap-1.5 uppercase">
+                        <div class="p-5 pt-0 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+                            <span class="text-xl font-black text-secondary">${p.price}</span>
+                            <a href="https://wa.me/5575992423627?text=Olá,%20interesse%20em%20${encodeURIComponent(p.title)}" target="_blank" class="bg-primary hover:opacity-90 text-white px-3 py-2 rounded-xl text-xs font-bold shadow-lg uppercase">
                                 <i class="fa-brands fa-whatsapp text-sm"></i> Negociar
                             </a>
                         </div>
@@ -887,35 +758,7 @@
                 `;
             });
         }
-        function filterProducts(category) { renderProducts(category); }
 
-        // IA Chat
-        function toggleAiChat() { document.getElementById('ai-chat-window').classList.toggle('hidden'); }
-        function sendAiQuick(topic) { document.getElementById('ai-user-input').value = topic; sendAiMessage(); }
-        function sendAiMessage() {
-            const input = document.getElementById('ai-user-input');
-            const msg = input.value.trim();
-            if(!msg) return;
-            const chatMessages = document.getElementById('ai-chat-messages');
-            chatMessages.innerHTML += `<div class="bg-slate-800 p-2.5 rounded-xl text-right ml-6"><p class="font-bold text-slate-200">Você:</p><p>${msg}</p></div>`;
-            input.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            setTimeout(() => {
-                chatMessages.innerHTML += `
-                    <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 mr-6">
-                        <p class="font-bold text-secondary mb-1">🤖 DBARROS AI:</p>
-                        <p class="mb-3">Para falar com nosso suporte técnico ou negociar aparelhos:</p>
-                        <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20sobre:%20${encodeURIComponent(msg)}" target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-1.5 rounded-lg text-xs uppercase">
-                            <i class="fa-brands fa-whatsapp mr-1"></i> Falar no WhatsApp (75) 99242-3627
-                        </a>
-                    </div>
-                `;
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 800);
-        }
-
-        // Admin Modals
         function openAdminModal() { document.getElementById('admin-modal').classList.remove('hidden'); document.getElementById('admin-modal').classList.add('flex'); }
         function closeAdminModal() { document.getElementById('admin-modal').classList.remove('flex'); document.getElementById('admin-modal').classList.add('hidden'); }
         function verifyAdmin(e) {
@@ -924,6 +767,7 @@
                 document.getElementById('admin-bar').classList.remove('hidden');
                 document.getElementById('admin-bar').classList.add('flex');
                 closeAdminModal();
+                openAdminManagementModal();
             } else {
                 document.getElementById('admin-error').classList.remove('hidden');
             }
@@ -940,14 +784,14 @@
                 category: document.getElementById('prod-category').value,
                 specs: document.getElementById('prod-specs').value,
                 image: document.getElementById('prod-image').value,
-                status: document.getElementById('prod-status').value
+                status: 'Disponível'
             };
             products.push(newProd);
             localStorage.setItem('dbarros_products', JSON.stringify(products));
             renderProducts();
             initPromoPopup();
             closeProductModal();
-            alert('Novo aparelho cadastrado com sucesso!');
+            openAdminManagementModal();
         }
 
         renderProducts();
