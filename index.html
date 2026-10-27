@@ -621,38 +621,43 @@
         }
 
         // Cadastro VIP integrado com Google Apps Script
-        function handleUserRegistration(e) {
-            e.preventDefault();
-            const name = document.getElementById('reg-name').value;
-            const phone = document.getElementById('reg-phone').value;
-            const email = document.getElementById('reg-email').value;
-            const pass = document.getElementById('reg-pass').value;
+     function handleUserRegistration(e) {
+    e.preventDefault();
+    const name = document.getElementById('reg-name').value;
+    const phone = document.getElementById('reg-phone').value;
+    const email = document.getElementById('reg-email').value;
+    const pass = document.getElementById('reg-pass').value;
 
-            currentUser = { name, phone, email, pass };
-            localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
-            
-            registeredUsers.push(currentUser);
-            localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
+    currentUser = { name, phone, email, pass };
+    localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
+    
+    registeredUsers.push(currentUser);
+    localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
 
-            // URL do seu Google Apps Script configurado
-            const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwT_YqmbrKM9zM8yxq4XZ733ozmkLoRBmwkCHeHWydm1_PoDTk6B65pDE1K6EyRRwUXqg/exec';
+    const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwT_YqmbrKM9zM8yxq4XZ733ozmkLoRBmwkCHeHWydm1_PoDTk6B65pDE1K6EyRRwUXqg/exec';
 
-            if (WEBHOOK_URL) {
-                fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(currentUser)
-                }).catch(err => console.error("Erro ao enviar para a planilha:", err));
-            }
+    // Envio estruturado via formulário para ignorar restrições de CORS
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('email', email);
+    formData.append('pass', pass);
 
-            document.getElementById('vip-form').reset();
-            document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu cadastro foi realizado com sucesso e enviado direto para a planilha Google Sheets!`;
-            document.getElementById('vip-welcome-popup').classList.remove('hidden');
-            document.getElementById('vip-welcome-popup').classList.add('flex');
+    fetch(WEBHOOK_URL, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+    }).then(() => {
+        console.log("Enviado para a planilha com sucesso!");
+    }).catch(err => console.error("Erro no envio:", err));
 
-            updateUIUserStatus();
-        }
+    document.getElementById('vip-form').reset();
+    document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu cadastro foi realizado com sucesso e sincronizado na planilha!`;
+    document.getElementById('vip-welcome-popup').classList.remove('hidden');
+    document.getElementById('vip-welcome-popup').classList.add('flex');
+
+    updateUIUserStatus();
+}
 
         function handleUserLogin(e) {
             e.preventDefault();
