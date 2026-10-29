@@ -1,47 +1,31 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aprovatt • Central Analítica de Automações & Régua de Cobrança</title>
-    <!-- Tailwind CSS -->
+    <title>DBARROS TECH - TI, Redes, Streaming, PCs & Celulares</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230088FF%22/><text x=%2250%25%22 y=%2255%25%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22%230B0F17%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>DB</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Flatpickr (Datepicker) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
-    <!-- html2pdf.js for Client-Side PDF Generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'monospace'],
-                    },
                     colors: {
-                        brand: {
-                            50: '#ecfdf5',
-                            100: '#d1fae5',
-                            500: '#10b981',
-                            600: '#059669',
-                            700: '#047857',
-                        },
-                        dark: {
-                            800: '#1e293b',
-                            850: '#172033',
-                            900: '#0f172a',
-                            950: '#090e1a',
+                        darkBg: '#0B0F17',
+                        cardBg: '#0E1422',
+                        electricBlue: 'var(--primary-color, #0088FF)',
+                        cyanAccent: 'var(--secondary-color, #00F0FF)'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'bounce-slow': 'bounce 3s infinite'
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(0, 240, 255, 0.2)' },
+                            '100%': { boxShadow: '0 0 25px rgba(0, 240, 255, 0.7)' },
                         }
                     }
                 }
@@ -49,891 +33,1330 @@
         }
     </script>
     <style>
-        body {
-            background-color: #070d1e;
-            color: #f1f5f9;
+        :root {
+            --primary-color: #0088FF;
+            --secondary-color: #00F0FF;
         }
-        .glass-panel {
-            background: rgba(17, 26, 47, 0.75);
-            backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-        }
-        .glass-panel:hover {
-            border-color: rgba(16, 185, 129, 0.25);
-        }
-        .pulse-live {
-            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-            70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0b1329; }
-        ::-webkit-scrollbar-thumb { background: #26354f; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #10b981; }
-
-        /* Print / PDF Styling */
-        @media print {
-            body { background-color: #FFFFFF !important; color: #1e293b !important; }
-            header, section#filtros-section, footer, .no-print { display: none !important; }
-            .glass-panel { background: #FFFFFF !important; border: 1px solid #cbd5e1 !important; color: #1e293b !important; }
-            .text-white { color: #0f172a !important; }
-            .text-slate-400, .text-slate-300 { color: #475569 !important; }
-            canvas { max-width: 100% !important; }
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .text-primary { color: var(--primary-color) !important; }
+        .border-primary { border-color: var(--primary-color) !important; }
+        .bg-secondary { background-color: var(--secondary-color) !important; }
+        .text-secondary { color: var(--secondary-color) !important; }
+        .border-secondary { border-color: var(--secondary-color) !important; }
+        .tech-grid {
+            background-image: linear-gradient(to right, rgba(0, 136, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 136, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
+<body class="bg-darkBg text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-electricBlue selection:text-white tech-grid relative pb-10">
 
-    <!-- Top Navigation Header -->
-    <header class="border-b border-slate-800/80 bg-slate-950/80 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap justify-between items-center gap-4">
-            <div class="flex items-center space-x-3.5">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20 ring-1 ring-emerald-400/30">
-                    <i data-lucide="shield-check" class="w-5 h-5 text-white"></i>
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=cyberpunk-2099-10701.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- BOTÃO FLUTUANTE COM WIDGET DE ASSISTENTE / WHATSAPP -->
+    <div class="fixed bottom-8 right-6 z-40 flex items-center gap-3">
+        <div class="hidden sm:block bg-cardBg border border-cyanAccent/40 text-cyanAccent text-xs font-bold px-4 py-2 rounded-2xl shadow-xl animate-pulse">
+            🤖 Assistente Técnico IA & Suporte
+        </div>
+        <button type="button" onclick="toggleAiAssistantModal()" class="w-14 h-14 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-full flex items-center justify-center text-3xl shadow-2xl transition transform hover:scale-110 cursor-pointer">
+            <i class="fa-brands fa-whatsapp"></i>
+        </button>
+    </div>
+
+    <!-- MODAL / WIDGET CHAT IA DE ATENDIMENTO E DICAS DE SEGMENTO -->
+    <div id="ai-assistant-modal" class="fixed bottom-24 right-6 z-50 w-96 max-w-[90vw] bg-cardBg border-2 border-cyanAccent/60 rounded-3xl shadow-2xl hidden flex-col overflow-hidden animate-glow">
+        <div class="bg-slate-900 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-cyanAccent/20 text-cyanAccent flex items-center justify-center font-bold text-sm"><i class="fa-solid fa-robot"></i></div>
+                <div>
+                    <h4 class="font-extrabold text-white text-xs uppercase">DBARROS IA TECH</h4>
+                    <span class="text-[9px] text-emerald-400 font-mono">🟢 Online - Suporte Técnico</span>
+                </div>
+            </div>
+            <button type="button" onclick="toggleAiAssistantModal()" class="text-slate-400 hover:text-white font-bold text-lg p-1">✕</button>
+        </div>
+        
+        <div id="ai-chat-body" class="p-4 h-64 overflow-y-auto space-y-3 text-xs">
+            <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl text-slate-200">
+                👋 Olá! Sou o assistente virtual da **DBARROS TECH**. Escolha uma opção abaixo ou clique para falar no WhatsApp!
+            </div>
+        </div>
+
+        <div class="p-3 bg-slate-950 border-t border-slate-800 space-y-2 text-[11px]">
+            <span class="text-slate-400 font-mono text-[9px] uppercase block mb-1">Dicas & Dúvidas Rápidas:</span>
+            <div class="flex flex-wrap gap-1.5">
+                <button type="button" onclick="askAi('pc_lento')" class="bg-slate-900 hover:bg-slate-800 text-cyanAccent border border-slate-800 px-2.5 py-1 rounded-lg font-bold">🚀 PC Lento / Upgrade SSD</button>
+                <button type="button" onclick="askAi('iphones')" class="bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-800 px-2.5 py-1 rounded-lg font-bold">📱 Tabela de iPhones</button>
+                <button type="button" onclick="askAi('iptv')" class="bg-slate-900 hover:bg-slate-800 text-pink-400 border border-slate-800 px-2.5 py-1 rounded-lg font-bold">📺 Teste IPTV Flash TV</button>
+                <button type="button" onclick="askAi('mikrotik')" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-800 px-2.5 py-1 rounded-lg font-bold">🌐 Suporte MikroTik</button>
+            </div>
+            <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20da%20DBARROS%20TECH!" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-2.5 rounded-xl text-xs uppercase text-center flex items-center justify-center gap-2 mt-2">
+                <i class="fa-brands fa-whatsapp text-sm"></i> Falar direto no WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- POP-UP DE BOAS-VINDAS AO CLUBE VIP -->
+    <div id="vip-welcome-popup" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-gradient-to-br from-cardBg via-slate-900 to-blue-950 border-2 border-amber-400 rounded-3xl max-w-md w-full p-8 text-center shadow-2xl relative animate-glow">
+            <button type="button" onclick="closeWelcomePopup()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold p-2 cursor-pointer">✕</button>
+            <div class="w-16 h-16 rounded-2xl bg-amber-400/20 border border-amber-400/50 text-amber-400 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce-slow">
+                <i class="fa-solid fa-crown"></i>
+            </div>
+            <span class="text-xs uppercase font-mono tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/30 font-bold">Membro Oficial VIP</span>
+            <h2 class="text-2xl font-black text-white mt-3 mb-2 uppercase">🎉 PARABÉNS E SEJA BEM-VINDO!</h2>
+            <p id="welcome-user-greeting" class="text-slate-300 text-xs mb-6 leading-relaxed">
+                Seu cadastro foi realizado com sucesso! Agora você faz parte do seleto **Clube VIP da DBARROS TECH**.
+            </p>
+            <button type="button" onclick="closeWelcomePopup()" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black rounded-xl text-xs uppercase shadow-lg hover:opacity-90 transition cursor-pointer">
+                Acessar Minha Conta VIP 🚀
+            </button>
+        </div>
+    </div>
+
+    <!-- MENU LATERAL MOBILE -->
+    <div id="mobile-drawer-overlay" onclick="toggleMobileMenu()" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden transition-opacity duration-300"></div>
+    <div id="mobile-drawer" class="fixed top-0 right-0 z-50 w-80 max-w-[85vw] h-full bg-cardBg border-l border-slate-800 p-6 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300">
+        <div>
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-electricBlue to-cyanAccent flex items-center justify-center font-bold text-darkBg text-sm">DB</div>
+                    <span class="font-black text-white text-base tracking-wider">DBARROS <span class="text-secondary">TECH</span></span>
+                </div>
+                <button type="button" onclick="toggleMobileMenu()" class="text-slate-400 hover:text-white text-2xl font-bold p-1">✕</button>
+            </div>
+            <div id="mobile-user-status-card" class="my-4 p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs"></div>
+            <nav class="flex flex-col space-y-3 my-4 text-xs font-extrabold tracking-wider text-slate-200 uppercase">
+                <a href="#INICIO" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-house text-secondary w-4"></i> INÍCIO</a>
+                <a href="#SERVICOS" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-screwdriver-wrench text-secondary w-4"></i> SERVIÇOS</a>
+                <a href="#LOJA" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3 text-cyanAccent font-black"><i class="fa-solid fa-fire text-amber-400 w-4"></i> APARELHOS & PCS</a>
+                <a href="#EMPRESA" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-store text-emerald-400 w-4"></i> NOSSA LOJA FÍSICA</a>
+                <a href="#IPTV" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3 text-pink-400"><i class="fa-solid fa-tv text-pink-400 w-4"></i> STREAMING IPTV</a>
+                <a href="#OTIMIZACAO" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-gauge-high text-cyanAccent w-4"></i> DICAS DE OTIMIZAÇÃO</a>
+                <a href="#NOTICIAS" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-newspaper text-emerald-400 w-4"></i> NOTÍCIAS TECH</a>
+                <a href="#VIP" onclick="toggleMobileMenu()" class="p-2 rounded-xl hover:bg-slate-900 hover:text-cyanAccent transition-colors flex items-center gap-3"><i class="fa-solid fa-crown text-amber-400 w-4"></i> CLUBE VIP & LOGIN</a>
+            </nav>
+        </div>
+        <div class="pt-4 border-t border-slate-800 space-y-3">
+            <button type="button" onclick="toggleMusic(); toggleMobileMenu();" class="w-full bg-slate-800 border border-slate-700 text-slate-300 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-volume-high text-cyanAccent"></i> CONTROLE DE SOM
+            </button>
+            <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20da%20DBARROS%20TECH!" target="_blank" class="w-full bg-primary hover:opacity-90 text-white py-3 rounded-xl text-xs font-extrabold uppercase transition text-center block shadow-lg">
+                <i class="fa-brands fa-whatsapp mr-1"></i> FALAR NO WHATSAPP
+            </a>
+        </div>
+    </div>
+
+    <!-- MODAL NOVO / EDITAR APARELHO -->
+    <div id="product-form-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-cardBg border-2 border-cyanAccent rounded-3xl max-w-lg w-full p-6 text-left shadow-2xl relative">
+            <button type="button" onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold cursor-pointer">✕</button>
+            <h3 id="product-modal-title" class="text-xl font-black text-white mb-4 uppercase">➕ ADICIONAR NOVO APARELHO</h3>
+            <form id="product-form" onsubmit="saveProduct(event)" class="space-y-3 text-xs">
+                <input type="hidden" id="prod-id">
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1 uppercase">Título / Nome do Item</label>
+                    <input type="text" id="prod-title" placeholder="Ex: iPhone 12 Pro 128GB" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Preço de Venda (R$)</label>
+                        <input type="number" step="0.01" id="prod-price" placeholder="2990.00" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Custo de Aquisição (R$)</label>
+                        <input type="number" step="0.01" id="prod-cost" placeholder="2100.00" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Categoria</label>
+                        <select id="prod-category" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent">
+                            <option value="apple">Apple / iPhones</option>
+                            <option value="acessórios">Acessórios</option>
+                            <option value="pc">PCs / Notebooks</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Status Inicial</label>
+                        <select id="prod-status" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent">
+                            <option value="Disponível">🟢 Disponível</option>
+                            <option value="Vendido">🔴 Vendido</option>
+                        </select>
+                    </div>
                 </div>
                 <div>
-                    <div class="flex items-center space-x-2">
-                        <h1 class="text-base sm:text-lg font-bold tracking-tight text-white">Aprovatt • Central Analítica de Automações</h1>
-                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-semibold border border-emerald-500/20 flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-live"></span> SYNC ATIVO
-                        </span>
+                    <label class="block font-bold text-slate-300 mb-1 uppercase">Especificações / Detalhes</label>
+                    <input type="text" id="prod-specs" placeholder="Ex: Bateria 89% • Cabo + Carregador • 3 Meses Garantia" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1 uppercase">URL da Imagem</label>
+                    <input type="url" id="prod-image" placeholder="https://..." class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                </div>
+                <button type="submit" class="w-full py-3 bg-cyanAccent text-slate-950 font-black rounded-xl uppercase hover:opacity-90 transition mt-2 cursor-pointer">Salvar Anúncio</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- PAINEL DE GESTÃO ADMIN INTEGRADO -->
+    <div id="admin-management-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-cardBg border-2 border-emerald-500 rounded-3xl max-w-5xl w-full p-6 sm:p-8 text-left shadow-2xl relative max-h-[92vh] flex flex-col">
+            <button type="button" onclick="closeAdminManagementModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold cursor-pointer">✕</button>
+            
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 border-b border-slate-800 pb-4 gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="p-3 rounded-2xl bg-emerald-500/10 text-emerald-400 text-2xl"><i class="fa-solid fa-user-shield"></i></div>
+                    <div>
+                        <span class="text-xs uppercase font-mono tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30">Painel do Administrador</span>
+                        <h2 class="text-xl sm:text-2xl font-black text-white mt-1 uppercase">CENTRAL DE GESTÃO DBARROS</h2>
                     </div>
-                    <p class="text-xs text-slate-400">Régua Pré/Pós Vencimento • Multi-Filtros Dinâmicos (ServCar / ServTaxi)</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button type="button" onclick="switchAdminTab('stock')" id="tab-btn-stock" class="px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer">📦 Estoque</button>
+                    <button type="button" onclick="switchAdminTab('finance')" id="tab-btn-finance" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">📊 Balanço</button>
+                    <button type="button" onclick="switchAdminTab('images')" id="tab-btn-images" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">🖼️ Banners</button>
+                    <button type="button" onclick="switchAdminTab('users')" id="tab-btn-users" class="px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">👥 Clientes</button>
                 </div>
             </div>
 
-            <!-- Controls, Sync & PDF Export -->
-            <div class="flex items-center space-x-2 text-xs">
-                <div class="hidden sm:flex flex-col text-right pr-2">
-                    <span class="text-slate-400 font-medium">Última leitura:</span>
-                    <span id="last-sync-time" class="text-emerald-400 font-mono font-semibold">Carregando...</span>
+            <!-- ABA ESTOQUE -->
+            <div id="admin-tab-stock" class="flex-1 flex flex-col overflow-hidden">
+                <div class="flex justify-between items-center mb-3">
+                    <p class="text-slate-300 text-xs">Gerencie os produtos da vitrine em tempo real.</p>
+                    <button type="button" onclick="openProductModal()" class="bg-emerald-500 text-slate-950 font-black px-4 py-2 rounded-xl text-xs uppercase hover:bg-emerald-400 transition shadow-lg cursor-pointer">+ Novo Aparelho</button>
                 </div>
-                
-                <button onclick="fetchSheetData(true)" id="btn-refresh" class="flex items-center space-x-1.5 bg-slate-800/90 hover:bg-slate-700 active:bg-slate-900 text-slate-200 hover:text-white px-3 py-2 rounded-lg border border-slate-700 transition shadow-sm font-medium">
-                    <i data-lucide="refresh-cw" id="refresh-icon" class="w-3.5 h-3.5 text-emerald-400"></i>
-                    <span>Sincronizar</span>
-                </button>
+                <div id="admin-product-table" class="overflow-y-auto space-y-3 pr-2 flex-1"></div>
+            </div>
 
-                <!-- BOTÃO PRINCIPAL: GERAR RELATÓRIO EXECUTIVO EM PDF -->
-                <button onclick="generateExecutivePDF()" id="btn-pdf" class="flex items-center space-x-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-3.5 py-2 rounded-lg font-bold shadow-lg shadow-emerald-600/30 transition duration-200">
-                    <i data-lucide="file-down" class="w-4 h-4 text-white"></i>
-                    <span>Relatório PDF</span>
-                </button>
+            <!-- ABA BALANÇO FINANCEIRO EMPRESARIAL -->
+            <div id="admin-tab-finance" class="flex-1 flex flex-col hidden overflow-y-auto space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Faturamento (Vendas)</span>
+                        <h3 id="fin-total-revenue" class="text-2xl font-black text-emerald-400 mt-1">R$ 0,00</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Custo dos Vendidos</span>
+                        <h3 id="fin-total-cost" class="text-2xl font-black text-amber-400 mt-1">R$ 0,00</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-emerald-500/30 p-4 rounded-2xl bg-emerald-950/20">
+                        <span class="text-emerald-400 text-[10px] uppercase font-mono font-bold">Lucro Líquido Real</span>
+                        <h3 id="fin-net-profit" class="text-2xl font-black text-cyanAccent mt-1">R$ 0,00</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Valor em Estoque</span>
+                        <h3 id="fin-stock-value" class="text-2xl font-black text-purple-400 mt-1">R$ 0,00</h3>
+                    </div>
+                </div>
 
-                <button onclick="exportFilteredCSV()" class="flex items-center space-x-1.5 bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white px-3 py-2 rounded-lg border border-slate-700 transition font-medium">
-                    <i data-lucide="download" class="w-3.5 h-3.5 text-cyan-400"></i>
-                    <span class="hidden md:inline">CSV</span>
-                </button>
+                <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3">
+                    <h4 class="font-bold text-white text-xs uppercase"><i class="fa-solid fa-chart-pie text-cyanAccent mr-2"></i> Resumo Operacional</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                        <div class="bg-darkBg p-3 rounded-xl border border-slate-800">
+                            <span class="text-slate-400 block text-[10px] uppercase">Itens Vendidos</span>
+                            <span id="fin-count-sold" class="text-lg font-black text-white">0</span>
+                        </div>
+                        <div class="bg-darkBg p-3 rounded-xl border border-slate-800">
+                            <span class="text-slate-400 block text-[10px] uppercase">Itens Disponíveis</span>
+                            <span id="fin-count-available" class="text-lg font-black text-white">0</span>
+                        </div>
+                        <div class="bg-darkBg p-3 rounded-xl border border-slate-800 col-span-2 sm:col-span-1">
+                            <span class="text-slate-400 block text-[10px] uppercase">Margem Média de Lucro</span>
+                            <span id="fin-avg-margin" class="text-lg font-black text-emerald-400">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <a href="https://docs.google.com/spreadsheets/d/1gHSotrzUANYZRGh22fvmydZ9wZ28fSvVHEQHskd85t4/edit?usp=sharing" target="_blank" class="flex items-center space-x-1.5 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 px-3 py-2 rounded-lg transition font-medium">
-                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                    <span class="hidden lg:inline">Google Sheets</span>
+            <!-- ABA DE GESTÃO DE BANNERS E IMAGENS DO SITE -->
+            <div id="admin-tab-images" class="flex-1 flex flex-col hidden overflow-y-auto space-y-4">
+                <p class="text-xs text-slate-300">Altere os links das imagens principais exibidas no site.</p>
+                <form onsubmit="saveSiteImages(event)" class="space-y-4 text-xs">
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Imagem de Capa (Bancada Principal)</label>
+                        <input type="url" id="img-site-hero" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-300 mb-1 uppercase">Banner da Seção IPTV / Streaming</label>
+                        <input type="url" id="img-site-iptv" class="w-full bg-darkBg border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyanAccent" required>
+                    </div>
+                    <button type="submit" class="px-5 py-2.5 bg-emerald-500 text-slate-950 font-black rounded-xl uppercase hover:bg-emerald-400 transition cursor-pointer">Salvar Alterações das Imagens</button>
+                </form>
+            </div>
+
+            <!-- ABA CLIENTES CADASTRADOS -->
+            <div id="admin-tab-users" class="flex-1 flex flex-col hidden overflow-hidden space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Total de Clientes VIP</span>
+                        <h3 id="stat-vip-count" class="text-2xl font-black text-secondary mt-1">0</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                        <span class="text-slate-400 text-[10px] uppercase font-mono">Aparelhos na Vitrine</span>
+                        <h3 id="stat-prod-count" class="text-2xl font-black text-emerald-400 mt-1">0</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
+                        <div>
+                            <span class="text-slate-400 text-[10px] uppercase font-mono block">Exportar Banco</span>
+                            <span class="text-xs font-bold text-white">Baixar Lista em Excel/CSV</span>
+                        </div>
+                        <button type="button" onclick="exportUsersCSV()" class="px-3 py-2 bg-secondary text-darkBg font-black rounded-lg text-xs uppercase shadow hover:opacity-90 cursor-pointer">📥 Baixar Lista</button>
+                    </div>
+                </div>
+
+                <div class="flex-1 bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden flex flex-col p-4">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="font-bold text-slate-300 uppercase text-xs"><i class="fa-solid fa-users text-cyanAccent mr-2"></i> Base de Clientes Cadastrados</span>
+                        <input type="text" id="search-users-input" onkeyup="filterAdminUsers()" placeholder="🔍 Pesquisar por Nome ou E-mail..." class="bg-darkBg border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-white">
+                    </div>
+                    <div class="flex-1 overflow-y-auto">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead class="bg-slate-900 text-slate-400 uppercase font-mono text-[10px] sticky top-0">
+                                <tr>
+                                    <th class="p-3">Data/Hora</th>
+                                    <th class="p-3">Nome</th>
+                                    <th class="p-3">WhatsApp</th>
+                                    <th class="p-3">E-mail</th>
+                                    <th class="p-3">Senha</th>
+                                    <th class="p-3 text-right">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-users-table-body" class="divide-y divide-slate-800/60"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
+                <button type="button" onclick="closeAdminManagementModal()" class="px-6 py-2.5 bg-slate-800 text-white font-bold rounded-xl text-xs uppercase cursor-pointer">Fechar Painel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN STRIP DE ATALHO -->
+    <div id="admin-bar" class="hidden bg-gradient-to-r from-blue-700 via-cyan-600 to-blue-800 text-white px-4 py-2 text-xs font-bold items-center justify-between shadow-lg sticky top-0 z-50">
+        <div class="flex items-center space-x-2">
+            <span class="bg-white text-blue-900 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-extrabold">PAINEL ADMIN ATIVO</span>
+            <span class="hidden md:inline">Banco de dados interno ativado.</span>
+        </div>
+        <div class="flex items-center space-x-2">
+            <button type="button" onclick="openAdminManagementModal()" class="bg-amber-400 text-slate-950 px-3 py-1 rounded-lg hover:bg-amber-300 transition font-black uppercase text-[11px] cursor-pointer">⚙️ Central de Gestão</button>
+            <button type="button" onclick="logoutAdmin()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg transition font-bold uppercase text-[11px] cursor-pointer">Sair</button>
+        </div>
+    </div>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-30 bg-darkBg/90 backdrop-blur-md border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-electricBlue to-cyanAccent flex items-center justify-center font-bold text-xl shadow-lg shadow-electricBlue/30 text-darkBg animate-pulse-slow">DB</div>
+                <div>
+                    <span class="text-lg sm:text-xl font-black tracking-wider text-white">DBARROS <span class="text-secondary" id="brand-accent">TECH</span></span>
+                    <span class="block text-[9px] sm:text-[10px] text-slate-400 tracking-widest uppercase font-mono">TI • REDES • IPTV • PCS</span>
+                </div>
+            </div>
+
+            <nav class="hidden lg:flex items-center space-x-5 text-[11px] font-extrabold tracking-wider text-slate-300 uppercase">
+                <a href="#INICIO" class="hover:text-cyanAccent transition-colors">INÍCIO</a>
+                <a href="#SERVICOS" class="hover:text-cyanAccent transition-colors">SERVIÇOS</a>
+                <a href="#LOJA" class="hover:text-cyanAccent transition-colors text-cyanAccent font-black">🔥 APARELHOS</a>
+                <a href="#EMPRESA" class="hover:text-cyanAccent transition-colors text-emerald-400">NOSSA LOJA</a>
+                <a href="#IPTV" class="hover:text-cyanAccent transition-colors text-pink-400">STREAMING</a>
+                <a href="#OTIMIZACAO" class="hover:text-cyanAccent transition-colors">OTIMIZAÇÃO</a>
+                <a href="#NOTICIAS" class="hover:text-cyanAccent transition-colors">NOTÍCIAS</a>
+                <a href="#VIP" class="hover:text-cyanAccent transition-colors flex items-center gap-1"><i class="fa-solid fa-crown text-amber-400"></i> VIP</a>
+            </nav>
+
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <div id="desktop-user-status" class="hidden sm:flex items-center"></div>
+                <button type="button" id="music-btn" onclick="toggleMusic()" class="bg-slate-800 border border-slate-700 hover:border-cyanAccent text-slate-300 px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow cursor-pointer" title="Ligar/Desligar Música">
+                    <i id="music-icon" class="fa-solid fa-volume-xmark text-red-400"></i>
+                    <span id="music-text" class="hidden md:inline">SOM</span>
+                </button>
+                <a href="https://wa.me/5575992423627?text=Olá,%20vim%20pelo%20site%20da%20DBARROS%20TECH!" target="_blank" class="hidden sm:flex bg-primary hover:opacity-90 text-white px-3.5 py-2 rounded-xl text-xs font-extrabold shadow-lg shadow-electricBlue/40 transition-all items-center space-x-1.5 uppercase animate-glow">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span class="hidden lg:inline">FALAR COM TÉCNICO</span>
                 </a>
+                <button type="button" onclick="toggleMobileMenu()" class="lg:hidden bg-slate-800 border border-slate-700 text-slate-200 p-2.5 rounded-xl text-lg hover:text-cyanAccent transition focus:outline-none cursor-pointer" title="Abrir Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-5" id="printable-area">
-
-        <!-- PAINEL DE MULTI-FILTROS AVANÇADOS -->
-        <section id="filtros-section" class="glass-panel rounded-2xl p-5 border-slate-800 shadow-xl no-print">
-            <div class="flex flex-wrap justify-between items-center gap-3 pb-3 border-b border-slate-800/80 mb-4">
-                <div class="flex items-center space-x-2">
-                    <div class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                        <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
+    <!-- HERO SECTION -->
+    <section id="INICIO" class="relative py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-electricBlue/10 border border-electricBlue/30 text-secondary text-[11px] sm:text-xs font-semibold mb-6">
+                    <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                    <span>ATENDIMENTO EM ALAGOINHAS - BA E REGIÃO</span>
+                </div>
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight uppercase">
+                    <span>SOLUÇÕES INTELIGENTES EM</span> <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-electricBlue to-cyanAccent">MANUTENÇÃO DE PCS, NOTEBOOKS & CELULARES</span>
+                </h1>
+                <p class="text-slate-400 text-sm sm:text-lg mb-8 leading-relaxed">
+                    Especialistas em construção e montagem de computadores gamer/corporativos, manutenção avançada de notebooks e PCs, revenda de iPhones e streaming IPTV Flash TV Express.
+                </p>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+                    <a href="#LOJA" class="bg-gradient-to-r from-electricBlue to-cyanAccent text-darkBg font-black px-6 py-3.5 rounded-xl shadow-xl hover:opacity-90 transition-all text-center uppercase text-xs animate-glow">
+                        VER APARELHOS & COMPUTADORES
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute -inset-1 rounded-3xl blur-2xl opacity-25 bg-gradient-to-r from-electricBlue to-cyanAccent animate-pulse"></div>
+                <div class="relative bg-cardBg border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="h-64 sm:h-80 overflow-hidden relative">
+                        <img id="display-hero-img" src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Bancada de Manutenção DBARROS TECH">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 bg-darkBg/80 backdrop-blur border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-mono text-cyanAccent uppercase">
+                            🔧 Bancada de Manutenção Profissional
+                        </span>
                     </div>
-                    <div>
-                        <h2 class="text-sm font-bold text-white tracking-wide">Filtros Multidimensionais de Análise</h2>
-                        <p class="text-[11px] text-slate-400">Selecione os parâmetros abaixo para recalcular métricas e gráficos em tempo real</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center gap-2">
-                    <button onclick="resetAllFilters()" class="text-xs text-slate-400 hover:text-rose-400 flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-800/60 hover:bg-rose-950/30 border border-slate-700/60 transition">
-                        <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
-                        <span>Limpar Filtros</span>
-                    </button>
-                    <span id="filtered-records-badge" class="text-xs px-2.5 py-1.5 rounded-lg bg-emerald-950/50 text-emerald-300 font-semibold border border-emerald-500/30">
-                        0 / 0 registros
-                    </span>
-                </div>
-            </div>
-
-            <!-- Grid de Filtros (7 Dimensões) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 text-xs">
-                
-                <!-- 1. Filtro: Momento da Régua -->
-                <div class="space-y-1.5">
-                    <label class="font-semibold text-slate-300 flex items-center gap-1.5">
-                        <i data-lucide="timer" class="w-3.5 h-3.5 text-rose-400"></i> Régua / Gatilho
-                    </label>
-                    <select id="filter-regua" onchange="applyAllFilters()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-200 focus:outline-none focus:border-emerald-500 font-medium">
-                        <option value="ALL">Todas as Réguas</option>
-                        <option value="2 dias antes">2 dias antes do vencimento</option>
-                        <option value="No dia">No dia do vencimento</option>
-                        <option value="5 dias depois">5 dias após o vencimento</option>
-                    </select>
-                </div>
-
-                <!-- 2. Filtro: Base Operacional -->
-                <div class="space-y-1.5">
-                    <label class="font-semibold text-slate-300 flex items-center gap-1.5">
-                        <i data-lucide="database" class="w-3.5 h-3.5 text-emerald-400"></i> Base / Carteira
-                    </label>
-                    <select id="filter-base" onchange="applyAllFilters()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-200 focus:outline-none focus:border-emerald-500 font-medium">
-                        <option value="ALL">Todas as Bases</option>
-                        <option value="ServCar">ServCar (Passeio/Frota)</option>
-                        <option value="ServTaxi">ServTaxi (Táxis/Vans)</option>
-                    </select>
-                </div>
-
-                <!-- 3. Filtro: Tipo de Veículo -->
-                <div class="space-y-1.5">
-                    <label class="font-semibold text-slate-300 flex items-center gap-1.5">
-                        <i data-lucide="car" class="w-3.5 h-3.5 text-cyan-400"></i> Tipo de Veículo
-                    </label>
-                    <select id="filter-veiculo" onchange="applyAllFilters()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-200 focus:outline-none focus:border-emerald-500 font-medium">
-                        <option value="ALL">Todos os Veículos</option>
-                        <option value="Moto">Motocicletas (&le; R$ 80)</option>
-                        <option value="Carro Passeio">Carro Passeio (R$ 80 a 160)</option>
-                        <option value="SUV / Pick-up">SUV / Pick-up (R$ 160 a 240)</option>
-                        <option value="Utilitário / Pesado">Utilitário / Pesado (> R$ 240)</option>
-                    </select>
-                </div>
-
-                <!-- 4. Filtro: Data de Vencimento -->
-                <div class="space-y-1.5">
-                    <label class="font-semibold text-slate-300 flex items-center gap-1.5">
-                        <i data-lucide="calendar" class="w-3.5 h-3.5 text-amber-400"></i> Vencimento
-                    </label>
-                    <select id="filter-vencimento" onchange="applyAllFilters()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-200 focus:outline-none focus:border-emerald-500 font-medium">
-                        <option value="ALL">Todos os Vencimentos</option>
-                    </select>
-                </div>
-
-                <!-- 5. Filtro: Faixa de Valor (R$) -->
-                <div class="space-y-1.5">
-                    <label class="font-semibold text-slate-300 flex items-center gap-1.5">
-                        <i data-lucide="badge-dollar-sign" class="w-3.5 h-3.5 text-emerald-400"></i> Faixa de Valor
-                    </label>
-                    <select id="filter-faixa-valor" onchange="applyAllFilters()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-200 focus:outline-none focus:border-emerald-500 font-medium">
-                        <option value="ALL">Qualquer Valor</option>
-                        <option value="f1">Até R$ 80,00</option>
-                        <option value="f2">R$ 80,01 a R$ 140,00</option>
-                        <option value="f3">R$ 140,01 a R$ 200,00</option>
-                        <option value="f4">Acima de R$ 200,00</option>
-                    </select>
-                </div>
-
-                <!-- 6. Filtro: Região / DDD -->
-                <div class="space-y-1.5">
-                    <label class="font-semibold text-slate-300 flex items-center gap-1.5">
-                        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-purple-400"></i> Região / DDD
-                    </label>
-                    <select id="filter-ddd" onchange="applyAllFilters()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-200 focus:outline-none focus:border-emerald-500 font-medium">
-                        <option value="ALL">Todos os DDDs</option>
-                    </select>
-                </div>
-
-                <!-- 7. Filtro: Turno do Disparo -->
-                <div class="space-y-1.5">
-                    <label class="font-semibold text-slate-300 flex items-center gap-1.5">
-                        <i data-lucide="clock" class="w-3.5 h-3.5 text-pink-400"></i> Turno Disparo
-                    </label>
-                    <select id="filter-turno" onchange="applyAllFilters()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-200 focus:outline-none focus:border-emerald-500 font-medium">
-                        <option value="ALL">Todos Horários</option>
-                        <option value="manha">Manhã (06h às 12h)</option>
-                        <option value="tarde">Tarde (12h às 18h)</option>
-                        <option value="noite">Noite (18h às 23h)</option>
-                    </select>
-                </div>
-
-            </div>
-
-            <!-- Segunda linha de filtros: Intervalo de Datas e Busca Global -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3 pt-3 border-t border-slate-800/60 text-xs">
-                <!-- Data de Envio (Intervalo) -->
-                <div class="flex items-center gap-2">
-                    <label class="font-semibold text-slate-300 whitespace-nowrap flex items-center gap-1">
-                        <i data-lucide="calendar-range" class="w-3.5 h-3.5 text-indigo-400"></i> Período Envio:
-                    </label>
-                    <input type="text" id="filter-data-range" placeholder="Selecione o intervalo..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-emerald-500 text-xs font-mono">
-                </div>
-
-                <!-- Faixa Customizada Min/Max -->
-                <div class="flex items-center gap-2">
-                    <label class="font-semibold text-slate-300 whitespace-nowrap">Valor R$ Min/Max:</label>
-                    <input type="number" id="filter-val-min" oninput="applyAllFilters()" placeholder="Min" class="w-1/2 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-200 focus:outline-none focus:border-emerald-500 text-xs font-mono">
-                    <span class="text-slate-500">a</span>
-                    <input type="number" id="filter-val-max" oninput="applyAllFilters()" placeholder="Max" class="w-1/2 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-200 focus:outline-none focus:border-emerald-500 text-xs font-mono">
-                </div>
-
-                <!-- Busca Textual Global -->
-                <div class="relative">
-                    <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-2.5 text-slate-400"></i>
-                    <input type="text" id="search-global" oninput="applyAllFilters()" placeholder="Pesquisar por Associado, Boleto, Telefone..." class="w-full pl-9 pr-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 text-xs">
-                </div>
-            </div>
-        </section>
-
-        <!-- CABEÇALHO EXCLUSIVO DO RELATÓRIO PDF -->
-        <div id="pdf-header-print" class="hidden p-6 bg-slate-900 border border-slate-700 rounded-2xl text-white mb-4">
-            <div class="flex justify-between items-start">
-                <div>
-                    <h1 class="text-xl font-bold uppercase tracking-wider text-emerald-400">Relatório Executivo de Automações & Cobrança</h1>
-                    <p class="text-xs text-slate-300 mt-1">Aprovatt Associação de Proteção Veicular • Gestão de Inadimplência e Régua Preventiva</p>
-                    <p class="text-[11px] text-slate-400 mt-2" id="pdf-filter-summary">Filtros aplicados: Todos os registros</p>
-                </div>
-                <div class="text-right text-xs">
-                    <div class="font-bold text-white">Data de Emissão:</div>
-                    <div class="text-slate-300 font-mono" id="pdf-emission-date">-</div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- CARDS DE METRICAS DINÂMICAS -->
-        <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
-            
-            <div class="glass-panel rounded-xl p-3.5 flex flex-col justify-between">
-                <div class="flex items-center justify-between text-slate-400 mb-1">
-                    <span class="text-[10px] font-bold uppercase tracking-wider">Disparos Filtrados</span>
-                    <i data-lucide="send" class="w-3.5 h-3.5 text-emerald-400"></i>
+    <!-- SEÇÃO DE SERVIÇOS -->
+    <section id="SERVICOS" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs uppercase font-mono tracking-widest text-secondary bg-secondary/10 px-3 py-1 rounded-full border border-secondary/30">Nossos Pilares</span>
+            <h2 class="text-2xl sm:text-3xl font-black mb-3 uppercase mt-3">SERVIÇOS ESPECIALIZADOS</h2>
+            <p class="text-slate-400 text-xs sm:text-sm">Assistência técnica de alto padrão para computadores, notebooks, redes e smartphones.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-cardBg border-2 border-electricBlue/50 rounded-2xl p-6 hover:border-cyanAccent transition-all group">
+                <div class="h-36 rounded-xl overflow-hidden mb-4 bg-slate-950">
+                    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
-                <div class="text-xl font-extrabold text-white font-mono" id="kpi-total-boletos">0</div>
-                <div class="text-[10px] text-emerald-400 flex items-center gap-1 font-medium mt-1">
-                    <span id="kpi-pct-base">100% da base ativa</span>
-                </div>
+                <h3 class="text-xl font-bold mb-2 uppercase">PCS & NOTEBOOKS</h3>
+                <p class="text-slate-400 text-sm mb-4">Construção de PCs gamer/trabalho, manutenção preventiva, limpeza interna e troca de SSD.</p>
             </div>
-
-            <div class="glass-panel rounded-xl p-3.5 flex flex-col justify-between">
-                <div class="flex items-center justify-between text-slate-400 mb-1">
-                    <span class="text-[10px] font-bold uppercase tracking-wider">Volume Financeiro</span>
-                    <i data-lucide="banknote" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-cyanAccent transition-all group">
+                <div class="h-36 rounded-xl overflow-hidden mb-4 bg-slate-950">
+                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
-                <div class="text-xl font-extrabold text-white font-mono" id="kpi-total-valor">R$ 0,00</div>
-                <div class="text-[10px] text-slate-400 mt-1">Montante total selecionado</div>
+                <h3 class="text-xl font-bold mb-2 uppercase">IPHONES & CELULARES</h3>
+                <p class="text-slate-400 text-sm mb-4">Revenda de smartphones seminovos testados com garantia e procedência.</p>
             </div>
-
-            <div class="glass-panel rounded-xl p-3.5 flex flex-col justify-between">
-                <div class="flex items-center justify-between text-slate-400 mb-1">
-                    <span class="text-[10px] font-bold uppercase tracking-wider">Ticket Médio</span>
-                    <i data-lucide="trending-up" class="w-3.5 h-3.5 text-cyan-400"></i>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-pink-500 transition-all group">
+                <div class="h-36 rounded-xl overflow-hidden mb-4 bg-slate-950">
+                    <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
-                <div class="text-xl font-extrabold text-cyan-300 font-mono" id="kpi-ticket-medio">R$ 0,00</div>
-                <div class="text-[10px] text-slate-400 mt-1 font-mono" id="kpi-mediana">Mediana: R$ 0,00</div>
+                <h3 class="text-xl font-bold mb-2 uppercase">STREAMING IPTV</h3>
+                <p class="text-slate-400 text-sm mb-4">Grade completa de canais ao vivo, filmes e séries via Flash TV Express.</p>
             </div>
-
-            <div class="glass-panel rounded-xl p-3.5 flex flex-col justify-between">
-                <div class="flex items-center justify-between text-slate-400 mb-1">
-                    <span class="text-[10px] font-bold uppercase tracking-wider">Variação Min / Max</span>
-                    <i data-lucide="scale" class="w-3.5 h-3.5 text-purple-400"></i>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 hover:border-cyanAccent transition-all group">
+                <div class="h-36 rounded-xl overflow-hidden mb-4 bg-slate-950">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
-                <div class="text-xs font-bold text-white font-mono" id="kpi-max-boleto">Max: R$ 0,00</div>
-                <div class="text-[10px] text-slate-400 font-mono mt-0.5" id="kpi-min-boleto">Min: R$ 0,00</div>
+                <h3 class="text-xl font-bold mb-2 uppercase">REDES & MIKROTIK</h3>
+                <p class="text-slate-400 text-sm mb-4">Configuração profissional de roteadores MikroTik e Wi-Fi corporativo.</p>
             </div>
+        </div>
+    </section>
 
-            <div class="glass-panel rounded-xl p-3.5 flex flex-col justify-between">
-                <div class="flex items-center justify-between text-slate-400 mb-1">
-                    <span class="text-[10px] font-bold uppercase tracking-wider">Vencimento Top</span>
-                    <i data-lucide="calendar-check" class="w-3.5 h-3.5 text-amber-400"></i>
-                </div>
-                <div class="text-lg font-extrabold text-amber-300 font-mono" id="kpi-top-vencimento">-</div>
-                <div class="text-[10px] text-amber-400 font-medium mt-1" id="kpi-top-vencimento-share">0 boletos (0%)</div>
-            </div>
-
-            <div class="glass-panel rounded-xl p-3.5 flex flex-col justify-between">
-                <div class="flex items-center justify-between text-slate-400 mb-1">
-                    <span class="text-[10px] font-bold uppercase tracking-wider">Região Predominante</span>
-                    <i data-lucide="map" class="w-3.5 h-3.5 text-emerald-400"></i>
-                </div>
-                <div class="text-lg font-extrabold text-white font-mono" id="kpi-top-ddd">DDD -</div>
-                <div class="text-[10px] text-slate-400 mt-1" id="kpi-top-ddd-pct">Bahia</div>
-            </div>
-
-        </section>
-
-        <!-- GRÁFICOS INTERATIVOS DINÂMICOS -->
-        <section class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-            <!-- Gráfico 1: Vencimentos x Valor -->
-            <div class="lg:col-span-2 glass-panel rounded-2xl p-5 flex flex-col justify-between">
-                <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
-                    <div>
-                        <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                            <i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-400"></i>
-                            Volumetria e Valor Financeiro por Vencimento
-                        </h3>
-                        <p class="text-[11px] text-slate-400">Análise de pico de cobrança e receita esperada</p>
-                    </div>
-                </div>
-                <div class="relative h-64 w-full">
-                    <canvas id="chartVencimentos"></canvas>
-                </div>
-            </div>
-
-            <!-- Gráfico 2: Distribuição por Tipo de Veículo -->
-            <div class="glass-panel rounded-2xl p-5 flex flex-col justify-between">
-                <div class="mb-3">
-                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                        <i data-lucide="pie-chart" class="w-4 h-4 text-cyan-400"></i>
-                        Composição por Perfil de Veículo
-                    </h3>
-                    <p class="text-[11px] text-slate-400">Segmentação calculada por categoria de plano</p>
-                </div>
-                <div class="relative h-64 w-full flex items-center justify-center">
-                    <canvas id="chartVeiculos"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-            <!-- Gráfico 3: Horários de Envio -->
-            <div class="glass-panel rounded-2xl p-5">
-                <div class="flex justify-between items-center mb-3">
-                    <div>
-                        <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                            <i data-lucide="clock-9" class="w-4 h-4 text-pink-400"></i>
-                            Distribuição de Disparos por Hora do Dia
-                        </h3>
-                        <p class="text-[11px] text-slate-400">Eficiência de disparo dentro da janela útil</p>
-                    </div>
-                </div>
-                <div class="relative h-60 w-full">
-                    <canvas id="chartHorarios"></canvas>
-                </div>
-            </div>
-
-            <!-- Gráfico 4: Distribuição por DDD -->
-            <div class="glass-panel rounded-2xl p-5">
-                <div class="flex justify-between items-center mb-3">
-                    <div>
-                        <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                            <i data-lucide="map-pin" class="w-4 h-4 text-purple-400"></i>
-                            Concentração Geográfica por DDD
-                        </h3>
-                        <p class="text-[11px] text-slate-400">Volume de associados notificados por região</p>
-                    </div>
-                </div>
-                <div class="relative h-60 w-full">
-                    <canvas id="chartDDDs"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <!-- TABELA ANALÍTICA DINÂMICA COM ORDENAÇÃO E PAGINAÇÃO -->
-        <section class="glass-panel rounded-2xl p-5">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+    <!-- SEÇÃO NOSSA LOJA / ATENDIMENTO PRESENCIAL -->
+    <section id="EMPRESA" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="bg-gradient-to-br from-cardBg via-slate-900 to-slate-950 border border-emerald-500/30 rounded-3xl p-8 sm:p-12 shadow-2xl">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                        <i data-lucide="table-2" class="w-4 h-4 text-emerald-400"></i>
-                        Detalhamento Analítico Individual
-                    </h3>
-                    <p class="text-[11px] text-slate-400">Registros filtrados prontos para conferência e auditoria</p>
+                    <span class="text-xs uppercase font-mono tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30 font-bold">Atendimento Presencial</span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-white mt-3 mb-4 uppercase">NOSSA ESTRUTURA & LOJA FÍSICA</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm mb-6 leading-relaxed">
+                        Visite nossa loja técnica em Alagoinhas - Bahia! Dispomos de bancada de alta precisão para diagnóstico rápido, montagem de PCs e vitrine com smartphones revisados.
+                    </p>
+                    <div class="space-y-3 text-xs font-mono text-slate-300 mb-6">
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-emerald-400 text-base"></i> Alagoinhas, Bahia - Brasil</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-clock text-emerald-400 text-base"></i> Segunda a Sexta: 08:00h às 18:00h | Sábado: 08:00h às 12:00h</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-phone text-emerald-400 text-base"></i> (75) 99242-3627</div>
+                    </div>
                 </div>
-
-                <div class="flex items-center gap-2 text-xs no-print">
-                    <span class="text-slate-400">Linhas por página:</span>
-                    <select id="rows-per-page" onchange="changeRowsPerPage(this.value)" class="bg-slate-900 border border-slate-700 text-slate-200 rounded px-2 py-1 focus:outline-none">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                        <option value="all">Todas</option>
-                    </select>
+                <div class="rounded-2xl overflow-hidden border border-slate-800 shadow-2xl h-64 sm:h-80">
+                    <iframe class="w-full h-full border-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31182.253683935376!2d-38.4357288!3d-12.1352467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71440f959c9889d%3A0x633d77d12f37803d!2sAlagoinhas%2C%20BA!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="overflow-x-auto rounded-xl border border-slate-800">
-                <table class="w-full text-left text-xs text-slate-300">
-                    <thead class="bg-slate-900 text-slate-400 uppercase font-semibold text-[10px] tracking-wider border-b border-slate-800">
-                        <tr>
-                            <th onclick="sortTable('Data e hora')" class="py-3 px-3.5 cursor-pointer hover:text-white">Data / Hora <i data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
-                            <th class="py-3 px-3.5">Régua</th>
-                            <th class="py-3 px-3.5">Base</th>
-                            <th onclick="sortTable('Nome')" class="py-3 px-3.5 cursor-pointer hover:text-white">Associado <i data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
-                            <th class="py-3 px-3.5">Telefone / DDD</th>
-                            <th class="py-3 px-3.5 text-center">Veículo</th>
-                            <th class="py-3 px-3.5 text-center">Nº Boleto</th>
-                            <th onclick="sortTable('Valor')" class="py-3 px-3.5 text-right cursor-pointer hover:text-white">Valor (R$) <i data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
-                            <th onclick="sortTable('Vencimento Original')" class="py-3 px-3.5 text-center cursor-pointer hover:text-white">Vencimento <i data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
-                            <th class="py-3 px-3.5 text-center">Status Envio</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-body" class="divide-y divide-slate-800/60 font-sans">
-                        <!-- Conteúdo preenchido dinamicamente -->
-                    </tbody>
-                </table>
+    <!-- SEÇÃO DE IPTV / STREAMING -->
+    <section id="IPTV" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="bg-gradient-to-r from-purple-950/60 via-cardBg to-blue-950/60 border border-pink-500/30 rounded-3xl p-8 sm:p-12 shadow-2xl grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <span class="text-xs uppercase font-mono tracking-widest text-pink-400 bg-pink-500/10 px-3 py-1 rounded-full border border-pink-500/30 font-bold">Flash TV Express</span>
+                <h2 class="text-2xl sm:text-4xl font-black text-white mt-3 mb-4 uppercase">STREAMING DE ENTRETENIMENTO COMPLETO</h2>
+                <p class="text-slate-300 text-xs sm:text-sm mb-6 leading-relaxed">
+                    Tenha acesso a mais de milhares de canais em alta definição, os maiores lançamentos do cinema, séries atualizadas e esportes ao vivo direto na sua Smart TV, TV Box, celular ou computador.
+                </p>
+                <div class="flex flex-wrap gap-4 mb-8 text-xs font-bold text-slate-200">
+                    <div class="flex items-center gap-2 bg-slate-900 px-3 py-2 rounded-xl border border-slate-800"><i class="fa-solid fa-check text-pink-400"></i> Canais HD / FHD / 4K</div>
+                    <div class="flex items-center gap-2 bg-slate-900 px-3 py-2 rounded-xl border border-slate-800"><i class="fa-solid fa-check text-pink-400"></i> Filmes e Séries On Demand</div>
+                    <div class="flex items-center gap-2 bg-slate-900 px-3 py-2 rounded-xl border border-slate-800"><i class="fa-solid fa-check text-pink-400"></i> Sem travamentos</div>
+                </div>
+                <a href="https://wa.me/5575992423627?text=Olá,%20quero%20testar%20o%20Flash%20TV%20Express!" target="_blank" class="px-6 py-3.5 bg-pink-600 hover:bg-pink-500 text-white font-black rounded-xl text-xs uppercase shadow-lg inline-flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i> QUERO FAZER UM TESTE GRÁTIS
+                </a>
             </div>
-
-            <!-- Paginação -->
-            <div class="flex flex-col sm:flex-row justify-between items-center mt-4 gap-3 text-xs text-slate-400 no-print">
-                <div id="table-pagination-info">Mostrando 0 a 0 de 0 registros</div>
-                <div class="flex items-center space-x-2">
-                    <button onclick="navigatePage(-1)" id="btn-prev" class="px-3 py-1.5 bg-slate-850 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed rounded-lg border border-slate-700 text-white transition">Anterior</button>
-                    <span id="page-indicator" class="px-3 py-1.5 bg-slate-900 rounded-lg text-emerald-400 font-mono font-semibold border border-slate-800">1 / 1</span>
-                    <button onclick="navigatePage(1)" id="btn-next" class="px-3 py-1.5 bg-slate-850 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed rounded-lg border border-slate-700 text-white transition">Próximo</button>
+            <div class="relative rounded-2xl overflow-hidden border border-pink-500/40 shadow-2xl">
+                <img id="display-iptv-img" src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&q=80&w=800" class="w-full h-72 sm:h-96 object-cover" alt="Streaming IPTV">
+                <div class="absolute inset-0 bg-gradient-to-t from-darkBg/90 via-transparent to-transparent flex items-end p-6">
+                    <span class="text-xs font-mono text-pink-300 uppercase font-bold">⚡ Entretenimento Sem Limites na sua Tela</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
+    <!-- VITRINE COM FILTROS DE CATEGORIA -->
+    <section id="LOJA" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900 bg-gradient-to-b from-darkBg to-slate-950/60 rounded-3xl my-8">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-6">
+            <div>
+                <span class="text-xs uppercase font-mono tracking-widest text-secondary bg-secondary/10 px-3 py-1 rounded-full border border-secondary/35">ESTOQUE EM DESTAQUE</span>
+                <h2 class="text-2xl sm:text-4xl font-black text-white mt-3 uppercase">🔥 APARELHOS & ACESSÓRIOS DISPONÍVEIS</h2>
+            </div>
+            <!-- Botões de Filtro -->
+            <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="filterProducts('all')" id="filter-btn-all" class="px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer">Todos</button>
+                <button type="button" onclick="filterProducts('apple')" id="filter-btn-apple" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">iPhones / Apple</button>
+                <button type="button" onclick="filterProducts('acessórios')" id="filter-btn-acessórios" class="px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">Acessórios</button>
+            </div>
+        </div>
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+    </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-800/80 bg-slate-950 py-4 text-center text-xs text-slate-500 no-print">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div>Aprovatt • Gestão de Automação & Indicadores Financeiros</div>
-            <div class="text-slate-400">Conexão Google Sheets API • Atualização Dinâmica</div>
+    <!-- SEÇÃO DE DICAS DE OTIMIZAÇÃO DE COMPUTADOR -->
+    <section id="OTIMIZACAO" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs uppercase font-mono tracking-widest text-cyanAccent bg-cyanAccent/10 px-3 py-1 rounded-full border border-cyanAccent/30">Performance & Velocidade</span>
+            <h2 class="text-2xl sm:text-3xl font-black mb-3 uppercase mt-3">POR QUE OTIMIZAR SEU COMPUTADOR?</h2>
+            <p class="text-slate-400 text-xs sm:text-sm">Manutenção preventiva e upgrades certos dão uma nova vida ao seu PC ou notebook.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 text-left">
+                <div class="w-12 h-12 rounded-xl bg-cyanAccent/10 text-cyanAccent flex items-center justify-center text-xl mb-4 font-bold">01</div>
+                <h3 class="font-bold text-white text-base mb-2 uppercase">Instalação de SSD NVMe / SATA</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">
+                    Substituir o antigo HD mecânico por um SSD acelera o boot do Windows em até 10x e elimina travamentos irritantes no dia a dia.
+                </p>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 text-left">
+                <div class="w-12 h-12 rounded-xl bg-electricBlue/10 text-secondary flex items-center justify-center text-xl mb-4 font-bold">02</div>
+                <h3 class="font-bold text-white text-base mb-2 uppercase">Limpeza e Pasta Térmica</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">
+                    A poeira acumulada faz o processador aquecer e perder desempenho. A troca periódica de pasta térmica garante operação fria e silenciosa.
+                </p>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 text-left">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4 font-bold">03</div>
+                <h3 class="font-bold text-white text-base mb-2 uppercase">Formatação e Limpeza de Software</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">
+                    Remoção de vírus, programas desnecessários em segundo plano e otimização completa do sistema operacional para máxima velocidade.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARROSSEL DE DEPOIMENTOS DE CLIENTES -->
+    <section id="DEPOIMENTOS" class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto border-t border-slate-900">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <span class="text-xs uppercase font-mono tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/30">Confiança & Qualidade</span>
+            <h2 class="text-2xl sm:text-3xl font-black mb-3 uppercase mt-3">O QUE DIZEM NOSSOS CLIENTES</h2>
+        </div>
+        <div class="bg-cardBg border border-slate-800 rounded-3xl p-8 sm:p-12 relative shadow-2xl text-center">
+            <div id="testimonial-container" class="min-h-[140px] flex flex-col justify-center items-center"></div>
+            <div class="flex justify-center items-center gap-4 mt-6">
+                <button type="button" onclick="prevTestimonial()" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition cursor-pointer">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <span id="testimonial-indicator" class="text-xs font-mono text-slate-400 uppercase">1 / 4</span>
+                <button type="button" onclick="nextTestimonial()" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition cursor-pointer">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE NOTÍCIAS TECH (RSS / AUTOMATIZADA) -->
+    <section id="NOTICIAS" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-900">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+            <div>
+                <span class="text-xs uppercase font-mono tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30 font-bold">Atualizações em Tempo Real</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-white mt-3 uppercase">📰 NOTÍCIAS DO MUNDO TECH</h2>
+            </div>
+            <span class="text-xs text-slate-400 font-mono"><i class="fa-solid fa-rss text-emerald-400 mr-1"></i> Feed Automatizado</span>
+        </div>
+        <div id="tech-news-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-cardBg border border-slate-800 p-6 rounded-2xl animate-pulse">
+                <div class="h-4 bg-slate-800 rounded w-3/4 mb-4"></div>
+                <div class="h-3 bg-slate-800 rounded w-full mb-2"></div>
+                <div class="h-3 bg-slate-800 rounded w-5/6"></div>
+            </div>
+            <div class="bg-cardBg border border-slate-800 p-6 rounded-2xl animate-pulse">
+                <div class="h-4 bg-slate-800 rounded w-3/4 mb-4"></div>
+                <div class="h-3 bg-slate-800 rounded w-full mb-2"></div>
+                <div class="h-3 bg-slate-800 rounded w-5/6"></div>
+            </div>
+            <div class="bg-cardBg border border-slate-800 p-6 rounded-2xl animate-pulse">
+                <div class="h-4 bg-slate-800 rounded w-3/4 mb-4"></div>
+                <div class="h-3 bg-slate-800 rounded w-full mb-2"></div>
+                <div class="h-3 bg-slate-800 rounded w-5/6"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLUBE VIP / ABAS DE CADASTRO E LOGIN -->
+    <section id="VIP" class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <div class="bg-gradient-to-br from-cardBg to-slate-900 border border-electricBlue/40 rounded-3xl p-6 sm:p-12 text-center shadow-2xl relative overflow-hidden animate-glow">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyanAccent/10 border border-cyanAccent/30 text-secondary text-xs font-semibold mb-4">
+                <i class="fa-solid fa-crown text-amber-400"></i>
+                <span class="uppercase font-bold">ACESSO EXCLUSIVO & CLUBE VIP</span>
+            </div>
+
+            <div id="vip-container">
+                <div class="flex justify-center gap-2 mb-6">
+                    <button type="button" onclick="switchVipTab('register')" id="vip-tab-reg-btn" class="px-5 py-2.5 bg-primary text-white font-black rounded-xl text-xs uppercase shadow transition cursor-pointer">Criar Cadastro VIP</button>
+                    <button type="button" onclick="switchVipTab('login')" id="vip-tab-log-btn" class="px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer">Já tenho conta (Entrar)</button>
+                </div>
+
+                <div id="vip-form-register-box">
+                    <h2 class="text-2xl sm:text-3xl font-black mb-2 uppercase">CADASTRE-SE NO CLUBE VIP</h2>
+                    <p class="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto mb-6">Preencha seus dados para criar sua conta no Clube VIP e receber descontos exclusivos em primeira mão!</p>
+                    <form id="vip-form" onsubmit="handleUserRegistration(event)" class="max-w-md mx-auto space-y-3 text-left">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">NOME COMPLETO</label>
+                            <input type="text" id="reg-name" placeholder="Ex: Davi Barros" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">WHATSAPP</label>
+                                <input type="tel" id="reg-phone" placeholder="(75) 9XXXX-XXXX" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">E-MAIL</label>
+                                <input type="email" id="reg-email" placeholder="seu@email.com" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">SENHA DE ACESSO</label>
+                            <input type="password" id="reg-pass" placeholder="••••••••" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 bg-primary hover:opacity-90 text-white font-black rounded-xl shadow-lg uppercase text-xs mt-4 cursor-pointer">
+                            <i class="fa-solid fa-user-plus text-base mr-2"></i> CRIAR CONTA NO CLUBE VIP 🚀
+                        </button>
+                    </form>
+                </div>
+
+                <div id="vip-form-login-box" class="hidden">
+                    <h2 class="text-2xl sm:text-3xl font-black mb-2 uppercase">ENTRAR NA SUA CONTA VIP</h2>
+                    <p class="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto mb-6">Digite seu e-mail e senha cadastrados para acessar sua conta.</p>
+                    <div id="login-error-msg" class="hidden mb-3 p-2 bg-red-950/80 border border-red-800 text-red-300 text-xs rounded-lg font-bold uppercase">E-MAIL OU SENHA INCORRETOS!</div>
+                    <form id="vip-login-form" onsubmit="handleUserLogin(event)" class="max-w-md mx-auto space-y-3 text-left">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">E-MAIL CADASTRADO</label>
+                            <input type="email" id="log-email" placeholder="seu@email.com" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1 uppercase">SENHA</label>
+                            <input type="password" id="log-pass" placeholder="••••••••" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyanAccent" required>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-90 text-white font-black rounded-xl shadow-lg uppercase text-xs mt-4 cursor-pointer">
+                            <i class="fa-solid fa-right-to-bracket text-base mr-2"></i> ENTRAR NO CLUBE VIP
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL AUTH ADMIN -->
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-cardBg border border-slate-800 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+            <button type="button" onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg font-bold cursor-pointer">✕</button>
+            <h3 class="text-xl font-bold mb-2 uppercase text-amber-400"><i class="fa-solid fa-lock mr-2"></i> ACESSO RESTRITO ADMIN</h3>
+            <p class="text-xs text-slate-400 mb-4">Digite a senha administrativa para abrir a central de gestão.</p>
+            <div id="admin-error" class="hidden mb-3 p-2 bg-red-950/80 border border-red-800 text-red-300 text-xs rounded-lg font-bold uppercase">SENHA INCORRETA!</div>
+            <form onsubmit="verifyAdmin(event)" class="space-y-4">
+                <input type="password" id="admin-pass" placeholder="SENHA ADMIN" class="w-full bg-darkBg border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-amber-400 uppercase" required>
+                <button type="submit" class="w-full py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-xl transition uppercase text-xs cursor-pointer">ACESSAR PAINEL ADMIN</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER COM ÍCONES DO INSTAGRAM E BOTÃO ADMIN -->
+    <footer class="bg-darkBg border-t border-slate-900 py-8 text-center text-slate-400 text-xs uppercase font-bold relative z-20">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p>&copy; 2026 DBARROS TECH. TODOS OS DIREITOS RESERVADOS. ATENDIMENTO: (75) 99242-3627</p>
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.instagram.com/dbarrostech/" target="_blank" class="flex items-center gap-1.5 hover:text-pink-400 transition-colors">
+                        <i class="fa-brands fa-instagram text-base text-pink-500"></i> @dbarrostech
+                    </a>
+                    <a href="https://www.instagram.com/flashtvexpress/" target="_blank" class="flex items-center gap-1.5 hover:text-pink-400 transition-colors">
+                        <i class="fa-brands fa-instagram text-base text-pink-500"></i> @flashtvexpress
+                    </a>
+                </div>
+                <button type="button" onclick="openAdminModal()" class="text-[10px] text-slate-600 hover:text-amber-400 transition font-mono border border-slate-800 hover:border-amber-400/40 px-2.5 py-1 rounded-lg cursor-pointer" title="Acesso Admin">
+                    <i class="fa-solid fa-lock mr-1"></i> Admin
+                </button>
+            </div>
         </div>
     </footer>
 
-    <!-- LÓGICA JS COMPLETA -->
+    <!-- SCRIPT GERAL -->
     <script>
-        const SHEET_ID = '1gHSotrzUANYZRGh22fvmydZ9wZ28fSvVHEQHskd85t4';
-
-        // Dataset Base Completo
-        let masterData = [
-            {"Data e hora": "18/07/26 09:43:17", "Telefone": 5575981727763, "Nome": "JOAO BATISTA JESUS DE SOUZA", "Número do boleto": 3229589, "Valor": 155.99, "Vencimento Original": "20/07/2026", "Obs": "Mensagem enviada", "Fluxo": "Mensagem - Boletos (2 dias antes do vencimento)", "DDD": "75", "Hora": 9, "Regua": "2 dias antes", "Base": "ServCar", "Veiculo": "Carro Passeio"},
-            {"Data e hora": "18/07/26 09:50:29", "Telefone": 5575988682313, "Nome": "LUCAS LIMA DANTAS", "Número do boleto": 3234368, "Valor": 107.01, "Vencimento Original": "20/07/2026", "Obs": "Mensagem enviada", "Fluxo": "Mensagem - Boletos (2 dias antes do vencimento)", "DDD": "75", "Hora": 9, "Regua": "2 dias antes", "Base": "ServCar", "Veiculo": "Carro Passeio"},
-            {"Data e hora": "18/07/26 10:03:17", "Telefone": 5575981985944, "Nome": "ANDRE ROBERTO DE OLIVEIRA CARVALHO", "Número do boleto": 3218762, "Valor": 132.12, "Vencimento Original": "20/07/2026", "Obs": "Mensagem enviada", "Fluxo": "Mensagem - Boletos (2 dias antes do vencimento)", "DDD": "75", "Hora": 10, "Regua": "2 dias antes", "Base": "ServCar", "Veiculo": "Carro Passeio"},
-            {"Data e hora": "18/07/26 10:15:00", "Telefone": 5571992018822, "Nome": "CARLOS EDUARDO SILVA", "Número do boleto": 3219001, "Valor": 210.50, "Vencimento Original": "20/07/2026", "Obs": "Falha no envio", "Fluxo": "Mensagem - Boletos (2 dias antes do vencimento)", "DDD": "71", "Hora": 10, "Regua": "2 dias antes", "Base": "ServTaxi", "Veiculo": "SUV / Pick-up"},
-            {"Data e hora": "18/07/26 11:22:10", "Telefone": 5573988112233, "Nome": "MARIANA COSTA DE OLIVEIRA", "Número do boleto": 3221102, "Valor": 75.00, "Vencimento Original": "20/07/2026", "Obs": "Pendente", "Fluxo": "Mensagem - Boletos (2 dias antes do vencimento)", "DDD": "73", "Hora": 11, "Regua": "2 dias antes", "Base": "ServCar", "Veiculo": "Moto"}
+        let products = JSON.parse(localStorage.getItem('dbarros_products')) || [
+            { id: 1, title: 'iPhone 13 Pro 128GB', category: 'apple', price: 3890.00, cost: 3100.00, specs: 'Bateria 94% • Caixa + Cabo • Garantia', image: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&q=80&w=600', status: 'Disponível' },
+            { id: 2, title: 'iPhone 11 64GB Black', category: 'apple', price: 1990.00, cost: 1450.00, specs: 'Tela Original • Revisado em Bancada', image: 'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&q=80&w=600', status: 'Disponível' },
+            { id: 3, title: 'Cabo USB-C p/ Lightning 2m', category: 'acessórios', price: 79.90, cost: 35.00, specs: 'Carga Rápida Turbo Baseus', image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&q=80&w=600', status: 'Disponível' }
         ];
 
-        let filteredData = [...masterData];
-        let currentPage = 1;
-        let rowsPerPage = 10;
-        let sortColumn = 'Data e hora';
-        let sortAsc = false;
+        let siteImages = JSON.parse(localStorage.getItem('dbarros_site_images')) || {
+            hero: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800',
+            iptv: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&q=80&w=800'
+        };
 
-        let chartVenc = null;
-        let chartVeic = null;
-        let chartHora = null;
-        let chartDDD = null;
-        let flatpickrInstance = null;
+        let registeredUsers = JSON.parse(localStorage.getItem('dbarros_vip_users')) || [
+            { date: '2026-10-27 10:00', name: 'Davi Barros', phone: '(75) 99999-9999', email: 'davi@dbarrostech.com', pass: '123456' }
+        ];
+        let currentUser = JSON.parse(localStorage.getItem('dbarros_user')) || null;
 
-        // Inicialização de Opções Dinâmicas dos Filtros (sem resetar as seleções)
-        function populateFilterOptions() {
-            const currentVenc = document.getElementById('filter-vencimento').value;
-            const currentDDD = document.getElementById('filter-ddd').value;
+        function loadSiteImages() {
+            const hero = document.getElementById('display-hero-img');
+            const iptv = document.getElementById('display-iptv-img');
+            if(hero) hero.src = siteImages.hero;
+            if(iptv) iptv.src = siteImages.iptv;
 
-            const vencSet = new Set(masterData.map(r => r['Vencimento Original']).filter(Boolean));
-            const dddSet = new Set(masterData.map(r => r.DDD).filter(Boolean));
-
-            const vencSelect = document.getElementById('filter-vencimento');
-            vencSelect.innerHTML = '<option value="ALL">Todos os Vencimentos</option>';
-            Array.from(vencSet).sort().forEach(v => {
-                const opt = document.createElement('option');
-                opt.value = v;
-                opt.textContent = v;
-                vencSelect.appendChild(opt);
-            });
-            vencSelect.value = currentVenc || 'ALL';
-
-            const dddSelect = document.getElementById('filter-ddd');
-            dddSelect.innerHTML = '<option value="ALL">Todos os DDDs</option>';
-            Array.from(dddSet).sort().forEach(d => {
-                const opt = document.createElement('option');
-                opt.value = d;
-                opt.textContent = `DDD ${d}`;
-                dddSelect.appendChild(opt);
-            });
-            dddSelect.value = currentDDD || 'ALL';
+            const inputHero = document.getElementById('img-site-hero');
+            const inputIptv = document.getElementById('img-site-iptv');
+            if(inputHero) inputHero.value = siteImages.hero;
+            if(inputIptv) inputIptv.value = siteImages.iptv;
         }
 
-        // Aplicação Integrada dos Filtros Preservando Estado
-        function applyAllFilters() {
-            const regua = document.getElementById('filter-regua').value;
-            const base = document.getElementById('filter-base').value;
-            const veiculo = document.getElementById('filter-veiculo').value;
-            const vencimento = document.getElementById('filter-vencimento').value;
-            const faixaValor = document.getElementById('filter-faixa-valor').value;
-            const ddd = document.getElementById('filter-ddd').value;
-            const turno = document.getElementById('filter-turno').value;
-            
-            const valMin = parseFloat(document.getElementById('filter-val-min').value) || 0;
-            const valMax = parseFloat(document.getElementById('filter-val-max').value) || Infinity;
-            const search = document.getElementById('search-global').value.toLowerCase().trim();
-
-            let dateRange = [];
-            if (flatpickrInstance && flatpickrInstance.selectedDates.length === 2) {
-                dateRange = flatpickrInstance.selectedDates;
-            }
-
-            filteredData = masterData.filter(r => {
-                if (regua !== 'ALL' && r.Regua !== regua) return false;
-                if (base !== 'ALL' && r.Base !== base) return false;
-                if (veiculo !== 'ALL' && r.Veiculo !== veiculo) return false;
-                if (vencimento !== 'ALL' && r['Vencimento Original'] !== vencimento) return false;
-                if (ddd !== 'ALL' && r.DDD !== ddd) return false;
-
-                // Faixa de Valor Preset
-                const val = r.Valor || 0;
-                if (faixaValor === 'f1' && val > 80) return false;
-                if (faixaValor === 'f2' && (val <= 80 || val > 140)) return false;
-                if (faixaValor === 'f3' && (val <= 140 || val > 200)) return false;
-                if (faixaValor === 'f4' && val <= 200) return false;
-
-                // Min e Max Customizado
-                if (val < valMin || val > valMax) return false;
-
-                // Turno
-                const h = r.Hora || 0;
-                if (turno === 'manha' && (h < 6 || h >= 12)) return false;
-                if (turno === 'tarde' && (h < 12 || h >= 18)) return false;
-                if (turno === 'noite' && (h < 18 || h >= 23)) return false;
-
-                // Busca Textual Global
-                if (search) {
-                    const nameMatch = (r.Nome || '').toLowerCase().includes(search);
-                    const phoneMatch = String(r.Telefone || '').includes(search);
-                    const boletoMatch = String(r['Número do boleto'] || '').includes(search);
-                    if (!nameMatch && !phoneMatch && !boletoMatch) return false;
-                }
-
-                return true;
-            });
-
-            // Atualizar badge de total filtrado
-            document.getElementById('filtered-records-badge').innerText = `${filteredData.length} / ${masterData.length} registros`;
-
-            updateKPIs();
-            renderCharts();
-            currentPage = 1;
-            renderTable();
+        function saveSiteImages(e) {
+            e.preventDefault();
+            siteImages.hero = document.getElementById('img-site-hero').value;
+            siteImages.iptv = document.getElementById('img-site-iptv').value;
+            localStorage.setItem('dbarros_site_images', JSON.stringify(siteImages));
+            loadSiteImages();
+            alert('Imagens do site atualizadas com sucesso!');
         }
 
-        // Atualização Dinâmica dos KPIs
-        function updateKPIs() {
-            const total = filteredData.length;
-            const totalValor = filteredData.reduce((acc, r) => acc + (r.Valor || 0), 0);
-            const ticketMedio = total > 0 ? totalValor / total : 0;
-
-            const valores = filteredData.map(r => r.Valor || 0).sort((a, b) => a - b);
-            const minVal = valores.length ? valores[0] : 0;
-            const maxVal = valores.length ? valores[valores.length - 1] : 0;
-            const mediana = valores.length ? (valores.length % 2 === 0 ? (valores[valores.length / 2 - 1] + valores[valores.length / 2]) / 2 : valores[Math.floor(valores.length / 2)]) : 0;
-
-            document.getElementById('kpi-total-boletos').innerText = total.toLocaleString('pt-BR');
-            document.getElementById('kpi-total-valor').innerText = totalValor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            document.getElementById('kpi-ticket-medio').innerText = ticketMedio.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            document.getElementById('kpi-mediana').innerText = `Mediana: ${mediana.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
-            document.getElementById('kpi-max-boleto').innerText = `Max: ${maxVal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
-            document.getElementById('kpi-min-boleto').innerText = `Min: ${minVal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
-
-            // Vencimento mais frequente
-            const vencFreq = {};
-            filteredData.forEach(r => {
-                const v = r['Vencimento Original'];
-                if (v) vencFreq[v] = (vencFreq[v] || 0) + 1;
-            });
-            let topVenc = '-';
-            let topVencCount = 0;
-            for (const [k, v] of Object.entries(vencFreq)) {
-                if (v > topVencCount) { topVencCount = v; topVenc = k; }
-            }
-            const pctVenc = total > 0 ? ((topVencCount / total) * 100).toFixed(1) : 0;
-            document.getElementById('kpi-top-vencimento').innerText = topVenc;
-            document.getElementById('kpi-top-vencimento-share').innerText = `${topVencCount} boletos (${pctVenc}%)`;
-
-            // DDD Predominante
-            const dddFreq = {};
-            filteredData.forEach(r => {
-                if (r.DDD) dddFreq[r.DDD] = (dddFreq[r.DDD] || 0) + 1;
-            });
-            let topDDD = '-';
-            let topDDDCount = 0;
-            for (const [k, v] of Object.entries(dddFreq)) {
-                if (v > topDDDCount) { topDDDCount = v; topDDD = k; }
-            }
-            document.getElementById('kpi-top-ddd').innerText = topDDD !== '-' ? `DDD ${topDDD}` : '-';
-            document.getElementById('kpi-top-ddd-pct').innerText = `${topDDDCount} associados`;
-        }
-
-        // Renderização dos Gráficos Interativos
-        function renderCharts() {
-            Chart.defaults.color = '#94a3b8';
-            Chart.defaults.font.family = '"Plus Jakarta Sans", sans-serif';
-
-            // 1. Vencimentos x Valor
-            const vencMap = {};
-            filteredData.forEach(r => {
-                const k = r['Vencimento Original'] || 'Outros';
-                vencMap[k] = (vencMap[k] || 0) + (r.Valor || 0);
-            });
-            const ctxV = document.getElementById('chartVencimentos').getContext('2d');
-            if (chartVenc) chartVenc.destroy();
-            chartVenc = new Chart(ctxV, {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(vencMap),
-                    datasets: [{
-                        label: 'Valor Total (R$)',
-                        data: Object.values(vencMap),
-                        backgroundColor: 'rgba(16, 185, 129, 0.75)',
-                        borderRadius: 6
-                    }]
-                },
-                options: { responsive: true, maintainAspectRatio: false }
-            });
-
-            // 2. Veículos
-            const veicMap = {};
-            filteredData.forEach(r => {
-                const k = r.Veiculo || 'Outros';
-                veicMap[k] = (veicMap[k] || 0) + 1;
-            });
-            const ctxVeic = document.getElementById('chartVeiculos').getContext('2d');
-            if (chartVeic) chartVeic.destroy();
-            chartVeic = new Chart(ctxVeic, {
-                type: 'doughnut',
-                data: {
-                    labels: Object.keys(veicMap),
-                    datasets: [{
-                        data: Object.values(veicMap),
-                        backgroundColor: ['#10b981', '#06b6d4', '#8b5cf6', '#f59e0b', '#ec4899']
-                    }]
-                },
-                options: { responsive: true, maintainAspectRatio: false }
-            });
-
-            // 3. Horários
-            const horaMap = {};
-            filteredData.forEach(r => {
-                const h = r.Hora !== undefined ? `${r.Hora}h` : 'N/I';
-                horaMap[h] = (horaMap[h] || 0) + 1;
-            });
-            const ctxH = document.getElementById('chartHorarios').getContext('2d');
-            if (chartHora) chartHora.destroy();
-            chartHora = new Chart(ctxH, {
-                type: 'line',
-                data: {
-                    labels: Object.keys(horaMap),
-                    datasets: [{
-                        label: 'Disparos',
-                        data: Object.values(horaMap),
-                        borderColor: '#ec4899',
-                        backgroundColor: 'rgba(236, 72, 153, 0.15)',
-                        fill: true,
-                        tension: 0.3
-                    }]
-                },
-                options: { responsive: true, maintainAspectRatio: false }
-            });
-
-            // 4. DDDs
-            const dddMap = {};
-            filteredData.forEach(r => {
-                const d = r.DDD ? `DDD ${r.DDD}` : 'N/I';
-                dddMap[d] = (dddMap[d] || 0) + 1;
-            });
-            const ctxD = document.getElementById('chartDDDs').getContext('2d');
-            if (chartDDD) chartDDD.destroy();
-            chartDDD = new Chart(ctxD, {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(dddMap),
-                    datasets: [{
-                        label: 'Associados',
-                        data: Object.values(dddMap),
-                        backgroundColor: '#8b5cf6',
-                        borderRadius: 6
-                    }]
-                },
-                options: { responsive: true, maintainAspectRatio: false }
-            });
-        }
-
-        // Renderização da Tabela com Destaque de Cor para Mensagens Não Enviadas
-        function renderTable() {
-            const tbody = document.getElementById('table-body');
-            tbody.innerHTML = '';
-
-            // Ordenação
-            filteredData.sort((a, b) => {
-                let valA = a[sortColumn] || '';
-                let valB = b[sortColumn] || '';
-                if (typeof valA === 'string') valA = valA.toLowerCase();
-                if (typeof valB === 'string') valB = valB.toLowerCase();
-                if (valA < valB) return sortAsc ? -1 : 1;
-                if (valA > valB) return sortAsc ? 1 : -1;
-                return 0;
-            });
-
-            // Paginação
-            const total = filteredData.length;
-            const limit = rowsPerPage === 'all' ? total : parseInt(rowsPerPage);
-            const totalPages = Math.ceil(total / limit) || 1;
-            if (currentPage > totalPages) currentPage = totalPages;
-
-            const start = (currentPage - 1) * limit;
-            const end = rowsPerPage === 'all' ? total : Math.min(start + limit, total);
-            const pageData = filteredData.slice(start, end);
-
-            pageData.forEach(r => {
-                const tr = document.createElement('tr');
-                
-                // LÓGICA DE DESTAGUE DE COR DE MENSAGEM NÃO ENVIADA
-                const obsText = (r.Obs || '').toLowerCase();
-                const isEnviado = obsText.includes('enviada') || obsText.includes('sucesso') || obsText.includes('enviado');
-
-                let badgeHTML = '';
-                if (isEnviado) {
-                    tr.className = 'hover:bg-slate-800/40 transition';
-                    badgeHTML = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><i data-lucide="check-circle" class="w-3 h-3"></i> ${r.Obs || 'Enviado'}</span>`;
-                } else {
-                    // DESTAQUE ROSA/VERMELHO PARA NÃO ENVIADOS
-                    tr.className = 'bg-rose-950/20 hover:bg-rose-900/30 transition border-l-2 border-rose-500';
-                    badgeHTML = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40"><i data-lucide="alert-circle" class="w-3 h-3"></i> ${r.Obs || 'Não Enviada'}</span>`;
-                }
-
-                tr.innerHTML = `
-                    <td class="py-2.5 px-3.5 font-mono text-slate-400">${r['Data e hora'] || '-'}</td>
-                    <td class="py-2.5 px-3.5 font-semibold text-rose-300">${r.Regua || '-'}</td>
-                    <td class="py-2.5 px-3.5">${r.Base || '-'}</td>
-                    <td class="py-2.5 px-3.5 font-bold text-white">${r.Nome || '-'}</td>
-                    <td class="py-2.5 px-3.5 font-mono text-slate-400">${r.Telefone || '-'}</td>
-                    <td class="py-2.5 px-3.5 text-center">${r.Veiculo || '-'}</td>
-                    <td class="py-2.5 px-3.5 text-center font-mono text-emerald-400">${r['Número do boleto'] || '-'}</td>
-                    <td class="py-2.5 px-3.5 text-right font-mono font-bold text-white">${(r.Valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
-                    <td class="py-2.5 px-3.5 text-center font-mono text-amber-300">${r['Vencimento Original'] || '-'}</td>
-                    <td class="py-2.5 px-3.5 text-center">${badgeHTML}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-
-            // Atualização dos controles de paginação
-            document.getElementById('table-pagination-info').innerText = `Mostrando ${total === 0 ? 0 : start + 1} a ${end} de ${total} registros`;
-            document.getElementById('page-indicator').innerText = `${currentPage} / ${totalPages}`;
-            document.getElementById('btn-prev').disabled = currentPage <= 1;
-            document.getElementById('btn-next').disabled = currentPage >= totalPages;
-
-            lucide.createIcons();
-        }
-
-        // Funções de Navegação e Ordenação de Tabela
-        function sortTable(col) {
-            if (sortColumn === col) {
-                sortAsc = !sortAsc;
+        // CHAT ASSISTENTE DE IA
+        function toggleAiAssistantModal() {
+            const modal = document.getElementById('ai-assistant-modal');
+            if(modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
             } else {
-                sortColumn = col;
-                sortAsc = true;
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
             }
-            renderTable();
         }
 
-        function navigatePage(direction) {
-            currentPage += direction;
-            renderTable();
+        function askAi(topic) {
+            const chatBody = document.getElementById('ai-chat-body');
+            let userMsg = '';
+            let aiReply = '';
+
+            if(topic === 'pc_lento') {
+                userMsg = 'Por que meu PC está lento e por que instalar SSD?';
+                aiReply = 'O HD antigo atinge no máximo 100MB/s de leitura. Um SSD SATA/NVMe atinge mais de 550MB/s a 3500MB/s! A troca por SSD faz o Windows ligar em menos de 10 segundos e tira qualquer travamento.';
+            } else if(topic === 'iphones') {
+                userMsg = 'Quais iPhones estão disponíveis na vitrine?';
+                const avail = products.filter(p => p.category === 'apple' && p.status === 'Disponível');
+                aiReply = avail.length > 0 
+                    ? 'Temos em estoque: ' + avail.map(p => p.title + ' (' + Number(p.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + ')').join(', ') 
+                    : 'No momento os iPhones em estoque estão sendo revisados na bancada. Fale conosco no WhatsApp para reservas!';
+            } else if(topic === 'iptv') {
+                userMsg = 'Como funciona o teste do IPTV Flash TV Express?';
+                aiReply = 'Oferecemos teste grátis com liberação imediata! Você assiste a canais abertos/fechados, filmes e séries sem travamentos na Smart TV, TV Box ou celular.';
+            } else if(topic === 'mikrotik') {
+                userMsg = 'Como funciona o suporte para redes e MikroTik?';
+                aiReply = 'Configuramos balanceamento de carga (Load Balance Dual-ISP), regras de firewall, controle de banda e Wi-Fi corporativo para empresas e residências.';
+            }
+
+            chatBody.innerHTML += `
+                <div class="bg-electricBlue/20 border border-electricBlue/40 p-2.5 rounded-xl text-right text-cyanAccent font-bold">${userMsg}</div>
+                <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl text-slate-200">${aiReply}</div>
+            `;
+            chatBody.scrollTop = chatBody.scrollHeight;
         }
 
-        function changeRowsPerPage(val) {
-            rowsPerPage = val;
-            currentPage = 1;
-            renderTable();
+        // DEPOIMENTOS
+        const testimonials = [
+            { text: "Montei meu PC Gamer com o Davi e o atendimento foi impecável. Peças originais, organização de cabos perfeita e entrega rápida em Alagoinhas!", name: "Carlos Mendes", role: "Cliente de PC Gamer", initials: "CM" },
+            { text: "Comprei meu iPhone seminovo com procedência e garantia. Aparelho impecável, bateria em estado excelente. Super recomendo!", name: "Jéssica Ribeiro", role: "Cliente de iPhone", initials: "JR" },
+            { text: "O suporte de redes e configuração MikroTik aqui no escritório ficou nota 10. Zero quedas e sinal Wi-Fi excelente em todo o ambiente.", name: "Rodrigo Almeida", role: "Cliente Corporativo", initials: "RA" },
+            { text: "O Flash TV Express rodou liso na minha TV Box sem nenhum travamento. Atendimento nota 10 do suporte!", name: "Marcos Vinícius", role: "Cliente Streaming IPTV", initials: "MV" }
+        ];
+        let currentTestimonialIndex = 0;
+
+        function renderTestimonial() {
+            const container = document.getElementById('testimonial-container');
+            const indicator = document.getElementById('testimonial-indicator');
+            const t = testimonials[currentTestimonialIndex];
+            
+            if(container) {
+                container.innerHTML = `
+                    <div class="text-amber-400 text-sm mb-3">★★★★★</div>
+                    <p class="text-slate-200 text-xs sm:text-sm italic mb-6 leading-relaxed max-w-2xl mx-auto">"${t.text}"</p>
+                    <div class="flex items-center justify-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-electricBlue/20 text-secondary font-bold flex items-center justify-center text-xs">${t.initials}</div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-white text-xs uppercase">${t.name}</h4>
+                            <span class="text-[10px] text-slate-400 uppercase">${t.role}</span>
+                        </div>
+                    </div>
+                `;
+            }
+            if(indicator) indicator.innerText = `${currentTestimonialIndex + 1} / ${testimonials.length}`;
         }
 
-        // Limpeza dos Filtros
-        function resetAllFilters() {
-            document.getElementById('filter-regua').value = 'ALL';
-            document.getElementById('filter-base').value = 'ALL';
-            document.getElementById('filter-veiculo').value = 'ALL';
-            document.getElementById('filter-vencimento').value = 'ALL';
-            document.getElementById('filter-faixa-valor').value = 'ALL';
-            document.getElementById('filter-ddd').value = 'ALL';
-            document.getElementById('filter-turno').value = 'ALL';
-            document.getElementById('filter-val-min').value = '';
-            document.getElementById('filter-val-max').value = '';
-            document.getElementById('search-global').value = '';
-            if (flatpickrInstance) flatpickrInstance.clear();
-            applyAllFilters();
+        function nextTestimonial() { currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length; renderTestimonial(); }
+        function prevTestimonial() { currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length; renderTestimonial(); }
+        renderTestimonial();
+        setInterval(nextTestimonial, 6000);
+
+        // NOTÍCIAS TECH
+        async function fetchTechNews() {
+            const grid = document.getElementById('tech-news-grid');
+            if(!grid) return;
+            try {
+                const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://tecnoblog.net/feed/');
+                const data = await response.json();
+                if(data.status === 'ok') {
+                    grid.innerHTML = '';
+                    data.items.slice(0, 3).forEach(item => {
+                        grid.innerHTML += `
+                            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all">
+                                <div>
+                                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20 uppercase mb-3 inline-block">Tecnologia</span>
+                                    <h3 class="font-bold text-white text-sm mb-2 uppercase leading-snug">${item.title}</h3>
+                                    <p class="text-slate-400 text-xs mb-4 line-clamp-3">${item.description.replace(/<[^>]*>?/gm, '')}</p>
+                                </div>
+                                <a href="${item.link}" target="_blank" class="text-xs font-bold text-emerald-400 hover:text-emerald-300 uppercase flex items-center gap-1 mt-auto pt-4 border-t border-slate-800/80">
+                                    Ler notícia completa <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                </a>
+                            </div>
+                        `;
+                    });
+                }
+            } catch (err) {
+                grid.innerHTML = `<div class="col-span-3 text-center text-slate-500 text-xs uppercase">Não foi possível carregar as notícias no momento.</div>`;
+            }
+        }
+        fetchTechNews();
+
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobile-drawer');
+            const overlay = document.getElementById('mobile-drawer-overlay');
+            drawer.classList.toggle('translate-x-full');
+            overlay.classList.toggle('hidden');
         }
 
-        // Sincronização sem Perda de Estado dos Filtros
-        function fetchSheetData(manual = false) {
-            const icon = document.getElementById('refresh-icon');
-            if (icon) icon.classList.add('animate-spin');
+        function switchVipTab(tab) {
+            const regBox = document.getElementById('vip-form-register-box');
+            const logBox = document.getElementById('vip-form-login-box');
+            const regBtn = document.getElementById('vip-tab-reg-btn');
+            const logBtn = document.getElementById('vip-tab-log-btn');
 
-            // Armazena os valores selecionados atuais
-            const savedRegua = document.getElementById('filter-regua').value;
-            const savedBase = document.getElementById('filter-base').value;
-            const savedVeic = document.getElementById('filter-veiculo').value;
-            const savedVenc = document.getElementById('filter-vencimento').value;
-            const savedFaixa = document.getElementById('filter-faixa-valor').value;
-            const savedDDD = document.getElementById('filter-ddd').value;
-            const savedTurno = document.getElementById('filter-turno').value;
-            const savedSearch = document.getElementById('search-global').value;
-
-            setTimeout(() => {
-                populateFilterOptions();
-
-                // Restaura os filtros salvos
-                document.getElementById('filter-regua').value = savedRegua;
-                document.getElementById('filter-base').value = savedBase;
-                document.getElementById('filter-veiculo').value = savedVeic;
-                document.getElementById('filter-vencimento').value = savedVenc;
-                document.getElementById('filter-faixa-valor').value = savedFaixa;
-                document.getElementById('filter-ddd').value = savedDDD;
-                document.getElementById('filter-turno').value = savedTurno;
-                document.getElementById('search-global').value = savedSearch;
-
-                const now = new Date();
-                document.getElementById('last-sync-time').innerText = now.toLocaleTimeString('pt-BR');
-
-                if (icon) icon.classList.remove('animate-spin');
-                applyAllFilters();
-            }, 400);
+            if(tab === 'register') {
+                regBox.classList.remove('hidden');
+                logBox.classList.add('hidden');
+                regBtn.className = 'px-5 py-2.5 bg-primary text-white font-black rounded-xl text-xs uppercase shadow transition cursor-pointer';
+                logBtn.className = 'px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+            } else {
+                logBox.classList.remove('hidden');
+                regBox.classList.add('hidden');
+                logBtn.className = 'px-5 py-2.5 bg-emerald-600 text-white font-black rounded-xl text-xs uppercase shadow transition cursor-pointer';
+                regBtn.className = 'px-5 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+            }
         }
 
-        // Exportação para PDF e CSV
-        function generateExecutivePDF() {
-            document.getElementById('pdf-emission-date').innerText = new Date().toLocaleString('pt-BR');
-            const element = document.getElementById('printable-area');
-            html2pdf().set({
-                margin: 8,
-                filename: `Relatorio_Aprovatt_${new Date().toISOString().slice(0,10)}.pdf`,
-                html2canvas: { scale: 2, backgroundColor: '#070d1e' },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
-            }).from(element).save();
+        function handleUserRegistration(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const phone = document.getElementById('reg-phone').value;
+            const email = document.getElementById('reg-email').value;
+            const pass = document.getElementById('reg-pass').value;
+            const now = new Date().toLocaleString('pt-BR');
+
+            currentUser = { date: now, name, phone, email, pass };
+            localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
+            
+            registeredUsers.push(currentUser);
+            localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
+
+            document.getElementById('vip-form').reset();
+            document.getElementById('welcome-user-greeting').innerHTML = `Olá <b>${name}</b>! Seu cadastro foi realizado com sucesso.`;
+            document.getElementById('vip-welcome-popup').classList.remove('hidden');
+            document.getElementById('vip-welcome-popup').classList.add('flex');
+
+            updateUIUserStatus();
         }
 
-        function exportFilteredCSV() {
-            const headers = ['Data_Hora', 'Regua', 'Base', 'Associado', 'Telefone', 'Veiculo', 'Boleto', 'Valor', 'Vencimento', 'Status'];
-            const rows = filteredData.map(r => [
-                `"${r['Data e hora'] || ''}"`,
-                `"${r.Regua || ''}"`,
-                `"${r.Base || ''}"`,
-                `"${r.Nome || ''}"`,
-                `"${r.Telefone || ''}"`,
-                `"${r.Veiculo || ''}"`,
-                `"${r['Número do boleto'] || ''}"`,
-                (r.Valor || 0).toFixed(2),
-                `"${r['Vencimento Original'] || ''}"`,
-                `"${r.Obs || ''}"`
-            ]);
-            const csvContent = 'data:text/csv;charset=utf-8,\uFEFF' + [headers.join(';'), ...rows.map(e => e.join(';'))].join('\n');
-            const link = document.createElement('a');
-            link.href = encodeURI(csvContent);
-            link.download = `Relatorio_Aprovatt_${new Date().toISOString().slice(0,10)}.csv`;
-            link.click();
+        function handleUserLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('log-email').value;
+            const pass = document.getElementById('log-pass').value;
+            const foundUser = registeredUsers.find(u => u.email === email && u.pass === pass);
+
+            if(foundUser) {
+                currentUser = foundUser;
+                localStorage.setItem('dbarros_user', JSON.stringify(currentUser));
+                document.getElementById('vip-login-form').reset();
+                document.getElementById('login-error-msg').classList.add('hidden');
+                document.getElementById('welcome-user-greeting').innerHTML = `Olá de volta, <b>${currentUser.name}</b>! Login efetuado com sucesso.`;
+                document.getElementById('vip-welcome-popup').classList.remove('hidden');
+                document.getElementById('vip-welcome-popup').classList.add('flex');
+                updateUIUserStatus();
+            } else {
+                document.getElementById('login-error-msg').classList.remove('hidden');
+            }
         }
 
-        // Inicialização Global na Carga
-        window.addEventListener('DOMContentLoaded', () => {
-            flatpickrInstance = flatpickr("#filter-data-range", {
-                mode: "range",
-                dateFormat: "d/m/Y",
-                locale: "pt",
-                onChange: function() { applyAllFilters(); }
+        function updateUIUserStatus() {
+            const desktopContainer = document.getElementById('desktop-user-status');
+            const mobileContainer = document.getElementById('mobile-user-status-card');
+            const vipContainer = document.getElementById('vip-container');
+
+            if(currentUser) {
+                if(desktopContainer) {
+                    desktopContainer.innerHTML = `
+                        <div class="flex items-center space-x-2 bg-emerald-950/80 border border-emerald-500/40 px-3 py-1.5 rounded-xl text-xs font-bold text-emerald-300">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span>${currentUser.name.split(' ')[0]} (VIP)</span>
+                            <button type="button" onclick="logoutUser()" class="ml-1 text-slate-400 hover:text-red-400 text-xs font-bold cursor-pointer">✕</button>
+                        </div>
+                    `;
+                }
+                if(mobileContainer) {
+                    mobileContainer.innerHTML = `
+                        <div class="flex items-center space-x-2 text-emerald-400 font-bold">
+                            <i class="fa-solid fa-user-check text-emerald-400"></i>
+                            <span>Olá, ${currentUser.name}! (VIP)</span>
+                        </div>
+                        <button type="button" onclick="logoutUser()" class="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded font-bold cursor-pointer">Sair</button>
+                    `;
+                }
+                if(vipContainer) {
+                    vipContainer.innerHTML = `
+                        <div class="text-center py-4">
+                            <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce-slow">
+                                <i class="fa-solid fa-crown"></i>
+                            </div>
+                            <h3 class="text-2xl font-black text-white mb-2 uppercase">BEM-VINDO AO CLUBE VIP, ${currentUser.name}</h3>
+                            <p class="text-slate-300 text-xs mb-6">Sua conta está ativa no sistema.</p>
+                            <button type="button" onclick="logoutUser()" class="px-5 py-3 bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white font-bold rounded-xl text-xs uppercase border border-red-500/30 cursor-pointer">
+                                Sair da Conta
+                            </button>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('dbarros_user');
+            currentUser = null;
+            location.reload();
+        }
+
+        function closeWelcomePopup() {
+            const popup = document.getElementById('vip-welcome-popup');
+            if(popup) {
+                popup.classList.remove('flex');
+                popup.classList.add('hidden');
+            }
+        }
+
+        function filterProducts(category) {
+            const btnAll = document.getElementById('filter-btn-all');
+            const btnApple = document.getElementById('filter-btn-apple');
+            const btnAccessory = document.getElementById('filter-btn-acessórios');
+
+            [btnAll, btnApple, btnAccessory].forEach(b => {
+                if(b) b.className = 'px-4 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer';
             });
 
-            populateFilterOptions();
-            fetchSheetData();
-        });
+            if(category === 'all') {
+                if(btnAll) btnAll.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+                renderProducts(products);
+            } else if(category === 'apple') {
+                if(btnApple) btnApple.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+                renderProducts(products.filter(p => p.category === 'apple'));
+            } else if(category === 'acessórios') {
+                if(btnAccessory) btnAccessory.className = 'px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+                renderProducts(products.filter(p => p.category === 'acessórios'));
+            }
+        }
+
+        function renderProducts(listToRender) {
+            const grid = document.getElementById('product-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            
+            if(listToRender.length === 0) {
+                grid.innerHTML = `<div class="col-span-3 text-center py-8 text-slate-500 uppercase text-xs font-bold">Nenhum aparelho encontrado nesta categoria.</div>`;
+                return;
+            }
+
+            listToRender.forEach(p => {
+                const statusBadge = p.status === 'Disponível' 
+                    ? '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase">Disponível</span>'
+                    : '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30 uppercase">Vendido</span>';
+
+                const formattedPrice = Number(p.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+                grid.innerHTML += `
+                    <div class="bg-cardBg border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between hover:border-cyanAccent transition-all group">
+                        <div>
+                            <div class="relative h-52 sm:h-56 overflow-hidden bg-slate-950">
+                                <img src="${p.image}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <div class="absolute top-3 left-3">${statusBadge}</div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-extrabold text-white text-base mb-2 uppercase">${p.title}</h3>
+                                <p class="text-slate-400 text-xs mb-4 uppercase">${p.specs}</p>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+                            <span class="text-xl font-black text-secondary">${formattedPrice}</span>
+                            <a href="https://wa.me/5575992423627?text=Olá,%20tenho%20interesse%20no%20item%20${encodeURIComponent(p.title)}" target="_blank" class="bg-primary hover:opacity-90 text-white px-3 py-2 rounded-xl text-xs font-bold shadow-lg uppercase">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> Negociar
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // GERENCIAMENTO DE MODAIS DO ADMIN (ABRE E FECHA AUTOMATICAMENTE)
+        function openProductModal(prodId = null) {
+            closeAdminManagementModal(); // Fecha o painel admin atual
+
+            const modal = document.getElementById('product-form-modal');
+            const title = document.getElementById('product-modal-title');
+            const form = document.getElementById('product-form');
+            if(form) form.reset();
+
+            if(prodId) {
+                const prod = products.find(p => p.id === prodId);
+                if(prod) {
+                    if(title) title.innerText = '✏️ EDITAR ANÚNCIO DO APARELHO';
+                    document.getElementById('prod-id').value = prod.id;
+                    document.getElementById('prod-title').value = prod.title;
+                    document.getElementById('prod-price').value = prod.price;
+                    document.getElementById('prod-cost').value = prod.cost || (prod.price * 0.7);
+                    document.getElementById('prod-category').value = prod.category;
+                    document.getElementById('prod-status').value = prod.status;
+                    document.getElementById('prod-specs').value = prod.specs;
+                    document.getElementById('prod-image').value = prod.image;
+                }
+            } else {
+                if(title) title.innerText = '➕ ADICIONAR NOVO APARELHO';
+                document.getElementById('prod-id').value = '';
+            }
+
+            if(modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById('product-form-modal');
+            if(modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
+        function saveProduct(e) {
+            e.preventDefault();
+            const id = document.getElementById('prod-id').value;
+            const title = document.getElementById('prod-title').value;
+            const price = parseFloat(document.getElementById('prod-price').value);
+            const cost = parseFloat(document.getElementById('prod-cost').value) || 0;
+            const category = document.getElementById('prod-category').value;
+            const status = document.getElementById('prod-status').value;
+            const specs = document.getElementById('prod-specs').value;
+            const image = document.getElementById('prod-image').value;
+
+            if(id !== "") {
+                const index = products.findIndex(p => p.id === parseInt(id));
+                if(index !== -1) {
+                    products[index] = { id: parseInt(id), title, price, cost, category, status, specs, image };
+                }
+            } else {
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({ id: newId, title, price, cost, category, status, specs, image });
+            }
+
+            localStorage.setItem('dbarros_products', JSON.stringify(products));
+            closeProductModal();
+            renderProducts(products);
+            openAdminManagementModal(); // Reabre o painel central atualizado
+        }
+
+        function updateProductStatus(id, newStatus) {
+            const index = products.findIndex(p => p.id === id);
+            if(index !== -1) {
+                products[index].status = newStatus;
+                localStorage.setItem('dbarros_products', JSON.stringify(products));
+                renderProducts(products);
+                openAdminManagementModal();
+            }
+        }
+
+        function deleteProduct(id) {
+            if(confirm('Excluir este aparelho do estoque?')) {
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('dbarros_products', JSON.stringify(products));
+                renderProducts(products);
+                openAdminManagementModal();
+            }
+        }
+
+        function calculateFinance() {
+            let totalRevenue = 0;
+            let totalCost = 0;
+            let stockValue = 0;
+            let countSold = 0;
+            let countAvailable = 0;
+
+            products.forEach(p => {
+                const pPrice = Number(p.price) || 0;
+                const pCost = Number(p.cost) || (pPrice * 0.7);
+
+                if(p.status === 'Vendido') {
+                    totalRevenue += pPrice;
+                    totalCost += pCost;
+                    countSold++;
+                } else {
+                    stockValue += pCost;
+                    countAvailable++;
+                }
+            });
+
+            const netProfit = totalRevenue - totalCost;
+            const avgMargin = totalRevenue > 0 ? ((netProfit / totalRevenue) * 100).toFixed(1) : 0;
+
+            document.getElementById('fin-total-revenue').innerText = totalRevenue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('fin-total-cost').innerText = totalCost.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('fin-net-profit').innerText = netProfit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('fin-stock-value').innerText = stockValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            
+            document.getElementById('fin-count-sold').innerText = countSold;
+            document.getElementById('fin-count-available').innerText = countAvailable;
+            document.getElementById('fin-avg-margin').innerText = `${avgMargin}%`;
+        }
+
+        function switchAdminTab(tab) {
+            const stockTab = document.getElementById('admin-tab-stock');
+            const financeTab = document.getElementById('admin-tab-finance');
+            const imagesTab = document.getElementById('admin-tab-images');
+            const usersTab = document.getElementById('admin-tab-users');
+
+            const stockBtn = document.getElementById('tab-btn-stock');
+            const financeBtn = document.getElementById('tab-btn-finance');
+            const imagesBtn = document.getElementById('tab-btn-images');
+            const usersBtn = document.getElementById('tab-btn-users');
+
+            [stockTab, financeTab, imagesTab, usersTab].forEach(t => { if(t) t.classList.add('hidden'); });
+            [stockBtn, financeBtn, imagesBtn, usersBtn].forEach(b => { if(b) b.className = 'px-3.5 py-2 bg-slate-800 text-slate-300 font-bold rounded-xl text-xs uppercase transition cursor-pointer'; });
+
+            if(tab === 'stock') {
+                if(stockTab) stockTab.classList.remove('hidden');
+                if(stockBtn) stockBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+            } else if(tab === 'finance') {
+                if(financeTab) financeTab.classList.remove('hidden');
+                if(financeBtn) financeBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+                calculateFinance();
+            } else if(tab === 'images') {
+                if(imagesTab) imagesTab.classList.remove('hidden');
+                if(imagesBtn) imagesBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+                loadSiteImages();
+            } else if(tab === 'users') {
+                if(usersTab) usersTab.classList.remove('hidden');
+                if(usersBtn) usersBtn.className = 'px-3.5 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase transition cursor-pointer';
+                renderAdminUsersTable();
+            }
+        }
+
+        function renderAdminUsersTable(data = registeredUsers) {
+            const tbody = document.getElementById('admin-users-table-body');
+            if(!tbody) return;
+            tbody.innerHTML = '';
+            document.getElementById('stat-vip-count').innerText = registeredUsers.length;
+            document.getElementById('stat-prod-count').innerText = products.length;
+
+            if(data.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500 uppercase">Nenhum cliente cadastrado até o momento.</td></tr>`;
+                return;
+            }
+
+            data.forEach((u, index) => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-900/80 transition-colors">
+                        <td class="p-3 font-mono text-[11px] text-slate-400">${u.date || 'N/A'}</td>
+                        <td class="p-3 font-bold text-white uppercase">${u.name}</td>
+                        <td class="p-3 text-cyanAccent font-mono">${u.phone}</td>
+                        <td class="p-3 text-slate-300 font-mono">${u.email}</td>
+                        <td class="p-3 text-amber-400 font-mono">${u.pass}</td>
+                        <td class="p-3 text-right">
+                            <button type="button" onclick="deleteAdminUser(${index})" class="bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-2.5 py-1 rounded text-[11px] font-bold transition cursor-pointer">Excluir</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function filterAdminUsers() {
+            const term = document.getElementById('search-users-input').value.toLowerCase();
+            const filtered = registeredUsers.filter(u => u.name.toLowerCase().includes(term) || u.email.toLowerCase().includes(term));
+            renderAdminUsersTable(filtered);
+        }
+
+        function deleteAdminUser(index) {
+            if(confirm('Excluir este cadastro do banco de dados?')) {
+                registeredUsers.splice(index, 1);
+                localStorage.setItem('dbarros_vip_users', JSON.stringify(registeredUsers));
+                renderAdminUsersTable();
+            }
+        }
+
+        function exportUsersCSV() {
+            let csvContent = "data:text/csv;charset=utf-8,Data/Hora,Nome,WhatsApp,E-mail,Senha\n";
+            registeredUsers.forEach(u => {
+                csvContent += `"${u.date || ''}","${u.name}","${u.phone}","${u.email}","${u.pass}"\n`;
+            });
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `Clientes_VIP_DBARROS_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function openAdminManagementModal() {
+            const table = document.getElementById('admin-product-table');
+            if(!table) return;
+            table.innerHTML = '';
+            products.forEach(p => {
+                const isAvailable = p.status === 'Disponível';
+                const formattedPrice = Number(p.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+                table.innerHTML += `
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 gap-3">
+                        <div class="flex items-center gap-3">
+                            <img src="${p.image}" class="w-12 h-12 object-cover rounded-lg border border-slate-700">
+                            <div>
+                                <h4 class="font-bold text-white text-xs uppercase">${p.title}</h4>
+                                <span class="text-cyanAccent font-bold text-xs">${formattedPrice}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                            <select onchange="updateProductStatus(${p.id}, this.value)" class="bg-darkBg border ${isAvailable ? 'border-emerald-500 text-emerald-400' : 'border-red-500 text-red-400'} rounded-lg px-2.5 py-1.5 text-xs font-bold uppercase cursor-pointer">
+                                <option value="Disponível" ${isAvailable ? 'selected' : ''}>🟢 DISPONÍVEL</option>
+                                <option value="Vendido" ${!isAvailable ? 'selected' : ''}>🔴 VENDIDO</option>
+                            </select>
+                            <button type="button" onclick="openProductModal(${p.id})" class="bg-amber-500/20 hover:bg-amber-500 text-amber-400 hover:text-slate-950 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer" title="Editar Anúncio">
+                                <i class="fa-solid fa-pen"></i> Editar
+                            </button>
+                            <button type="button" onclick="deleteProduct(${p.id})" class="bg-red-500/25 hover:bg-red-500 text-red-400 hover:text-white px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer" title="Excluir Anúncio">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            const modal = document.getElementById('admin-management-modal');
+            if(modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+            switchAdminTab('stock');
+        }
+
+        function closeAdminManagementModal() {
+            const modal = document.getElementById('admin-management-modal');
+            if(modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
+        function openAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            if(modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            if(modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
+        function verifyAdmin(e) {
+            e.preventDefault();
+            const passInput = document.getElementById('admin-pass');
+            if (passInput && passInput.value === 'Aprovatt@123') {
+                const adminBar = document.getElementById('admin-bar');
+                if(adminBar) {
+                    adminBar.classList.remove('hidden');
+                    adminBar.classList.add('flex');
+                }
+                closeAdminModal();
+                openAdminManagementModal();
+            } else {
+                const err = document.getElementById('admin-error');
+                if(err) err.classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            const adminBar = document.getElementById('admin-bar');
+            if(adminBar) {
+                adminBar.classList.remove('flex');
+                adminBar.classList.add('hidden');
+            }
+        }
+
+        let isMusicPlaying = false;
+        function toggleMusic() {
+            const audio = document.getElementById('bg-music');
+            const icon = document.getElementById('music-icon');
+            const text = document.getElementById('music-text');
+            if (isMusicPlaying) {
+                audio.pause();
+                if(icon) icon.className = 'fa-solid fa-volume-xmark text-red-400';
+                if(text) text.innerText = 'SOM';
+                isMusicPlaying = false;
+            } else {
+                audio.volume = 0.3;
+                audio.play().then(() => {
+                    if(icon) icon.className = 'fa-solid fa-compact-disc text-cyanAccent animate-spin';
+                    if(text) text.innerText = 'TOCANDO';
+                    isMusicPlaying = true;
+                }).catch(() => {});
+            }
+        }
+
+        loadSiteImages();
+        renderProducts(products);
+        updateUIUserStatus();
     </script>
 </body>
 </html>
